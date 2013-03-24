@@ -1,0 +1,87 @@
+body {
+    padding-bottom: 60px;
+    background-color: #aeaeae;
+}
+
+/* Custom container */
+.container {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: #eeebeb;
+}
+.container > hr {
+    margin: 60px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    margin: 0;
+    text-align: center;
+}
+.jumbotron h1 {
+    font-size: 100px;
+    line-height: 1;
+}
+.jumbotron .lead {
+    font-size: 24px;
+    line-height: 1.25;
+}
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 60px 0;
+}
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+
+/* CUSTOMIZE THE NAVBAR
+   -------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    z-index: 10;
+    margin-top: 0;
+    margin-bottom: 0; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+}
+.navbar-wrapper .navbar {
+
+}
+
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+    border: 0;
+    border-radius: 0;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#333333));
+}
+
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+    padding: 30px 20px 16px 20px; /* Increase vertical padding to match navbar links */
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav > li > a {
+    padding: 30px 20px 15px 20px;
+}
+
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+    margin-top: 10px;
+}
+
+.navbar .nav {
+    float: right;
+}
+
+.navbar-inverse .nav .active > a {
+    background-color: #333333;
+}
