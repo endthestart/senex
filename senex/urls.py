@@ -9,6 +9,9 @@ urlpatterns = patterns('',
     url(r'^$', 'senex.views.home', name='home'),
     url(r'^about/$', 'senex.views.about', name='about'),
     url(r'^contact/$', 'senex.views.contact', name='contact'),
+    url(r'^contact/thanks/$', 'senex.views.contact_thanks', name='contact_thanks'),
+    url(r'^mountain/$', 'senex.views.mountain', name='mountain'),
+    url(r'^road/$', 'senex.views.road', name='road'),
     # url(r'^senex/', include('senex.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

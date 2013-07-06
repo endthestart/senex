@@ -1,16 +1,32 @@
+/* Style Resets
+   -------------------------------------------------- */
+
 body {
-    padding-bottom: 60px;
-    background-color: #aeaeae;
+    padding: 0;
+    margin: 0;
+    background: rgb(245, 245, 245);
+}
+/* #3F3836 #A89794 #D2CBD3 #EEE4E5 #D9AE9C */
+
+/* Header
+   -------------------------------------------------- */
+
+.top {
+    background: rgb(230, 230, 230);
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
-/* Custom container */
-.container {
-    margin: 0 auto;
-    max-width: 1000px;
-    background-color: #eeebeb;
-}
-.container > hr {
-    margin: 60px 0;
+/* Content
+   -------------------------------------------------- */
+.content {
+    min-height: 600px;
+    padding: 20px 0 10px 0;
+    margin: 15px auto;
+    background: #eee;
+    -webkit-box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
+    box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
 }
 
 /* Main marketing message and sign up button */
@@ -40,48 +56,86 @@ body {
 }
 
 
-/* CUSTOMIZE THE NAVBAR
+/* Navigation
    -------------------------------------------------- */
 
-/* Special class on .container surrounding .navbar, used for positioning it into place. */
-.navbar-wrapper {
-    z-index: 10;
-    margin-top: 0;
-    margin-bottom: 0; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-}
-.navbar-wrapper .navbar {
-
+.nav {
+    display: block;
+    padding: 0;
+    margin: 0;
+    border-bottom: 3px solid rgb(210, 210, 210);
+    border-top: 3px solid rgb(210, 210, 210);
 }
 
-/* Remove border and change up box shadow for more contrast */
-.navbar .navbar-inner {
-    border: 0;
-    border-radius: 0;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#333333));
+.nav-inner {
+    text-align: center;
 }
 
-/* Downsize the brand/project name a bit */
-.navbar .brand {
-    padding: 30px 20px 16px 20px; /* Increase vertical padding to match navbar links */
-    font-size: 16px;
-    font-weight: bold;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+.nav-inner ul {
+    margin: 0;
 }
 
-/* Navbar links: increase padding for taller navbar */
-.navbar .nav > li > a {
-    padding: 30px 20px 15px 20px;
+.nav ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    height: 100%;
+    line-height: 26px;
+    width: 100px;
 }
 
-/* Offset the responsive button for proper vertical alignment */
-.navbar .btn-navbar {
-    margin-top: 10px;
+.nav ul li a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    width: 100%;
 }
 
-.navbar .nav {
-    float: right;
+.nav ul li a:hover {
+    text-decoration: none;
+    background: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
 }
 
-.navbar-inverse .nav .active > a {
-    background-color: #333333;
+.top .brand {
+    display: block;
+    float: left;
+    padding: 5px 0;
+    font-size: 40px;
+    color: #fff;
+}
+
+.top .brand:hover,
+.top .brand:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* Footer
+   ----------------------- */
+.footer {
+    font-size: 12px;
+    color: #000;
+    padding: 0;
+    margin: 30px auto 0 auto;;
+    height: 150px;
+}
+
+/* Buttons
+   ---------------------- */
+a.btn {
+    padding: 10px 15px;
+    background: #4479BA;
+    color: #FFF;
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+a.btn:hover {
+    text-decoration: none;
+    background: #3469AA;
 }

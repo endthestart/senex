@@ -1,51 +1,89 @@
 {% load static from staticfiles %}
 
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Senex Custom Cycles{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{% block title %}Senex Cycles{% endblock title %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-    <!-- Le styles -->
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "css/main.css" %}" rel="stylesheet">
-    <link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="{% static "js/html5shiv.jsc" %}"></script>
-    <![endif]-->
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="{% static "css/base.css" %}">
+	<link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+	<link rel="stylesheet" href="{% static "css/layout.css" %}">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
 
-    <!-- Fav icons -->
-    <link rel="shortcut icon" href="{% static "ico/favicon.png" %}">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+	<link rel="apple-touch-icon" href="{% static "img/apple-touch-icon.png" %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static "img/apple-touch-icon-72x72.png" %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static "img/apple-touch-icon-114x114.png" %}">
 </head>
 <body>
-    {% include 'menu.html' %}
-    <div class="container">
-        {% block body %}{% endblock %}
-        <hr>
-        <div class="footer">
-            <p>&copy; Senex Bicycle Corporation | All Rights Reserved | Privacy Policy | Site Map</p>
+	<!-- Primary Page Layout
+	================================================== -->
+    <div class="top">
+        <div class="container">
+            <div class="sixteen columns"><a href="/" class="brand"><img src="{% static "img/header-logo.png" %}"/></a></div>
         </div>
-    </div> <!-- /container -->
-<!-- Javascript =============================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="{% static "js/bootstrap-transition.js" %}"></script>
-<script src="{% static "js/bootstrap-alert.js" %}"></script>
-<script src="{% static "js/bootstrap-modal.js" %}"></script>
-<script src="{% static "js/bootstrap-dropdown.js" %}"></script>
-<script src="{% static "js/bootstrap-scrollspy.js" %}"></script>
-<script src="{% static "js/bootstrap-tab.js" %}"></script>
-<script src="{% static "js/bootstrap-tooltip.js" %}"></script>
-<script src="{% static "js/bootstrap-popover.js" %}"></script>
-<script src="{% static "js/bootstrap-button.js" %}"></script>
-<script src="{% static "js/bootstrap-collapse.js" %}"></script>
-<script src="{% static "js/bootstrap-carousel.js" %}"></script>
-<script src="{% static "js/bootstrap-typeahead.js" %}"></script>
+            <div class="nav">
+                    <div class="container nav-inner">
+                        <ul>
+                            <li><a href="{% url 'mountain' %}">Mountain</a></li>
+                            <li><a href="{% url 'road' %}">Road</a></li>
+                            <li><a href="#custom">Custom</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+            </div>
+    </div>
+    <div class="container content">
+        {% block body %}This page doesn't have any content.{% endblock body %}
+    </div>
+    <div class="container footer">
+        <div class="three columns">
+            About Senex
+            <br/>Hours + Location
+            <br/>Bicycle Shop
+            <br/>Privacy Policy
+            <br/>Site Map
+        </div>
+        <div class="three columns">
+            Hours
+            <br />MON-FRI 8am-6pm
+            <br/>SAT 9am-5pm
+            <br/>SUN Closed
+            <br/>Phone
+            <br/>920.215.1137
+        </div>
+        <div class="three columns">
+            Address
+            <br/>945 S. Nicolet Rd.
+            <br/>Appleton, WI 54914
+            <br/>Email
+            <br/>info@senexcycles.com
+            <br />&copy; Senex Bicycle Corporation
+        </div>
+    </div>
 
+    <!-- End Document
+================================================== -->
 </body>
 </html>
