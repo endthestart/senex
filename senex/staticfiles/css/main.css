@@ -1,0 +1,144 @@
+/* Style Resets
+   -------------------------------------------------- */
+
+body {
+    padding: 0;
+    margin: 0;
+    background: rgb(245, 245, 245);
+}
+/* #3F3836 #A89794 #D2CBD3 #EEE4E5 #D9AE9C */
+
+/* Header
+   -------------------------------------------------- */
+
+.top {
+    background: rgb(230, 230, 230);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+/* Content
+   -------------------------------------------------- */
+.content {
+    min-height: 600px;
+    padding: 20px 0 10px 0;
+    margin: 15px auto;
+    background: #eee;
+    -webkit-box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
+    box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+    margin: 0;
+    text-align: center;
+}
+.jumbotron h1 {
+    font-size: 100px;
+    line-height: 1;
+}
+.jumbotron .lead {
+    font-size: 24px;
+    line-height: 1.25;
+}
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+    margin: 60px 0;
+}
+.marketing p + h4 {
+    margin-top: 28px;
+}
+
+
+/* Navigation
+   -------------------------------------------------- */
+
+.nav {
+    width: 100%;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    border-top: 1px solid rgb(210, 210, 210);
+}
+
+.nav-inner {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-inner ul {
+    margin: 0;
+}
+
+.nav ul li {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    height: 100%;
+    line-height: 26px;
+    width: 100px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    width: 100%;
+}
+
+.nav ul li a:hover {
+    text-decoration: none;
+    background: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+}
+
+.top .brand {
+    display: block;
+    float: left;
+    padding: 5px 0;
+    font-size: 40px;
+    color: #fff;
+}
+
+.top .brand:hover,
+.top .brand:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/* Footer
+   ----------------------- */
+.footer {
+    font-size: 12px;
+    color: #000;
+    padding: 0;
+    margin: 30px auto 0 auto;;
+    height: 150px;
+}
+
+/* Buttons
+   ---------------------- */
+a.btn {
+    padding: 10px 15px;
+    background: #4479BA;
+    color: #FFF;
+}
+
+a.btn {
+    text-decoration: none;
+}
+
+a.btn:hover {
+    text-decoration: none;
+    background: #3469AA;
+}
