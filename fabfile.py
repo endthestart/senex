@@ -38,7 +38,7 @@ def staging():
         print(green("Pulling master from GitHub..."))
         run("git pull origin master")
         print(green("Installing requirements..."))
-        run("source %s/venv/bin/activate && pip install -r requirements.txt" % path)
+        run("source %s/venv/bin/activate && pip install -r ../requirements.txt" % path)
         print(green("Collecting static files..."))
         run("source %s/venv/bin/activate && python manage.py collectstatic --noinput" % path)
         print(green("Syncing the database..."))
