@@ -55,6 +55,18 @@ body {
     margin-top: 28px;
 }
 
+.promo-box {
+    height: 400px;
+    position:relative;
+}
+
+.promo-box .btn {
+    float: right;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
 
 /* Navigation
    -------------------------------------------------- */
@@ -140,4 +152,24 @@ a.btn {
 a.btn:hover {
     text-decoration: none;
     background: #3469AA;
+}
+
+
+/* Products
+   ----------------------- */
+.product-row {
+    height: 110px;
+    display: table-row;
+}
+
+.product-row .left {
+    float: left;
+    display: table-cell;
+    padding-right: 10px;
+}
+
+.product-row .right {
+    float: left;
+    display: table-cell;
+    padding-left: 10px;
 }

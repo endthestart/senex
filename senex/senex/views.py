@@ -42,6 +42,8 @@ def contact(request, template_name='contact.html'):
 def contact_thanks(request, template_name="contact_thanks.html"):
     return render_to_response(template_name, {}, RequestContext(request))
 
+def custom(request, template_name="custom.html"):
+    return render_to_response(template_name, {}, RequestContext(request))
 
 def mountain(request, template_name="mountain_index.html"):
     return render_to_response(template_name, {}, RequestContext(request))

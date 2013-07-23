@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block body %}
+<div class="jumbotron sixteen columns">
+    <img src="{% static "img/custom_header.png" %}">
+    <p class="lead">Looking for something unique? Senex offers the ability to get it.</p>
+</div>
+<div class="sixteen columns">
+    <h3>Semi-Custom</h3>
+    <p>If you'd like to make custom modifications to one of our standard frames, we got you covered. A typical upcharge for custom modifications and geometry adjustments is $500.00.</p>
+
+    <h3>Fully-Custom</h3>
+    <p>Get ready for the ultimate ride tailored just for you. We'll work with you to design a frame from the ground up. Frames start at $3295.</p>
+
+    <h3>Get Started:</h3>
+    <p>To start the process, feel free to drop us an email or give us a call.</p>
+</div>
+{% endblock %}

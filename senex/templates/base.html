@@ -9,7 +9,7 @@
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>{% block title %}Senex Cycles{% endblock title %}</title>
+	<title>Senex Cycles - {% block title %}{% endblock title %}</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -47,7 +47,7 @@
                         <ul>
                             <li><a href="{% url 'mountain' %}">Mountain</a></li>
                             <li><a href="{% url 'road' %}">Road</a></li>
-                            <li><a href="#custom">Custom</a></li>
+                            <li><a href="{% url 'custom' %}">Custom</a></li>
                             <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                         </ul>
