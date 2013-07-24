@@ -1,6 +1,8 @@
 Django==1.5
 Fabric==1.6.0
 South==0.7.6
+Pillow==2.1.0
+django-localflavor-us==1.1
 paramiko==1.10.0
 psycopg2==2.4.6
 pycrypto==2.6
