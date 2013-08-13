@@ -17,7 +17,7 @@ class Company(models.Model):
         help_text=_('The company logo.'),
     )
     address = models.ForeignKey(
-        'address',
+        'senex.Address',
         help_text=_('The address of the company.'),
     )
     phone = PhoneNumberField(

@@ -115,6 +115,8 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'tinycart.middleware.HTTPMethodOverrideMiddleware',
+    'tinycart.middleware.CartMiddleware'
 )
 
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -143,8 +145,9 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     #'south',
+    'custom_auth',
     'django_localflavor_us',
-    'Pillow',
+    'tinycart',
 )
 
 LOCAL_APPS = (
@@ -187,3 +190,11 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
+
+########## AUTH CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/topics/auth/customizing/
+AUTHENTICATION_BACKENDS = ('custom_auth.auth.Authenticate',)
+AUTH_USER_MODEL = 'custom_auth.User'
+########## END AUTH CONFIGURATION
+
+
