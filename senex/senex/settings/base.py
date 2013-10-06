@@ -144,7 +144,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    #'south',
+    'south',
     'custom_auth',
     'django_localflavor_us',
     'tinycart',

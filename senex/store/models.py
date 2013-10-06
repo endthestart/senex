@@ -239,6 +239,9 @@ class Product(models.Model):
         Category,
         related_name=_("category"),
     )
+    option_group = models.ForeignKey(
+        'OptionGroup',
+    )
     ordering = models.IntegerField(
         _("ordering"),
         default=0,
@@ -383,10 +386,26 @@ class Option(models.Model):
         max_length="50",
         help_text=_("The name of the option."),
     )
-    value = models.CharField(
-        _("value"),
-        max_length="50",
+
+    class Meta:
+        verbose_name = _("option")
+        verbose_name_plural = _("options")
+
+    def __unicode__(self):
+        return u'{0}: {1}'.format(self.option_group.name, self.name)
+
+
+class OptionValue(models.Model):
+    option = models.ForeignKey(
+        Option,
+        related_name="values",
     )
+    name = models.CharField(
+        _("name"),
+        max_length="50",
+        help_text=_("The name of the option value"),
+    )
+
     price_change = models.DecimalField(
         _("price change"),
         max_digits=8,
@@ -397,15 +416,8 @@ class Option(models.Model):
     )
 
     class Meta:
-        unique_together = (('option_group', 'value'),)
-        verbose_name = _("option")
-        verbose_name_plural = _("options")
-
-    def __unicode__(self):
-        return u'{0}: {1}'.format(self.option_group.name, self.name)
-
-
-
+        verbose_name = _("option value")
+        verbose_name_plural = _("option values")
 
 
 

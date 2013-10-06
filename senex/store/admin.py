@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, OptionGroup, Option
+from .models import Category, Product, OptionGroup, Option, OptionValue
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -7,7 +7,17 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'is_active', 'path')
     prepopulated_fields = {"slug": ("name",)}
 
+
+class OptionInline(admin.TabularInline):
+    model = OptionValue
+
+
+class OptionAdmin(admin.ModelAdmin):
+    inlines = [
+        OptionInline,
+    ]
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product)
 admin.site.register(OptionGroup)
-admin.site.register(Option)
+admin.site.register(Option, OptionAdmin)
