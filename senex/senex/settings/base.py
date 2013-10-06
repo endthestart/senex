@@ -152,6 +152,7 @@ THIRD_PARTY_APPS = (
 
 LOCAL_APPS = (
     'senex',
+    'store',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

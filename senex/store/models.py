@@ -80,7 +80,7 @@ class Category(models.Model):
     """
     name = models.CharField(
         _("name"),
-        max_lenght=200,
+        max_length=200,
     )
     slug = models.SlugField(
         _("slug"),
@@ -122,7 +122,13 @@ class Category(models.Model):
         verbose_name=_('related categories'),
         related_name='related_categories',
     )
-    #objects = CategoryManager()
+
+    class Meta:
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
+
+    def __unicode__(self):
+        return u"{0}".format(self.name)
 
     def _get_main_image(self):
         img = False
@@ -273,15 +279,77 @@ class Product(models.Model):
         return urlresolvers.reverse('product', kwargs={'product_slug': self.slug})
 
     class Meta:
-        ordering = ('site', 'ordering', 'name')
+        ordering = ('ordering', 'name')
         verbose_name = _("product")
         verbose_name_plural = _("products")
 
     def save(self, **kwargs):
         if self.name and not self.slug:
-            self.slug = slugify(self.name, instance=self)
+            self.slug = slugify(self.name)
 
         super(Product, self).save(**kwargs)
+
+
+class OptionGroup(models.Model):
+    name = models.CharField(
+        _("name"),
+        max_length=50,
+        help_text=_("The name of the option group."),
+    )
+    description = models.TextField(
+        _("description"),
+        null=True,
+        blank=True,
+        help_text=_("This should be a more lengthy description of the option group."),
+    )
+
+    class Meta:
+        verbose_name = _("option group")
+        verbose_name_plural = _("option groups")
+
+    def __unicode__(self):
+        if self.description:
+            return u'{0} - {1}'.format(self.name, self.description)
+        else:
+            return self.name
+
+
+class Option(models.Model):
+    """
+    The actual options in an option group.
+    """
+    option_group = models.ForeignKey(OptionGroup)
+    name = models.CharField(
+        _("name"),
+        max_length="50",
+        help_text=_("The name of the option."),
+    )
+    value = models.CharField(
+        _("value"),
+        max_length="50",
+    )
+    price_change = models.DecimalField(
+        _("price change"),
+        max_digits=8,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        help_text=_("The change in cost for a product."),
+    )
+
+    class Meta:
+        unique_together = (('option_group', 'value'),)
+        verbose_name = _("option")
+        verbose_name_plural = _("options")
+
+    def __unicode__(self):
+        return u'{0}: {1}'.format(self.option_group.name, self.name)
+
+
+
+
+
+
 
 
 # class Frame(Product):

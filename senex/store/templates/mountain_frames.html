@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}Mountain Frames{% endblock %}
+
+{% block body %}
+    <div class="product-row">
+        <div class="four columns"><a href="{% url 'mountain_bikes' %}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
+        <div class="twelve columns"><p>Bikes</p></div>
+
+        <div class="four columns"><a href="{% url 'mountain_frames' %}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
+        <div class="twelve columns"><p>Frames</p></div>
+    </div>
+{% endblock %}

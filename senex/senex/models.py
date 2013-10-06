@@ -27,6 +27,10 @@ class Company(Address):
         help_text=_('The contact number of the company.'),
     )
 
+    class Meta:
+        verbose_name = _("company")
+        verbose_name_plural = _("companies")
+
 
 class CustomBuild(models.Model):
     type = models.CharField(
@@ -38,3 +42,8 @@ class CustomBuild(models.Model):
         _('description'),
         help_text=('The customization description.'),
     )
+
+    class Meta:
+        verbose_name = _("custom build")
+        verbose_name_plural = _("custom builds")
+
