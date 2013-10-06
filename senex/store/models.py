@@ -183,7 +183,7 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return('category_view', (), {'path': self.path})
+        return('category', (), {'path': self.path})
 #
 #     def active_products(self, variations=False, include_children=False, **kwargs):
 #         """Variations determines whether or not product variations are included.
@@ -335,7 +335,7 @@ class Product(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return('product_view', (), {'slug': self.slug, 'path': self.category.path})
+        return('product_detail', (), {'slug': self.slug, 'path': self.category.path})
 
     class Meta:
         ordering = ('ordering', 'name')

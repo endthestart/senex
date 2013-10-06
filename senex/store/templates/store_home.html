@@ -11,10 +11,4 @@
         <div class="twelve columns"><p>{{ child.name }}</p></div>
     </div>
     {% endfor %}
-    {% for product in products %}
-    <div class="product-row">
-        <div class="four columns"><a href="{% url 'mountain_bikes' %}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
-        <div class="twelve columns"><p>{{ product.name }}</p></div>
-    </div>
-    {% endfor %}
 {% endblock %}

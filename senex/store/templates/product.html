@@ -4,9 +4,8 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
-    {{ product.category.name_path }}
-    <div class="product-row">
-        <div class="four columns"><a href=""><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
-        <div class="twelve columns"><p>{{ product.name }}: {{ product.description }}</p></div>
-    </div>
+    <div class="sixteen columns">{{ product.category.name_path }}</div>
+
+    <div class="sixteen columns"><p>{{ product.name }}: {{ product.description }}</p></div>
+    <div class="sixteen columns">Add some customization stuff here.</div>
 {% endblock %}

@@ -12,7 +12,7 @@ def store_home(request, template_name="store_home.html"):
     return render_to_response(template_name, context, RequestContext(request))
 
 
-def category_view(request, path=None, template_name="category.html"):
+def category(request, path=None, template_name="category.html"):
     category = get_object_or_404(Category, path=path)
     context = {}
     context.update({'category': category})
@@ -24,7 +24,7 @@ def category_view(request, path=None, template_name="category.html"):
     return render_to_response(template_name, context, RequestContext(request))
 
 
-def product_view(request, path=None, slug=None, template_name="product.html"):
+def product_detail(request, path=None, slug=None, template_name="product.html"):
     product = get_object_or_404(Product, slug=slug)
     context = {"product": product}
     return render_to_response(template_name, context, RequestContext(request))
