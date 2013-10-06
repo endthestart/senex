@@ -5,7 +5,9 @@ from django.core import urlresolvers
 from django.db import models
 # from django.db.models import Q
 from django.template.defaultfilters import slugify
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
+
 
 dimension_units = (('cm', 'cm'), ('mm', 'mm'), ('in', 'in'))
 
@@ -93,6 +95,20 @@ class Category(models.Model):
         null=True,
         related_name='child',
     )
+    path = models.CharField(
+        _("path"),
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=_("The path of the category for use in URLs"),
+    )
+    name_path = models.CharField(
+        _("name path"),
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=_("The path of the category for use in text"),
+    )
     meta = models.TextField(
         _("meta description"),
         blank=True,
@@ -130,11 +146,44 @@ class Category(models.Model):
     def __unicode__(self):
         return u"{0}".format(self.name)
 
+    def get_path(self):
+        ancestors = []
+        if self.parent:
+            parent = self.parent
+            while parent:
+                ancestors.append(parent)
+                parent = parent.parent
+        ancestors.reverse()
+        ancestors = ancestors + [self, ]
+        return ancestors
+
+    def join_path(self, joiner, field, ancestors):
+        return joiner.join([force_unicode(getattr(i, field)) for i in ancestors])
+
     def _get_main_image(self):
         img = False
         return img
-
     main_image = property(_get_main_image)
+
+    def save(self, **kwargs):
+        if self.name and not self.slug:
+            self.slug = slugify(self.name)
+
+        ancestors = self.get_path()
+        self.path = self.join_path(u'/', 'slug', ancestors)
+        self.name_path = self.join_path(u' > ', 'name', ancestors)
+
+        super(Category, self).save(**kwargs)
+
+        if self.child.all():
+            children = list(self.child.all())
+            for child in children:
+                child.is_active = self.is_active
+                child.save()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return('category_view', (), {'path': self.path})
 #
 #     def active_products(self, variations=False, include_children=False, **kwargs):
 #         """Variations determines whether or not product variations are included.
@@ -186,10 +235,9 @@ class Product(models.Model):
         auto_now=True,
         help_text=_("The date and time the item was modified."),
     )
-    category = models.ManyToManyField(
+    category = models.ForeignKey(
         Category,
-        blank=True,
-        verbose_name=_("category"),
+        related_name=_("category"),
     )
     ordering = models.IntegerField(
         _("ordering"),
@@ -272,11 +320,22 @@ class Product(models.Model):
         return True
     is_available = property(_available)
 
+    def _get_category(self):
+        """
+        Return the primary category associated with this product
+        """
+        try:
+            return self.category.all()[0]
+        except IndexError:
+            return None
+    get_category = property(_get_category)
+
     def __unicode__(self):
         return self.name
 
+    @models.permalink
     def get_absolute_url(self):
-        return urlresolvers.reverse('product', kwargs={'product_slug': self.slug})
+        return('product_view', (), {'slug': self.slug, 'path': self.category.path})
 
     class Meta:
         ordering = ('ordering', 'name')

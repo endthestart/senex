@@ -1,30 +1,30 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 from .models import Category, Product
 
 
-def mountain(request, template_name="mountain_index.html"):
+def store_home(request, template_name="store_home.html"):
+    context = {}
+    categories = Category.objects.filter(parent=None)
+    context.update({'child_categories': categories})
+    return render_to_response(template_name, context, RequestContext(request))
 
-    return render_to_response(template_name, {}, RequestContext(request))
 
-
-def mountain_bikes(request, template_name="mountain_bikes.html"):
-    category = Category.objects.get(name='Mountain Bike')
+def category_view(request, path=None, template_name="category.html"):
+    category = get_object_or_404(Category, path=path)
+    context = {}
+    context.update({'category': category})
+    child_categories = Category.objects.filter(parent=category)
+    context.update({'child_categories': child_categories})
     products = Product.objects.filter(category=category)
-    return render_to_response(template_name, {"products":products,}, RequestContext(request))
+    context.update({'products': products})
+
+    return render_to_response(template_name, context, RequestContext(request))
 
 
-def mountain_bike_model(request, template_name="mountain_bike_model.html", slug=None):
-    category = Category.objects.get(name='Mountain Bike')
-    products = Product.objects.get(slug=slug)
-    return render_to_response(template_name, {"p": products, }, RequestContext(request))
-
-
-def mountain_frames(request, template_name="mountain_frames.html"):
-    return render_to_response(template_name, {}, RequestContext(request))
-
-
-def road(request, template_name="road_index.html"):
-    return render_to_response(template_name, {}, RequestContext(request))
+def product_view(request, path=None, slug=None, template_name="product.html"):
+    product = get_object_or_404(Product, slug=slug)
+    context = {"product": product}
+    return render_to_response(template_name, context, RequestContext(request))

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block title %}{{ category.name_path }}{% endblock %}
+
+{% block body %}
+    {{ category.name_path }}
+    {% for child in child_categories %}
+    <div class="product-row">
+        <div class="four columns"><a href="{{ child.get_absolute_url }}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
+        <div class="twelve columns"><p>{{ child.name }}</p></div>
+    </div>
+    {% endfor %}
+    {% for product in products %}
+    <div class="product-row">
+        <div class="four columns"><a href="{{ product.get_absolute_url }}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
+        <div class="twelve columns"><p>{{ product.name }}</p></div>
+    </div>
+    {% endfor %}
+{% endblock %}
