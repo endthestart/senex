@@ -386,6 +386,11 @@ class Option(models.Model):
         max_length="50",
         help_text=_("The name of the option."),
     )
+    #required = models.BooleanField(
+    #    _("required"),
+    #    default=False,
+    #    help_text=_("This denotes of the field is required."),
+    #)
 
     class Meta:
         verbose_name = _("option")
@@ -419,6 +424,20 @@ class OptionValue(models.Model):
         verbose_name = _("option value")
         verbose_name_plural = _("option values")
 
+
+class ProductConfiguration(models.Model):
+    product = models.ForeignKey(Product)
+    configuration = models.TextField(
+        _("configuration"),
+        help_text=_("The configuration key:value pairs in json format"),
+    )
+
+    def _price(self):
+        """
+        Return the price of the product configuration.
+        """
+
+    price = property(_price)
 
 
 
