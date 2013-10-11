@@ -1,7 +1,4 @@
-from store.models import OptionGroup, Option, split_option_unique_id
-
-
-
+from .models import OptionGroup, Option, split_option_unique_id
 
 
 def get_all_options(obj, ids_only=False):
@@ -25,6 +22,7 @@ def cross_list(sequences):
     for seq in sequences:
         result = [sublist+[item] for sublist in result for item in seq]
     return result
+
 
 def serialize_options(product, selected_options=()):
     """

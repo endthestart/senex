@@ -11,7 +11,7 @@ class Company(Address):
     name = models.CharField(
         _('name'),
         max_length=128,
-        help_text=_('The name of the company.'),
+        help_text=_("The name of the company."),
     )
     logo = models.ImageField(
         _('logo'),
@@ -20,11 +20,11 @@ class Company(Address):
     )
     phone = PhoneNumberField(
         _('phone'),
-        help_text=_('The phone number of the company.'),
+        help_text=_("The phone number of the company."),
     )
     email = models.EmailField(
         _('email'),
-        help_text=_('The contact number of the company.'),
+        help_text=_("The contact number of the company."),
     )
 
     class Meta:
@@ -36,11 +36,11 @@ class CustomBuild(models.Model):
     type = models.CharField(
         _('custom type'),
         max_length=128,
-        help_text=('The type of customization.'),
+        help_text=_("The type of customization."),
     )
     description = models.TextField(
         _('description'),
-        help_text=('The customization description.'),
+        help_text=_("The customization description."),
     )
 
     class Meta:

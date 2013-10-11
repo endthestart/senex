@@ -1,14 +1,14 @@
 from django.db import models
 from store.models import Product, OptionGroup
 from django.utils.translation import ugettext_lazy as _
-from store.utils import get_all_options
 
-SENEX_PRODUCT = True
+from store import utils
+
+STORE_PRODUCT = True
 
 
 def get_product_types():
     return ('CustomProduct',)
-
 
 
 class CustomProduct(models.Model):
@@ -32,9 +32,8 @@ class CustomProduct(models.Model):
         Add context for the product template.
         Return the updated context.
         """
-        from store.utils import serialize_options
 
-        options = serialize_options(self, selected_options)
+        options = utils.serialize_options(self, selected_options)
         if not 'options' in context:
             context['options'] = options
         else:
@@ -54,7 +53,7 @@ class CustomProduct(models.Model):
         """
         Returns all of the valid options
         """
-        return get_all_options(self, ids_only=True)
+        return utils.get_all_options(self, ids_only=True)
 
     def save(self, **kwargs):
         if hasattr(self.product, '_sub_types'):

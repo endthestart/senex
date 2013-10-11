@@ -7,7 +7,7 @@ def active_product_types():
     from django.db import models
     gateways = []
     for app in models.get_apps():
-        if hasattr(app, 'SENEX_PRODUCT'):
+        if hasattr(app, 'STORE_PRODUCT'):
             parts = app.__name__.split('.')[:-1]
             module = ".".join(parts)
             if hasattr(app, 'get_product_types'):

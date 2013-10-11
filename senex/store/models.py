@@ -130,13 +130,8 @@ class Category(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return('category', (), {'path': self.path})
-#
-#     def active_products(self, variations=False, include_children=False, **kwargs):
-#         """Variations determines whether or not product variations are included.
-#         In most templates we are not returning all variations
-#         """
-#
-#
+
+
 # class CurrencyField(models.DecimalField):
 #     __metaclass__ = models.SubfieldBase
 #
@@ -148,7 +143,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     """
-    Anything that can be ordered should inherit this.
+    A class for items that can be ordered.
     """
     name = models.CharField(
         _("name"),
@@ -195,7 +190,7 @@ class Product(models.Model):
         decimal_places=2,
         null=True,
         blank=True,
-        help_text=_("The cost of the item.")
+        help_text=_("The cost of the item."),
     )
     stock = models.DecimalField(
         _("stock"),
@@ -221,12 +216,12 @@ class Product(models.Model):
         max_length=200,
         blank=True,
         null=True,
-        help_text=_("The meta description of the product.")
+        help_text=_("The meta description of the product."),
     )
     active = models.BooleanField(
         _("active"),
         default=True,
-        help_text=_("Denotes if the product is available or not.")
+        help_text=_("Denotes if the product is available or not."),
     )
 
     # objects = ProductManager()
@@ -249,6 +244,7 @@ class Product(models.Model):
                 #img = ProductImage.objects.filter(product__isnull=True).order_by('sort')[0]
                 img = None
             except IndexError:
+                #TODO: Remove this code when updating images
                 import sys
                 print >>sys.stderr, 'Warning: default product image not found'
 
@@ -432,25 +428,25 @@ class AttributeOption(models.Model):
     """
     description = models.CharField(
         _("description"),
-        max_length=100
+        max_length=100,
     )
     name = models.SlugField(
         _("name"),
-        max_length=100
+        max_length=100,
     )
     validation = models.CharField(
         _("validation"),
         choices=VALIDATIONS,
-        max_length=100
+        max_length=100,
     )
     sort_order = models.IntegerField(
         _("sort order"),
-        default=1
+        default=1,
     )
     error_message = models.CharField(
         _("error message"),
         default=_("invalid entry"),
-        max_length=100
+        max_length=100,
     )
 
     class Meta:
@@ -499,7 +495,8 @@ def make_option_unique_id(groupid, value):
 
 
 def split_option_unique_id(uid):
-    "reverse of make_option_unique_id"
-
+    """
+    reverse of make_option_unique_id
+    """
     parts = uid.split('-')
     return (parts[0], '-'.join(parts[1:]))

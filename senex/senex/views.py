@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from senex.forms import ContactForm
+from .forms import ContactForm
 
 
 def home(request, template_name='home.html'):
@@ -42,12 +42,6 @@ def contact(request, template_name='contact.html'):
 def contact_thanks(request, template_name="contact_thanks.html"):
     return render_to_response(template_name, {}, RequestContext(request))
 
+
 def custom(request, template_name="custom.html"):
-    return render_to_response(template_name, {}, RequestContext(request))
-
-def mountain(request, template_name="mountain_index.html"):
-    return render_to_response(template_name, {}, RequestContext(request))
-
-
-def road(request, template_name="road_index.html"):
     return render_to_response(template_name, {}, RequestContext(request))
