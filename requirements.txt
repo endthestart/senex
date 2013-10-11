@@ -10,6 +10,6 @@ pycrypto==2.6
 wsgiref==0.1.2
 
 # Django Tiny-Cart
-git+https://github.com/trilan/django-tinycart.git#egg=django-tinycart
+# git+https://github.com/trilan/django-tinycart.git#egg=django-tinycart
 # Django Custom Auth
 git+https://github.com/endthestart/django-custom-auth#egg=django-custom-auth

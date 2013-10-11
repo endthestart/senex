@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, OptionGroup, Option, OptionValue
+from .models import Category, Product, OptionGroup, Option
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -13,15 +13,15 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class OptionInline(admin.TabularInline):
-    model = OptionValue
+    model = Option
 
 
-class OptionAdmin(admin.ModelAdmin):
+class OptionGroupAdmin(admin.ModelAdmin):
     inlines = [
         OptionInline,
     ]
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(OptionGroup)
-admin.site.register(Option, OptionAdmin)
+admin.site.register(OptionGroup, OptionGroupAdmin)
+admin.site.register(Option)

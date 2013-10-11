@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     url(r'^contact/thanks/$', 'senex.views.contact_thanks', name='contact_thanks'),
     url(r'^custom/$', 'senex.views.custom', name='custom'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^cart/', include('tinycart.urls')),
     url(r'^store/', include('store.urls')),
 )
 

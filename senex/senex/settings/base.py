@@ -114,9 +114,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'tinycart.middleware.HTTPMethodOverrideMiddleware',
-    'tinycart.middleware.CartMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    #'tinycart.middleware.HTTPMethodOverrideMiddleware',
+    #'tinycart.middleware.CartMiddleware'
 )
 
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -147,12 +147,14 @@ THIRD_PARTY_APPS = (
     'south',
     'custom_auth',
     'django_localflavor_us',
-    'tinycart',
+    #'tinycart',
+    #'shop',
 )
 
 LOCAL_APPS = (
     'senex',
     'store',
+    'store.modules.custom',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

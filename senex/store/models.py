@@ -1,13 +1,13 @@
 # from decimal import Decimal
-#
 # from django.contrib.sites.models import Site
-from django.core import urlresolvers
-from django.db import models
+# from django.core import urlresolvers
 # from django.db.models import Q
+from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_unicode, smart_str
 from django.utils.translation import ugettext_lazy as _
 
+from . import active_product_types
 
 dimension_units = (('cm', 'cm'), ('mm', 'mm'), ('in', 'in'))
 
@@ -20,60 +20,6 @@ def default_dimension_unit():
 
 def default_weight_unit():
     return 'lb'
-
-
-# class CategoryManager(models.Manager):
-#     def active(self, **kwargs):
-#         return self.filter(is_active=True, **kwargs)
-#
-#     def by_site(self, site=None, **kwargs):
-#         """Get all categories for this site"""
-#         if not site:
-#             site = Site.objects.get_current()
-#
-#         site = site.id
-#
-#         return self.active(site__id__exact = site, **kwargs)
-#
-#     def get_by_site(self, site=None, **kwargs):
-#         if not site:
-#             site = Site.objects.get_current()
-#
-#         return self.active().get(site=site, **kwargs)
-#
-#     def root_categories(self, site=None, **kwargs):
-#         """Get all root categories."""
-#
-#         if not site:
-#             site = Site.objects.get_current()
-#
-#         return self.active(parent__isnull=True, site=site, **kwargs)
-#
-#     def search_by_site(self, keyword, site=None, include_children=False):
-#         """Search for categories by keyword.
-#         Note, this does not return a queryset"""
-#
-#         if not site:
-#             site = Site.objects.get_current()
-#
-#         cats = self.active().ilter(
-#             Q(name__icontains=keyword) |
-#             Q(meta__icontains=keyword) |
-#             Q(description__icontains=keyword),
-#             site=site
-#         )
-#
-#         if include_children:
-#             # get all the children in the categories found
-#             cats = [cat.get_active_children(include_self=True) for cat in cats]
-#
-#         # sort properly
-#         # if cats:
-#         #     fastsort = [(c.ordering, c.name, c) for c in get_flat_list(cats)]
-#         #     fastsort.sort()
-#         #     # extract the cat list
-#         #     cats = zip(*fastsort)[2]
-#         return cats
 
 
 class Category(models.Model):
@@ -200,14 +146,6 @@ class Category(models.Model):
 #         except AttributeError:
 #             return None
 
-
-# class ProductManager(models.Manager):
-#     def active(self, variations=True, **kwargs):
-#         if not variations:
-#             kwargs['productvariation__parent__isnull'] = True
-#         return self.filter(active=True, **kwargs)
-
-
 class Product(models.Model):
     """
     Anything that can be ordered should inherit this.
@@ -225,6 +163,13 @@ class Product(models.Model):
         help_text=_("Used for URLs, auto-generated from name if blank."),
         max_length=255,
     )
+    sku = models.CharField(
+        _("sku"),
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=_("Defaults to slug if left blank.")
+    )
     created = models.DateTimeField(
         _("date created"),
         auto_now_add=True,
@@ -238,9 +183,6 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         related_name=_("category"),
-    )
-    option_group = models.ForeignKey(
-        'OptionGroup',
     )
     ordering = models.IntegerField(
         _("ordering"),
@@ -295,7 +237,6 @@ class Product(models.Model):
             return self.category.all()[0]
         else:
             return None
-
     main_category = property(_get_main_category)
 
     def _get_main_image(self):
@@ -312,8 +253,11 @@ class Product(models.Model):
                 print >>sys.stderr, 'Warning: default product image not found'
 
         return img
-
     main_image = property(_get_main_image)
+
+    def _get_full_price(self):
+        return self.price
+    unit_price = property(_get_full_price)
 
     def _in_stock(self):
         return self.stock > 0
@@ -332,6 +276,40 @@ class Product(models.Model):
         except IndexError:
             return None
     get_category = property(_get_category)
+
+    def get_subtypes(self):
+        if hasattr(self, "_sub_types"):
+            return self._sub_types
+        types = []
+        try:
+            for module, subtype in active_product_types():
+                try:
+                    subclass = getattr(self, subtype.lower())
+                    if subclass is not None:
+                        gettype = getattr(subclass, '_get_subtype')
+                        subtype = gettype()
+                        if not subtype in types:
+                            types.append(subtype)
+                except models.ObjectDoesNotExist:
+                    pass
+        except:
+            pass
+
+        self._sub_types = tuple(types)
+        return self._sub_types
+
+    get_subtypes.short_description = _("product subtypes")
+
+    def add_template_context(self, context, *args, **kwargs):
+        subtypes = self.get_subtypes()
+        for subtype_name in subtypes:
+            subtype = getattr(self, subtype_name.lower())
+            if subtype == self:
+                continue
+            if hasattr(subtype, 'add_template_context'):
+                context = subtype.add_template_context(context, *args, **kwargs)
+
+        return context
 
     def __unicode__(self):
         return self.name
@@ -352,6 +330,17 @@ class Product(models.Model):
         super(Product, self).save(**kwargs)
 
 
+class OptionGroupManager(models.Manager):
+    def get_sortmap(self):
+        """Returns a dictionary mapping ids to sort order"""
+
+        work = {}
+        for uid, order in self.values_list('id', 'name'):
+            work[uid] = order
+
+        return work
+
+
 class OptionGroup(models.Model):
     name = models.CharField(
         _("name"),
@@ -364,6 +353,8 @@ class OptionGroup(models.Model):
         blank=True,
         help_text=_("This should be a more lengthy description of the option group."),
     )
+
+    objects = OptionGroupManager()
 
     class Meta:
         verbose_name = _("option group")
@@ -383,131 +374,132 @@ class Option(models.Model):
     option_group = models.ForeignKey(OptionGroup)
     name = models.CharField(
         _("name"),
-        max_length="50",
-        help_text=_("The name of the option."),
+        max_length=50,
+        help_text=_("The displayed value of the option."),
     )
-    #required = models.BooleanField(
-    #    _("required"),
-    #    default=False,
-    #    help_text=_("This denotes of the field is required."),
-    #)
+    value = models.CharField(
+        _("value"),
+        max_length=50,
+        help_text=_("The stored value of the option.")
+    )
+    price_change = models.DecimalField(
+        _("price change"),
+        max_digits=8,
+        decimal_places=2,
+        default=0.00,
+        help_text=_("The change in cost for a product."),
+    )
 
     class Meta:
+        ordering = ('option_group', 'name')
+        unique_together = (('option_group', 'value'),)
         verbose_name = _("option")
         verbose_name_plural = _("options")
+
+    def _get_unique_id(self):
+        return make_option_unique_id(self.option_group_id, self.value)
+    unique_id = property(_get_unique_id)
 
     def __unicode__(self):
         return u'{0}: {1}'.format(self.option_group.name, self.name)
 
 
-class OptionValue(models.Model):
-    option = models.ForeignKey(
-        Option,
-        related_name="values",
-    )
-    name = models.CharField(
-        _("name"),
-        max_length="50",
-        help_text=_("The name of the option value"),
-    )
+# Support the user's setting of custom expressions in the settings.py file
+#try:
+#    user_validations = settings.SATCHMO_SETTINGS.get('ATTRIBUTE_VALIDATIONS')
+#except:
+#    user_validations = None
 
-    price_change = models.DecimalField(
-        _("price change"),
-        max_digits=8,
-        decimal_places=2,
-        null=True,
-        blank=True,
-        help_text=_("The change in cost for a product."),
+VALIDATIONS = [
+    ('product.utils.validation_simple', _('One or more characters')),
+    ('product.utils.validation_integer', _('Integer number')),
+    ('product.utils.validation_yesno', _('Yes or No')),
+    ('product.utils.validation_decimal', _('Decimal number')),
+    ]
+#if user_validations:
+#    VALIDATIONS.extend(user_validations)
+
+
+class AttributeOption(models.Model):
+    """
+    Allows arbitrary name/value pairs to be attached to a product.
+    By defining the list, the user will be presented with a predefined
+    list of attributes instead of a free form field.
+    The validation field should contain a regular expression that can be
+    used to validate the structure of the input.
+    Possible usage for a book:
+    ISBN, Pages, Author, etc
+    """
+    description = models.CharField(
+        _("description"),
+        max_length=100
+    )
+    name = models.SlugField(
+        _("name"),
+        max_length=100
+    )
+    validation = models.CharField(
+        _("validation"),
+        choices=VALIDATIONS,
+        max_length=100
+    )
+    sort_order = models.IntegerField(
+        _("sort order"),
+        default=1
+    )
+    error_message = models.CharField(
+        _("error message"),
+        default=_("invalid entry"),
+        max_length=100
     )
 
     class Meta:
-        verbose_name = _("option value")
-        verbose_name_plural = _("option values")
+        ordering = ('sort_order',)
+
+    def __unicode__(self):
+        return self.description
 
 
-class ProductConfiguration(models.Model):
+class ProductAttribute(models.Model):
+    """
+    Allows arbitrary name/value pairs (as strings) to be attached to a product.
+    This is a simple way to add extra text or numeric info to a product.
+    If you want more structure than this, create your own subtype to add
+    whatever you want to your Products.
+    """
     product = models.ForeignKey(Product)
-    configuration = models.TextField(
-        _("configuration"),
-        help_text=_("The configuration key:value pairs in json format"),
+    option = models.ForeignKey(AttributeOption)
+    value = models.CharField(
+        _("value"),
+        max_length=255
     )
 
-    def _price(self):
-        """
-        Return the price of the product configuration.
-        """
+    def _name(self):
+        return self.option.name
 
-    price = property(_price)
+    name = property(_name)
+
+    def _description(self):
+        return self.option.description
+
+    description = property(_description)
+
+    class Meta:
+        verbose_name = _("Product Attribute")
+        verbose_name_plural = _("Product Attributes")
+        ordering = ('option__sort_order',)
 
 
+    def __unicode__(self):
+        return self.option.name
 
 
-# class Frame(Product):
-#
-#     STYLE_CHOICES = (
-#         ("650b", _("650b")),
-#         ("26", _("26")),
-#         ("29", _("29")),
-#     )
-#
-#     TYPE_CHOICES = (
-#         ("mountain", _("Mountain")),
-#         ("road", _("Road")),
-#         ("cx", _("Cyclocross")),
-#     )
-#     style = models.CharField(
-#         _("style"),
-#         max_length=20,
-#         choices=STYLE_CHOICES,
-#         help_text=_("The style of the bike, mainly wheel size."),
-#     )
-#     frame_type = models.CharField(
-#         _("type"),
-#         max_length=20,
-#         choices=TYPE_CHOICES,
-#         help_text=_("The type of frame, mainly mountain or road.")
-#     )
-#
-#
-# class Bicycle(Product):
-#     frame = models.ForeignKey(
-#         'Frame',
-#         null=False,
-#         blank=False,
-#         help_text=_("The frame used as the base of the bike."),
-#     )
-#
-#     wheelset = models.TextField()
-#     fork = models.TextField()
-#     headset = models.TextField()
-#     stem = models.TextField()
-#     handlebars = models.TextField()
-#     groupset = models.TextField()
-#     saddle = models.TextField()
-#     seatpost = models.TextField()
-#
-#
-# class Geometry(models.Model):
-#     seat_tube_length = models.TextField()
-#     seat_tube_angle = models.TextField()
-#     head_tube_length = models.TextField()
-#     head_tube_angle = models.TextField()
-#     top_tube_effective_length = models.TextField()
-#     top_tube_actual_length = models.TextField()
-#     bottom_bracket_drop = models.TextField()
-#     chain_stay_length = models.TextField()
-#     stand_over_height = models.TextField()
-#     front_center = models.TextField()
-#
-#
-# class Order(models.Model):
-#     something = models.TextField(),
-#
-#
-# class OrderProduct(models.Model):
-#     product = models.ForeignKey(
-#         'Product',
-#     )
-#     order = models.ForeignKey(
-#         'Order',
-#     )
+def make_option_unique_id(groupid, value):
+    return '%s-%s' % (smart_str(groupid), smart_str(value),)
+
+
+def split_option_unique_id(uid):
+    "reverse of make_option_unique_id"
+
+    parts = uid.split('-')
+    return (parts[0], '-'.join(parts[1:]))
