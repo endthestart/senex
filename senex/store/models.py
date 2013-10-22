@@ -1,11 +1,10 @@
 # from decimal import Decimal
-# from django.contrib.sites.models import Site
-# from django.core import urlresolvers
-# from django.db.models import Q
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_unicode, smart_str
 from django.utils.translation import ugettext_lazy as _
+
+from easy_thumbnails.fields import ThumbnailerImageField
 
 from . import active_product_types
 
@@ -55,11 +54,18 @@ class Category(models.Model):
         null=True,
         help_text=_("The path of the category for use in text"),
     )
+    image = ThumbnailerImageField(
+        _("image"),
+        upload_to='category',
+        blank=True,
+        null=True,
+        help_text=_("The category image used for display.")
+    )
     meta = models.TextField(
         _("meta description"),
         blank=True,
         null=True,
-        help_text=_("Meta description for this category"),
+        help_text=_("Meta description for this category."),
     )
     description = models.TextField(
         _("description"),
@@ -241,7 +247,7 @@ class Product(models.Model):
 
         if not img:
             try:
-                #img = ProductImage.objects.filter(product__isnull=True).order_by('sort')[0]
+                img = ProductImage.objects.filter(product__isnull=True).order_by('sort')[0]
                 img = None
             except IndexError:
                 #TODO: Remove this code when updating images
@@ -326,6 +332,24 @@ class Product(models.Model):
         super(Product, self).save(**kwargs)
 
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product,)
+    image = ThumbnailerImageField(
+        _("image"),
+        upload_to='product',
+        blank=True,
+        null=True,
+        help_text=_("The product image used for display.")
+    )
+    sort = models.IntegerField(_("Sort Order"), default=0)
+
+    class Meta:
+        ordering = ['sort']
+        unique_together = (('product', 'sort'),)
+        verbose_name = _("product image")
+        verbose_name_plural = _("product images")
+
+
 class OptionGroupManager(models.Manager):
     def get_sortmap(self):
         """Returns a dictionary mapping ids to sort order"""
@@ -361,6 +385,13 @@ class OptionGroup(models.Model):
             return u'{0} - {1}'.format(self.name, self.description)
         else:
             return self.name
+
+
+class OptionManager(models.Manager):
+    def from_unique_id(self, unique_id):
+        group_id, option_value = split_option_unique_id(unique_id)
+        group = OptionGroup.objects.get(id=group_id)
+        return Option.objects.get(option_group=group_id, value=option_value)
 
 
 class Option(models.Model):

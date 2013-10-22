@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load thumbnail %}
 
 {% block title %}Store Home{% endblock %}
 
@@ -7,7 +8,7 @@
     {{ category.name_path }}
     {% for child in child_categories %}
     <div class="product-row">
-        <div class="four columns"><a href="{{ child.get_absolute_url }}"><img src="{% static 'img/products/650b/product_logo.png' %}" /></a></div>
+        <div class="four columns"><a href="{{ child.get_absolute_url }}"><img src="{% thumbnail child.image 220x100 %}" /></a></div>
         <div class="twelve columns"><p>{{ child.name }}</p></div>
     </div>
     {% endfor %}

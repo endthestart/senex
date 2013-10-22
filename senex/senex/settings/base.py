@@ -114,9 +114,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     #'tinycart.middleware.HTTPMethodOverrideMiddleware',
-    #'tinycart.middleware.CartMiddleware'
+    'store.cart.middleware.CartMiddleware'
 )
 
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -147,6 +147,7 @@ THIRD_PARTY_APPS = (
     'south',
     'custom_auth',
     'django_localflavor_us',
+    'easy_thumbnails',
     #'tinycart',
     #'shop',
 )
@@ -154,9 +155,9 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'senex',
     'store',
-    'store.modules.custom',
-    'store.modules.cart',
-    'store.modules.contact',
+    'store.custom',
+    'store.cart',
+    'store.contact',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -190,6 +191,11 @@ LOGGING = {
         },
     }
 }
+
+########## THUMBNAIL CONFIGURATION
+# See: http://easy-thumbnails.readthedocs.org/en/latest/ref/settings/
+THUMBNAIL_BASEDIR = 'thumbs'
+########## END THUMBNAIL CONFIGURATION
 
 ########## WSGI CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application

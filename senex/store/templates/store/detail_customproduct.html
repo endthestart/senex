@@ -12,7 +12,7 @@
 </p>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form id="options" action="." method="post">{% csrf_token %}
+<form id="options" action="{% url 'cart_add' %}" method="post">{% csrf_token %}
 
 {% for option_group in options %}
  {{ option_group.name}}
@@ -28,7 +28,7 @@
 {% endfor %}
 
 {% trans "Quantity" %} <input type="text" size="5" name="quantity" id="quantity" value="1" class="priced" />
-<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+<input type="hidden" name="product_name" id="product_name" value="{{product.slug}}" />
 <input type="submit" name="addcart" value="Add to Cart" />
 </form>
 {% endblock %}

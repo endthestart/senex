@@ -173,3 +173,22 @@ a.btn:hover {
     display: table-cell;
     padding-left: 10px;
 }
+
+/* Categories
+   ----------------------- */
+.category-row {
+    height: 110px;
+    display: table-row;
+}
+
+.category-row .left {
+    float: left;
+    display: table-cell;
+    padding-right: 10px;
+}
+
+.category-row .right {
+    float: left;
+    display: table-cell;
+    padding-left: 10px;
+}

@@ -1,7 +1,4 @@
-from django.conf.urls import patterns, url
-
-from .models import Product
-
+from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     url(r'^$', 'store.views.store_home', name='store_home'),

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+    {% if not cart.num_items %}
+        <div class="sixteen columns"><h4>{% trans "Your shopping cart is empty." %}</h4></div>
+    {% else %}
+        <div class="sixteen columns"><h4>{% trans "Shopping Cart" %}</h4></div>
+        <table width="100%">
+        <tr>
+            <th>Image</th>
+            <th align="left">{% trans "Quantity" %}</th>
+            <th>{% trans "Item" %}</th>
+		    <th>{% trans "Price" %}</th>
+            <th align="center">{% trans "Total" %}</th>
+            <th>&nbsp;</th>
+        </tr>
+    {% for cart_item in cart_items %}
+        <tr>
+            <td>Image</td>
+            <td align="center">
+                <form id="form-{{ cart_item.id }}" action="{% url 'cart_quantity' %}" method="post">{% csrf_token %}
+                    <input type="hidden" name="cart_item" value="{{ cart_item.id }}" />
+					<input style="width: 30px; display: inline;" type="text" name="quantity" id="id_quantity" value="{{ cart_item.quantity }}" />
+                    <input type="submit" id="id_update_submit" value="{% trans 'update amount' %}" />
+                </form>
+            </td>
+            <td><a href="{{cart_item.product.get_absolute_url}}">{{ cart_item.description }}</a></td>
+            <td>{{ cart_item.unit_price }}</td>
+            <td>{{ cart_item.line_total }}</td>
+            <td>
+                <form action="{% url 'cart_remove' %}" method="post">{% csrf_token %}
+                    <input type="hidden" name="cart_item" value="{{ cart_item.id }}" />
+                    <input type="submit" value="{% trans 'Remove' %}" />
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    <tr><td colspan="4" align="right">{% trans "Cart Total" %}:{{ cart.total_price }}</td></tr>
+    </table>
+
+    <a href="checkout.html">{% trans "Check out" %}</a>
+{% endif %}
+{% endblock %}
