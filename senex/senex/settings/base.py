@@ -1,4 +1,6 @@
 # Django settings for senex project.
+import os
+
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
@@ -146,10 +148,8 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'south',
     'custom_auth',
-    'django_localflavor_us',
+    'localflavor',
     'easy_thumbnails',
-    #'tinycart',
-    #'shop',
 )
 
 LOCAL_APPS = (
@@ -157,7 +157,9 @@ LOCAL_APPS = (
     'store',
     'store.custom',
     'store.cart',
+    'store.checkout',
     'store.contact',
+    'store.shipping',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -208,4 +210,9 @@ AUTHENTICATION_BACKENDS = ('custom_auth.auth.Authenticate',)
 AUTH_USER_MODEL = 'custom_auth.User'
 ########## END AUTH CONFIGURATION
 
+########## STRIPE CONFIGURATION
+# See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_BnKaAmgD81hWGi1F1suzPmX6")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlpg50CnmD8A")
+########## END STRIPE CONFIGURATION
 

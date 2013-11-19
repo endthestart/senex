@@ -1,0 +1,22 @@
+{% extends 'checkout/checkout.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+
+{% block title %}{% trans "Checkout - Shipping Address" %}{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=1 %}
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ STRIPE_PUBLIC_KEY }}"
+    data-amount="{{ order_total_in_cents }}"
+    data-name="Senex Cycles, LLC"
+    data-description="Cart Information"
+    data-image="/128x128.png">
+  </script>
+</form>
+{% endblock %}

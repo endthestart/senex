@@ -9,7 +9,7 @@ class Free(Base):
     code = 'free-shipping'
     name = _('Free shipping')
     is_tax_known = True
-    charge_incl_tax = charge_excl_tax = D('0.00')
+    charge_incl_tax = charge_excl_tax = Decimal('0.00')
 
 
 class NoShippingRequired(Free):
@@ -104,6 +104,6 @@ class OfferDiscount(Base):
         parent_charge_incl_tax = self.method.charge_incl_tax
         charge_incl_tax = self.charge_incl_tax
         if parent_charge_incl_tax == 0:
-            return D('0.00')
+            return Decimal('0.00')
         return parent_charge_excl_tax * (charge_incl_tax /
                                          parent_charge_incl_tax)

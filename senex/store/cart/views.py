@@ -38,19 +38,18 @@ def set_quantity(request, redirect_to='cart'):
     """
     Set the quantity for a specific CartItem.
     """
-    #TODO: Round decimals to pretty numbers
-    quantity = Decimal(request.POST.get('quantity', 0))
     try:
+        quantity = int(request.POST.get('quantity', 0))
         item_id = int(request.POST.get('cart_item'))
     except (TypeError, ValueError):
-        return False
+        return redirect(redirect_to)
 
     try:
         cart_item = CartItem.objects.get(pk=item_id, cart=request.cart)
     except CartItem.DoesNotExist:
-        return False
+        return redirect(redirect_to)
 
-    if quantity == Decimal('0'):
+    if quantity == int(0):
         cart_item.delete()
     else:
         #TODO: Add a check for stock levels

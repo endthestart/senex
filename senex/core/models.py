@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
-from django_localflavor_us.models import USStateField, USPostalCodeField
+from localflavor.us.models import USStateField, USPostalCodeField
 
 
 class Address(models.Model):

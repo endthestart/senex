@@ -20,13 +20,13 @@ class CheckoutSessionMixin(object):
 
         cart = self.request.cart
         shipping_address = self.get_shipping_address(cart)
-        shipping_method = self.get_shipping_method(cart, shipping_address)
+        #shipping_method = self.get_shipping_method(cart, shipping_address)
 
         context['shipping_address'] = shipping_address
-        context['shipping_method'] = shipping_method
+        #context['shipping_method'] = shipping_method
 
-        if cart and shipping_method:
-            context['order_total'] = self.get_order_totals(cart, shipping_method)
+        #if cart and shipping_method:
+        #    context['order_total'] = self.get_order_totals(cart, shipping_method)
 
         return context
 
@@ -47,24 +47,24 @@ class CheckoutSessionMixin(object):
                 shipping_address = ShippingAddress()
                 address.populate_alternative_model(shipping_address)
 
-    def get_shipping_method(self, cart, shipping_address=None, **kwargs):
-        """
-        Return the selected shipping method instance from this checkout session.
-        """
-        #code = self.checkout_session.shipping_method_code(cart)
-        #methods = Repository().get_shipping_methods(
-        #    user=self.request.user,
-        #    cart=cart,
-        #    shipping_address=shipping_address,
-        #    request=self.request
-        #)
-        methods = {}
-        for method in methods:
-            if method.code == code:
-                return method
+    #def get_shipping_method(self, cart, shipping_address=None, **kwargs):
+    #    """
+    #    Return the selected shipping method instance from this checkout session.
+    #    """
+    #    code = self.checkout_session.shipping_method_code(cart)
+    #    methods = Repository().get_shipping_methods(
+    #        user=self.request.user,
+    #        cart=cart,
+    #        shipping_address=shipping_address,
+    #        request=self.request
+    #    )
+    #    methods = {}
+    #    for method in methods:
+    #        if method.code == code:
+    #            return method
 
-    def get_order_totals(self, cart, shipping_method, **kwargs):
-        """
-        Returns the total for the order with and without tax (as a tuple).`
-        """
-        return OrderTotalCalculator(self.request).calculate(cart, shipping_method, **kwargs)
+    #def get_order_totals(self, cart, shipping_method, **kwargs):
+    #    """
+    #    Returns the total for the order with and without tax (as a tuple).`
+    #    """
+    #    return OrderTotalCalculator(self.request).calculate(cart, shipping_method, **kwargs)

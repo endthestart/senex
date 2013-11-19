@@ -54,21 +54,21 @@ class Base(object):
 
     tax = property(_get_tax, _set_tax)
 
-    def set_basket(self, basket):
-        self.basket = basket
+    def set_cart(self, cart):
+        self.cart = cart
 
-    def basket_charge_excl_tax(self):
+    def cart_charge_excl_tax(self):
         warnings.warn((
-            "Use the charge_excl_tax property not basket_charge_excl_tax. "
-            "Basket.basket_charge_excl_tax will be removed "
+            "Use the charge_excl_tax property not cart_charge_excl_tax. "
+            "Cart.cart_charge_excl_tax will be removed "
             "in v0.7"),
             DeprecationWarning)
         return self.charge_excl_tax
 
-    def basket_charge_incl_tax(self):
+    def cart_charge_incl_tax(self):
         warnings.warn((
-            "Use the charge_incl_tax property not basket_charge_incl_tax. "
-            "Basket.basket_charge_incl_tax will be removed "
+            "Use the charge_incl_tax property not cart_charge_incl_tax. "
+            "Cart.cart_charge_incl_tax will be removed "
             "in v0.7"),
             DeprecationWarning)
         return self.charge_incl_tax

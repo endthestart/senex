@@ -1,11 +1,12 @@
 {% extends "store/product.html" %}
 {% load url from future %}
 {% load i18n %}
+{% load currency_filters %}
 
-{% block body %}
+{% block content %}
 <h4>{% blocktrans with product.name as name %}Custom order for {{ name }}{% endblocktrans %}</h4>
 <p>{% autoescape off %}{{ product.description }}{% endautoescape %}</p>
-{% trans "Price" %}:<h3><span id="price">{{ product.price }}</span></h3>
+{% trans "Price" %}:<h3><span id="price">{{ product.price|currency }}</span></h3>
 
 <p class="productattributes">
 {{ product.description }}: {{ product.value }}<br/>
@@ -20,7 +21,7 @@
     {% for choice in option_group.items %}
      <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
         {% if choice.price_change %}
-            {{ choice.price_change }}
+            {{ choice.price_change|currency }}
         {% endif %}
      </option>
     {% endfor %}

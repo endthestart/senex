@@ -11,12 +11,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "senex",
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "senex.db",
         "USER": "",
         "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "",
         }
 }
 

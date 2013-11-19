@@ -46,6 +46,9 @@ class Cart(models.Model):
 
     objects = CartManager()
 
+    def is_shipping_required(self):
+        return True
+
     def _get_count(self):
         item_count = 0
         for item in self.cartitem_set.all():
@@ -130,10 +133,9 @@ class CartItem(models.Model):
         Product,
         verbose_name=_("product"),
     )
-    quantity = models.DecimalField(
+    quantity = models.PositiveIntegerField(
         _("quantity"),
-        max_digits=18,
-        decimal_places=6,
+        default=1,
     )
 
     def _get_line_unit_price(self):

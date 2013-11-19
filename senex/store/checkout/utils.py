@@ -113,3 +113,45 @@ class CheckoutSessionData(object):
         return self.shipping_method_code(cart) is not None
 
     # Billing address fields
+    def bill_to_new_address(self, address_fields):
+        self._flush_namespace('billing')
+        self._set('billing', 'new_address_fields', address_fields)
+
+    def bill_to_user_address(self, address):
+        self._flush_namespace('billing')
+        self._set('billing', 'user_address_id', address.id)
+
+    def bill_to_shipping_address(self):
+        self._flush_namespace('billing')
+        self._set('billing', 'billing_address_same_as_shipping, True')
+
+    def is_billing_address_same_as_shipping(self):
+        return self._get('billing', 'billing_address_same_as_shipping', False)
+
+    def billing_user_address_id(self):
+        return self._get('billing', 'user_address_id')
+
+    def new_billing_address_fields(self):
+        return self._get('billing', 'new_address_fields')
+
+    # Payment methods
+    def pay_by(self, method):
+        self._set('payment', 'method', method)
+
+    def payment_method(self):
+        return self._get('payment', 'method')
+
+    # Submission methods
+    def set_order_number(self, order_number):
+        self._set('submission', 'order_number', order_number)
+
+    def get_order_number(self):
+        return self._get('submission', 'order_number')
+
+    def set_submitted_cart(self):
+        self._set('submission', 'cart_id', cart.id)
+
+    def get_submitted_cart_id(self):
+        return self._get('submission', 'cart_id')
+
+

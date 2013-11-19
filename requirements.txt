@@ -2,8 +2,7 @@ Django==1.5
 Fabric==1.6.0
 South==0.7.6
 Pillow==2.1.0
-django-localflavor-us==1.1
-django-stripe-payments==2.0b24
+django-localflavor==1.0
 easy-thumbnails==1.4
 paramiko==1.10.0
 psycopg2==2.4.6

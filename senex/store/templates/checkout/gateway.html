@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load url from future %}
 {% load i18n %}
 
@@ -13,7 +12,7 @@
 
 {% block checkout_title %}{% trans "Who are you?" %}{% endblock %}
 
-{% block body %}
+{% block content %}
 
     <form action="." method="post" class="form-stacked well">
         {% csrf_token %}
@@ -62,7 +61,7 @@
         </div>
     </form>
 
-{% endblock body %}
+{% endblock content %}
 
 {% block onbodyload %}
     {{ block.super }}

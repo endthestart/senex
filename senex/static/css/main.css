@@ -192,3 +192,26 @@ a.btn:hover {
     display: table-cell;
     padding-left: 10px;
 }
+
+
+/* Cart
+   ----------------------- */
+
+.cart-image {
+    display: inline;
+}
+.cart-item-description {
+    display: inline;
+}
+.cart-item-price {
+    display: inline;
+}
+.cart-item-line-price {
+    display: inline;
+}
+.cart-summary {
+
+}
+.inline-form {
+    display: inline;
+}

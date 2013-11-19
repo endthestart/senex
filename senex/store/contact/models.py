@@ -1,10 +1,13 @@
 """
 Stores customer, organization, and order information.
 """
-from custom_auth.models import User
+import string
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+from localflavor.us.models import USStateField
 
 USER_MODULE_PATH = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
@@ -48,6 +51,13 @@ class Contact(models.Model):
         blank=True,
         max_length=75,
         help_text=_("The email address of the contact."),
+    )
+    stripe_id = models.CharField(
+        _("stripe customer id"),
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text=_("The stripe customer is of the contact."),
     )
     notes = models.TextField(
         _("notes"),
@@ -194,26 +204,26 @@ class AbstractAddress(models.Model):
         null=True,
     )
     street1 = models.CharField(
-        _("street"),
+        _("street 1"),
         max_length=80,
         help_text=_("The street 1 field."),
     )
     street2 = models.CharField(
-        _("street"),
+        _("street 2"),
         max_length=80,
         blank=True,
-        help_text=_("The street 2 field."),
-    )
-    state = models.CharField(
-        _("state"),
-        max_length=50,
-        blank=True,
-        help_text=_("The state field."),
+        help_text=_("APT/SUITE/OTHER"),
     )
     city = models.CharField(
         _("city"),
         max_length=50,
         help_text=_("The city field."),
+    )
+    state = USStateField(
+        _("state"),
+        max_length=50,
+        blank=True,
+        help_text=_("The state field."),
     )
     postal_code = models.CharField(
         _("zip code"),
@@ -222,6 +232,7 @@ class AbstractAddress(models.Model):
     )
     country = models.CharField(
         _("country"),
+        default="United States",
         max_length=100,
         help_text=_("The country field."),
     )
@@ -229,29 +240,15 @@ class AbstractAddress(models.Model):
     def __unicode__(self):
         return u'{full_name} - {description}'.format(full_name=self.contact.full_name, description=self.description)
 
-    def save(self, **kwargs):
+    def active_address_fields(self):
         """
-        If this address is the default billing or shipping address, then
-        remove the old address's default status. If there is no existing
-        default, then make this address the default.
+        Return the non-empty components of the address, but merging the
+        title, first_name and last_name into a single line.
         """
-        existing_billing = self.contact.billing_address
-        if existing_billing:
-            if self.is_default_billing:
-                existing_billing.is_default_billing = False
-                super(AbstractAddress, existing_billing).save()
-        else:
-            self.is_default_billing = True
-
-        existing_shipping = self.contact.shipping_address
-        if existing_shipping:
-            if self.is_default_shipping:
-                existing_shipping.is_default_shipping = False
-                super(AddressBook, existing_shipping).save()
-        else:
-            self.is_default_shipping = True
-
-        super(AddressBook, self).save(**kwargs)
+        fields = [self.full_name, self.street1, self.street2,
+                  self.city, self.state, self.postal_code]
+        fields = map(string.strip, filter(bool, fields))
+        return fields
 
     class Meta:
         abstract = True

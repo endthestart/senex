@@ -4,7 +4,7 @@
 
 {% block title %}{{ category.name_path }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <div class="category-navigation sixteen columns">
     <a href="{% url 'store_home' %}">Home</a> > {{ category.name_path }}
     </div>
@@ -29,7 +29,7 @@
     {% endif %}
     {% for product in products %}
     <div class="product-row">
-        <div class="four columns"><a href="{{ product.get_absolute_url }}"><img src="{% thumbnail product.main_image.image 220x100 crop %}" /></a></div>
+        <div class="four columns"><a href="{{ product.get_absolute_url }}"><img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 220x100 crop %}{% else %}None{% endif %}" /></a></div>
         <div class="twelve columns"><p>{{ product.name }}</p></div>
     </div>
     {% endfor %}

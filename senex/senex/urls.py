@@ -19,7 +19,7 @@ urlpatterns += patterns('django.contrib.flatpages.views',
     url(r'^about/$', 'flatpage', {'url': '/about/'}, name='about'),
 )
 
-#if settings.DEBUG:
-#    urlpatterns += patterns('django.views.static',
-#        (r'media/(?P<path>.*)', 'serve', {'document_root': settings.MEDIA_ROOT}),
-#    )
+if settings.DEBUG:
+    urlpatterns += patterns('django.views.static',
+        (r'media/(?P<path>.*)', 'serve', {'document_root': settings.MEDIA_ROOT}),
+    )
