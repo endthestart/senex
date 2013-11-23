@@ -150,6 +150,7 @@ THIRD_PARTY_APPS = (
     'custom_auth',
     'localflavor',
     'easy_thumbnails',
+    'django_jenkins',
 )
 
 LOCAL_APPS = (

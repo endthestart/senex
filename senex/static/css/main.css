@@ -198,20 +198,33 @@ a.btn:hover {
    ----------------------- */
 
 .cart-image {
-    display: inline;
+    display: inline-block;
 }
 .cart-item-description {
-    display: inline;
+    display: inline-block;
 }
 .cart-item-price {
-    display: inline;
+    display: inline-block;
 }
 .cart-item-line-price {
-    display: inline;
+    display: inline-block;
 }
 .cart-summary {
-
 }
 .inline-form {
-    display: inline;
+    display: inline-block;
 }
+.button-checkout {
+	display: block;
+	font-size: 25px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.button-checkout:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+}.button-checkout:active {
+	position:relative;
+	top:1px;

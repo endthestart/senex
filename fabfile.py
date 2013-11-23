@@ -35,7 +35,7 @@ def staging():
     print(red("Beginning Deployment:"))
     with cd("%s/senex" % path):
         run("pwd")
-        print(green("Pulling master from GitHub..."))
+        print(green("Pulling develop from GitHub..."))
         run("git pull origin develop")
         print(green("Installing requirements..."))
         run("source %s/venv/bin/activate && pip install -r ../requirements.txt" % path)
