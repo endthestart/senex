@@ -1,0 +1,3 @@
+Fix decimals to show only 2 digits in templates/models
+Change order of address fields during checkout
+Adjust country to be only US for now (implement international shipping later)
