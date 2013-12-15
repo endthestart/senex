@@ -1,4 +1,5 @@
 # from decimal import Decimal
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_unicode, smart_str
@@ -98,7 +99,7 @@ class Category(models.Model):
     def __unicode__(self):
         return u"{0}".format(self.name)
 
-    def get_path(self):
+    def get_ancestors(self):
         ancestors = []
         if self.parent:
             parent = self.parent
@@ -121,7 +122,7 @@ class Category(models.Model):
         if self.name and not self.slug:
             self.slug = slugify(self.name)
 
-        ancestors = self.get_path()
+        ancestors = self.get_ancestors()
         self.path = self.join_path(u'/', 'slug', ancestors)
         self.name_path = self.join_path(u' > ', 'name', ancestors)
 

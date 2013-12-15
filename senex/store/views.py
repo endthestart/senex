@@ -15,7 +15,7 @@ def find_product_template(product, product_types=None):
     return templates[0]
 
 
-def store_home(request, template_name="store_home.html"):
+def store_home(request, template_name="category.html"):
     categories = Category.objects.filter(parent=None)
     context = {
         'child_categories': categories

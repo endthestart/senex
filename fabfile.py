@@ -25,7 +25,7 @@ def build_commit(warn_only=True):
 
 
 def server():
-    env.host_string = 'andermic.com'
+    env.host_string = 'senexcycles.com'
     env.user = 'andermic'
 
 def staging():
@@ -51,7 +51,7 @@ def staging():
 
 
 def production():
-    path = "/srv/www/senexcycles.com/senex"
+    path = "/srv/www/senexcycles.com/src/senex"
     process = "nginx"
 
     print(red("Beginning Deployment:"))
@@ -78,7 +78,7 @@ def prepare_deployment(branch_name):
     local('git checkout master && git merge ' + branch_name)
 
 def deploy():
-    with lcd('/srv/www/senexcycles.com/senex/'):
+    with lcd('/srv/www/senexcycles.com/src/senex/'):
         local('git pull origin')
 
         # With both

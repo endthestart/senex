@@ -6,31 +6,23 @@
 
 {% block content %}
     <div class="category-navigation sixteen columns">
-    <a href="{% url 'store_home' %}">Home</a> > {{ category.name_path }}
+    {% block breadcrumbs %}
+        <a href="{% url 'store_home' %}">Home</a> {% for ancestor in category.get_ancestors %} > <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
+    {% endblock breadcrumbs %}
     </div>
     <div class="category-name sixteen columns">
-    {{ category.name }}
+    <h1 class="category-title">{% if category.name %}{{ category.name }}{% else %}Senex Shop{% endif %}</h1>
     </div>
-    {% if child_categories %}
-        <div class="sixteen columns">
-        Sub-Categories
-        </div>
-    {% endif %}
     {% for child in child_categories %}
-    <div class="category-row">
-        <div class="four columns"><a href="{{ child.get_absolute_url }}"><img src="{% thumbnail child.image 220x100 crop %}" /></a></div>
-        <div class="twelve columns"><p>{{ child.name }}</p></div>
+    <div class="sixteen columns category-row">
+        <div class="four columns alpha"><div class="category-image"><a href="{{ child.get_absolute_url }}"><img src="{% thumbnail child.image 220x100 crop %}" /></a></div></div>
+        <div class="twelve columns omega"><div class="category-description"><a href="{{ child.get_absolute_url }}"><h3>{{ child.name }}</h3></a><p>{{ child.description }}</p></div></div>
     </div>
     {% endfor %}
-    {% if products %}
-        <div class="sixteen columns">
-        Products
-        </div>
-    {% endif %}
     {% for product in products %}
-    <div class="product-row">
-        <div class="four columns"><a href="{{ product.get_absolute_url }}"><img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 220x100 crop %}{% else %}None{% endif %}" /></a></div>
-        <div class="twelve columns"><p>{{ product.name }}</p></div>
+    <div class="sixteen columns product-row">
+        <div class="four columns alpha"><div class="product-image"><a href="{{ product.get_absolute_url }}"><img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 220x100 crop %}{% else %}None{% endif %}" /></a></div></div>
+        <div class="twelve columns omega"><div class="product-description"><a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a><p>{{ product.description }}</p></div></div>
     </div>
     {% endfor %}
 {% endblock %}

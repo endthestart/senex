@@ -5,6 +5,9 @@
 {% block title %}Store Home{% endblock %}
 
 {% block content %}
+    {% block breadcrumbs %}
+        {% for ancestor in category.get_ancestors %}<a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a> >{% endfor %}
+    {% endblock breadcrumbs %}
     {{ category.name_path }}
     {% for child in child_categories %}
     <div class="product-row">

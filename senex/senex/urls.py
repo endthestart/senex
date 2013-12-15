@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^custom/$', 'senex.views.custom', name='custom'),
     url(r'^checkout/', include('store.checkout.urls')),
     url(r'^cart/', include('store.cart.urls')),
-    url(r'^store/', include('store.urls')),
+    url(r'^shop/', include('store.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 

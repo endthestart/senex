@@ -1,4 +1,4 @@
-Django==1.6
+Django==1.5
 Fabric==1.6.0
 South==0.7.6
 Pillow==2.1.0
@@ -6,13 +6,10 @@ django-jenkins==0.14.1
 django-localflavor==1.0
 easy-thumbnails==1.4
 paramiko==1.10.0
+psycopg2==2.4.6
 pycrypto==2.6
 stripe==1.9.8
 wsgiref==0.1.2
 
 # Django Custom Auth
 git+https://github.com/endthestart/django-custom-auth#egg=django-custom-auth
-
-# OS X
-# brew install libtiff libjpeg webp littlecms
-# pip install Pillow

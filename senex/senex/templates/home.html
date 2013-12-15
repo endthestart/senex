@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 
+{% block title %}Home{% endblock title %}
+
 {% block content %}
 <!-- Jumbotron -->
 <div class="jumbotron sixteen columns">
-    <img src="{% static "img/carousel/c_1.jpg" %}">
+    <div><img src="{% static "img/carousel/c_1.jpg" %}"></div>
     <h1>Senex Cycles</h1>
-    <p class="lead">Senex is custom bicycle company out of the Midwest. Our focus is geometry that is fast and responsive. Senex bicycles are perfect for the tight singletrack often found in the Midwest.</p>
+    <p class="lead">Senex is custom bicycle company from Colorado. Our focus is fast and responsive geometry and race ready bicycles that are affordable. Senex bicycles are perfect tight singletrack, epic cross country rides, and races on the weekend.</p>
 </div>
 <div class="one-third column feature">
     <div class="promo-box">
-        <h3>New for 2014</h3>
+        <h3>Pre-Order</h3>
         <p>The bikes are being built. Pre-order yours now and receive a special bonus!</p>
-        <p><a class="btn bottom" href="#">View details &raquo;</a></p>
+        <p><a class="btn bottom" href="{% url 'store_home' %}">View details &raquo;</a></p>
     </div>
 </div>
 <div class="one-third column feature">
     <div class="promo-box">
-        <h3>Introducing a New Series</h3>
+        <h3>Promo 2</h3>
         <p>Features</p>
         <ul class="square">
             <li>Feature One</li>
@@ -29,8 +31,8 @@
 </div>
 <div class="one-third column feature">
     <div class="promo-box">
-        <h3>Schwag</h3>
-        <p>Get your Schwag for your favorite bicycle company!</p>
+        <h3>Promo 3</h3>
+        <p>Promo text</p>
         <p><a class="btn bottom" href="#">View details &raquo;</a></p>
     </div>
 </div>

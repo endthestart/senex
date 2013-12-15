@@ -56,8 +56,10 @@ body {
 }
 
 .promo-box {
-    height: 400px;
+    height: 300px;
     position:relative;
+    background: #f1f6f0;
+    padding: 5px;
 }
 
 .promo-box .btn {
@@ -159,38 +161,32 @@ a.btn:hover {
    ----------------------- */
 .product-row {
     height: 110px;
-    display: table-row;
+    background-color: #ccc;
+    margin-bottom: 10px;
 }
 
-.product-row .left {
-    float: left;
-    display: table-cell;
-    padding-right: 10px;
-}
-
-.product-row .right {
-    float: left;
-    display: table-cell;
-    padding-left: 10px;
+.product-image {
+    padding: 5px;
 }
 
 /* Categories
    ----------------------- */
 .category-row {
     height: 110px;
-    display: table-row;
+    background-color: #ccc;
+    margin-bottom: 10px;
 }
 
-.category-row .left {
-    float: left;
-    display: table-cell;
-    padding-right: 10px;
+h1.category-title {
+    font-family: 'FuturaExtraBlack', "Arial Black";
+    font-size: 60px;
+    line-height: 60px;
+    padding: 20px 0 15px;
+    text-align: left;
 }
 
-.category-row .right {
-    float: left;
-    display: table-cell;
-    padding-left: 10px;
+.category-image {
+    padding: 5px;
 }
 
 
