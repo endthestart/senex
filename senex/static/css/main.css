@@ -137,11 +137,12 @@ figure {
     padding: 5px;
 }
 
-.promo-box .btn {
+.promo-box a.button {
     float: right;
     position: absolute;
     bottom: 10px;
     right: 10px;
+    color: #fff;
 
 }
 
@@ -157,40 +158,67 @@ figure {
 
 /* Buttons
    ---------------------- */
-a.btn {
-    padding: 10px 15px;
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"]
+{
+    font-size: 14px;
+    padding: 16px;
     background: #4479BA;
+    color: #FFF;
+    text-shadow: none;
+    margin-bottom: 0px;
+}
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover
+{
+    text-shadow: none;
+    background: #4075B6;
     color: #FFF;
 }
 
-a.btn {
-    text-decoration: none;
+.button:active,
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active
+{
+    text-shadow: none;
+    background: #3065A6;
+    color: #FFF;
 }
-
-a.btn:hover {
-    text-decoration: none;
-    background: #3469AA;
-}
-
 
 /* Products
    ----------------------- */
+.product-configuration {
+    border: 1px solid #ccc;
+}
+
+.product-configuration-header {
+    border-bottom: 1px solid #000;
+}
+
 .product-row {
-    height: 110px;
     background-color: #ccc;
     margin-bottom: 10px;
 }
 
 .product-image {
     padding: 5px;
+    text-align: center;
 }
 
 /* Categories
    ----------------------- */
-.category-row {
-    height: 110px;
-    background-color: #ccc;
-    margin-bottom: 10px;
+.category-navigation {
+    font-size: 11px;
+    margin: 0 0 5px 0;
 }
 
 h1.category-title {
@@ -201,10 +229,15 @@ h1.category-title {
     text-align: left;
 }
 
-.category-image {
-    padding: 5px;
+.category-row {
+    background-color: #ccc;
+    margin-bottom: 10px;
 }
 
+.category-image {
+    padding: 5px;
+    text-align: center;
+}
 
 /* Cart
    ----------------------- */

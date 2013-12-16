@@ -4,8 +4,11 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-    <div class="sixteen columns">{{ product.category.name_path }}</div>
-
+    <div class="category-navigation sixteen columns">
+    {% block breadcrumbs %}
+        <a href="{% url 'store_home' %}">Home</a> {% for ancestor in product.category.get_ancestors %} > <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
+    {% endblock breadcrumbs %}
+    </div>
     <div class="sixteen columns"><p>{{ product.name }}: {{ product.description }}</p></div>
     <div class="sixteen columns">Add some customization stuff here.</div>
 
