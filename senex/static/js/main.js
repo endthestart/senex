@@ -16,7 +16,7 @@ var CustomForm = {
         self.submitButton.click(function(e) {
             e.preventDefault()
             console.log("awesome");
-            CustomForm.customForm.submit();
+            self.customForm.submit();
         });
     }
 

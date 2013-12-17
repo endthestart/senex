@@ -13,32 +13,38 @@
             <h2>{% trans "Your shopping cart is empty." %}</h2>
         {% else %}
             <div>{% trans "Cart Items" %}</div>
-            <ul>
                 {% for cart_item in cart_items %}
-                    <li>
-                        <div class="cart-image"><img
-                                src="{% thumbnail cart_item.product.main_image.image 100x75 crop %}"
-                                alt="product image"/></div>
-                            <form class="inline-form" id="form-{{ cart_item.id }}"
-                                  action="{% url 'cart_quantity' %}" method="post">{% csrf_token %}
-                                <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>
-                                <input style="width: 30px; display: inline;" type="text" name="quantity"
-                                       id="id_quantity" value="{{ cart_item.quantity }}"/>
-                                <input type="submit" id="id_update_submit" value="{% trans 'Update' %}"/>
-                            </form>
+                    <div style="border: 1px solid #000; position: relative;">
+                        <div class="cart-image" style="display: inline-block; width: 20%;">
+                            <img src="{% thumbnail cart_item.product.main_image.image 100x75 crop %}" alt="product image"/>
+                        </div>
+                        <div class="none" style="display: inline-block; width: 70%;">
+                            <div class="cart-product-description">
+                                <h4 class="cart-item-description"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a></h4>
+                                <ul>
+                                    <li>Option 1: Desc</li>
+                                    <li>Option 2: Desc</li>
+                                    <li>Option 3: Desc</li>
+                                    <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
+                                </ul>
+                            </div>
+    {#                        <form class="inline-form" id="form-{{ cart_item.id }}"#}
+    {#                              action="{% url 'cart_quantity' %}" method="post">{% csrf_token %}#}
+    {#                            <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>#}
+    {#                            <input style="width: 30px; display: inline;" type="text" name="quantity"#}
+    {#                                   id="id_quantity" value="{{ cart_item.quantity }}"/>#}
+    {#                            <input type="submit" id="id_update_submit" value="{% trans 'Update' %}"/>#}
+    {#                        </form>#}
                             <form class="inline-form" action="{% url 'cart_remove' %}"
                                   method="post">{% csrf_token %}
                                 <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>
                                 <input type="submit" value="{% trans 'Remove' %}"/>
                             </form>
-                            <div class="cart-item-description"><a
-                                    href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a>
-                            </div>
-                            <div class="cart-item-price">{{ cart_item.unit_price|currency }}</div>
-                        <div class="cart-item-line-price">{{ cart_item.line_total|currency }}</div>
-                    </li>
+                        </div>
+                        <br class="clear" />
+                        <div style="position: absolute; top: 10px; right: 10px;" class="cart-item-line-price">{{ cart_item.line_total|currency }}</div>
+                    </div>
                 {% endfor %}
-            </ul>
         {% endif %}
     </div>
     <div class="five columns cart-summary">
