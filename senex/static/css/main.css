@@ -4,7 +4,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: rgb(220, 220, 220);
+    background: rgb(212, 223, 228);
 }
 
 img { max-width: 100%; }
@@ -18,7 +18,7 @@ img { max-width: 100%; }
    -------------------------------------------------- */
 
 .top {
-    background: rgb(230, 230, 230);
+    background: rgb(255, 255, 255);
     padding: 0;
     margin: 0;
     width: 100%;
@@ -27,17 +27,32 @@ img { max-width: 100%; }
 /* Navigation
    -------------------------------------------------- */
 
+.upper-nav-container {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+}
+
+.upper-nav-left {
+    display: inline-block;;
+}
+
+.upper-nav-right {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
 .nav {
     display: block;
-    padding: 0;
+    padding: 5px 0 0 0;
     margin: 0;
-    border-bottom: 3px solid rgb(210, 210, 210);
     border-top: 3px solid rgb(210, 210, 210);
     font-family: "Georgia", "Times New Roman", serif;
 }
 
 .nav-inner {
-    text-align: center;
+    text-align: right;
 }
 
 .nav-inner ul {
@@ -45,14 +60,16 @@ img { max-width: 100%; }
 }
 
 .nav ul li {
+    text-align: center;
     display: inline-block;
     padding: 0;
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
     height: 100%;
-    line-height: 36px;
-    width: 150px;
+    line-height: 30px;
+    width: 120px;
 }
+
 
 .nav ul li a {
     text-decoration: none;
@@ -72,8 +89,12 @@ img { max-width: 100%; }
     display: block;
     float: left;
     padding: 5px 0;
-    font-size: 40px;
+    font-size: 20px;
     color: #fff;
+}
+
+.top .brand img {
+    width: 100px;
 }
 
 .top .brand:hover,
@@ -93,6 +114,9 @@ img { max-width: 100%; }
     background: rgb(255, 255, 255);
     -webkit-box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
     box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
+    -webkit-border-radius: 4px / 4px;
+    -moz-border-radius: 4px / 4px;
+    border-radius: 4px / 4px;
 }
 
 /* Main marketing message and sign up button */
@@ -150,6 +174,32 @@ figure {
 
 }
 
+/* Login Form
+================================================== */
+
+.login-form {
+    background: #222c30;
+    color: #fff;
+    padding: 20px;
+    -webkit-border-radius: 4px / 4px;
+    -moz-border-radius: 4px / 4px;
+    border-radius: 4px / 4px;
+}
+
+.register-form {
+    background: #222c30;
+    color: #fff;
+    padding: 20px;
+    -webkit-border-radius: 4px / 4px;
+    -moz-border-radius: 4px / 4px;
+    border-radius: 4px / 4px;
+}
+
+.bright-text {
+    color: #fff;
+}
+
+
 /* #Lists
 ================================================== */
 	ul, ol { margin-bottom: 20px; }
@@ -191,6 +241,7 @@ input[type="button"]
     color: #FFF;
     text-shadow: none;
     margin-bottom: 0px;
+    border: none;
 }
 
 .button:hover,
@@ -202,6 +253,7 @@ input[type="button"]:hover
     text-shadow: none;
     background: #4075B6;
     color: #FFF;
+    border: none;
 }
 
 .button:active,
@@ -213,6 +265,7 @@ input[type="button"]:active
     text-shadow: none;
     background: #3065A6;
     color: #FFF;
+    border: none;
 }
 
 /* #Forms
@@ -341,9 +394,24 @@ h1.category-title {
 
 .cart-image {
     display: inline-block;
+    width: 150px;
+    text-align: center;
+    vertical-align: text-bottom;
+    min-height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+.cart-item-box {
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 .cart-item-description {
     display: inline-block;
+}
+.cart-item-description a {
+    text-decoration: none;
 }
 .cart-item-price {
     display: inline-block;
@@ -352,6 +420,26 @@ h1.category-title {
     display: inline-block;
 }
 .cart-summary {
+    background: #222c30;
+    color: #ccc;
+
+}
+.cart-summary .rule {
+    border-bottom: 1px solid #485155;
+}
+.cart-summary-inner {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.cart-summary h1,
+.cart-summary h2,
+.cart-summary h3,
+.cart-summary h4,
+.cart-summary h5 {
+    color: #fff;
+}
+.cart-summary a {
+    color: #fff;
 }
 .inline-form {
     display: inline-block;
@@ -359,14 +447,77 @@ h1.category-title {
 .button-checkout {
 	display: block;
 	font-size: 25px;
-	height: 40px;
-	line-height: 40px;
+	height: 25px;
+	line-height: 25px;
 	text-align: center;
+    margin: 10px;
+    color: #fff;
 }
 .button-checkout:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
 	background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
-}.button-checkout:active {
+}
+.button-checkout:active {
 	position:relative;
 	top:1px;
+}
+
+/* Messages
+   ----------------------- */
+
+.message {
+    padding: 8px 35px 8px 14px;
+    margin: 0 10px 18px 10px;
+    color: #c09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.message-heading {
+    color: inherit;
+}
+
+.message .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    line-height: 18px;
+    color: #aaa;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    text-shadow: 0 1px 0 #ccc;
+}
+
+.messages .success {
+color: #468847;
+background-color: #dff0d8;
+border-color: #d6e9c6;
+}
+
+.messages .warning,
+.messages .error {
+color: #b94a48;
+background-color: #f2dede;
+border-color: #eed3d7;
+}
+
+.messages .info {
+color: #3a87ad;
+background-color: #d9edf7;
+border-color: #bce8f1;
+}
+
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}

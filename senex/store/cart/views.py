@@ -8,7 +8,7 @@ from store.models import Product, OptionManager
 from .models import CartItem
 
 
-def add(request, redirect_to='cart'):
+def add(request, next='cart'):
     form_data = request.POST.copy()
     product_slug = None
 
@@ -22,19 +22,19 @@ def add(request, redirect_to='cart'):
         quantity = Decimal("69")
 
     request.cart.add_item(product, number_added=quantity, details=details)
-    return redirect(redirect_to)
+    return redirect(next)
 
 
-def remove(request, redirect_to='cart'):
+def remove(request, next='cart'):
     form_data = request.POST.copy()
 
     if form_data.has_key('cart_item'):
         cart_item = form_data['cart_item']
 
     removed_item = request.cart.remove_item(cart_item)
-    return redirect(redirect_to)
+    return redirect(next)
 
-def set_quantity(request, redirect_to='cart'):
+def set_quantity(request, next='cart'):
     """
     Set the quantity for a specific CartItem.
     """
@@ -42,12 +42,12 @@ def set_quantity(request, redirect_to='cart'):
         quantity = int(request.POST.get('quantity', 0))
         item_id = int(request.POST.get('cart_item'))
     except (TypeError, ValueError):
-        return redirect(redirect_to)
+        return redirect(next)
 
     try:
         cart_item = CartItem.objects.get(pk=item_id, cart=request.cart)
     except CartItem.DoesNotExist:
-        return redirect(redirect_to)
+        return redirect(next)
 
     if quantity == int(0):
         cart_item.delete()
@@ -56,7 +56,7 @@ def set_quantity(request, redirect_to='cart'):
         cart_item.quantity = quantity
         cart_item.save()
 
-    return redirect(redirect_to)
+    return redirect(next)
 
 
 def cart(request, template_name="store/cart.html"):

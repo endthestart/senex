@@ -1,5 +1,6 @@
 $(document).ready(function() {
     CustomForm.init();
+    NotificationActions.init();
 });
 
 var CustomForm = {
@@ -14,10 +15,25 @@ var CustomForm = {
         var self = this;
 
         self.submitButton.click(function(e) {
-            e.preventDefault()
-            console.log("awesome");
+            e.preventDefault();
             self.customForm.submit();
         });
     }
 
 };
+
+var NotificationActions = {
+    init: function() {
+        this.bind();
+    },
+
+    bind: function() {
+        var self = this;
+
+        $('.close').click(function(e) {
+            e.preventDefault();
+            var closeDiv = $(e.target).closest('div');
+            closeDiv.hide()
+        });
+    }
+}

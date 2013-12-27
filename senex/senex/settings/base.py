@@ -103,8 +103,8 @@ SECRET_KEY = 'np&lv7_4v%&r&b18)dh=i*3!a+fb(^h*_7r26ij81*knnk(1*b'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.app_directories.Loader',
     'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
     #'django.template.loaders.eggs.Loader',
 )
 
@@ -117,7 +117,6 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    #'tinycart.middleware.HTTPMethodOverrideMiddleware',
     'store.cart.middleware.CartMiddleware'
 )
 
@@ -215,5 +214,11 @@ AUTH_USER_MODEL = 'custom_auth.User'
 # See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_BnKaAmgD81hWGi1F1suzPmX6")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlpg50CnmD8A")
-########## END STRIPE CONFIGURATION
+########## END STRIPE
+
+########## MESSAGE STORAGE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/messages/
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+########## END MESSAGE STORAGE CONFIGURATION
+
 

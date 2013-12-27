@@ -1,4 +1,4 @@
-Django==1.6
+Django==1.6.1
 Fabric==1.6.0
 South==0.7.6
 Pillow==2.1.0
@@ -11,7 +11,7 @@ stripe==1.9.8
 wsgiref==0.1.2
 
 # Django Custom Auth
-git+https://github.com/endthestart/django-custom-auth#egg=django-custom-auth
+git+https://github.com/endthestart/django-custom-auth.git#egg=django-custom-auth
 
 # OS X
 # brew install libtiff libjpeg webp littlecms

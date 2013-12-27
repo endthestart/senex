@@ -13,7 +13,7 @@ from .session import CheckoutSessionMixin
 from ..contact.models import UserAddress
 
 
-class IndexView(CheckoutSessionMixin, FormView):
+class GatewayView(CheckoutSessionMixin, FormView):
     template_name = 'checkout/gateway.html'
     form_class = GatewayForm
     success_url = reverse_lazy('checkout_shipping_address')
@@ -21,10 +21,10 @@ class IndexView(CheckoutSessionMixin, FormView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
             return self.get_success_response()
-        return super(IndexView, self).get(request, *args, **kwargs)
+        return super(GatewayView, self).get(request, *args, **kwargs)
 
     def get_form_kwargs(self):
-        kwargs = super(IndexView, self).get_form_kwargs()
+        kwargs = super(GatewayView, self).get_form_kwargs()
         email = self.checkout_session.get_guest_email()
         if email:
             kwargs['initial'] = {
@@ -35,6 +35,7 @@ class IndexView(CheckoutSessionMixin, FormView):
     def form_valid(self, form):
         if form.is_guest_checkout() or form.is_new_account_checkout():
             email = form.cleaned_data['username']
+            self.checkout_session.set_guest_email(email)
 
             if form.is_new_account_checkout():
                 messages.info(
@@ -42,8 +43,8 @@ class IndexView(CheckoutSessionMixin, FormView):
                     _("Create your account and then you will be redirected back to the checkout process")
                 )
                 self.success_url = "{0}?next={1}&email={2}".format(
-                    reverse('customer:register'),
-                    reverse('checkout:shipping-address'),
+                    reverse('auth_register'),
+                    reverse('checkout_shipping_address'),
                     email
                 )
         else:

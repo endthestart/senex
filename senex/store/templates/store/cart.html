@@ -12,11 +12,10 @@
         {% if not cart.num_items %}
             <h2>{% trans "Your shopping cart is empty." %}</h2>
         {% else %}
-            <div>{% trans "Cart Items" %}</div>
                 {% for cart_item in cart_items %}
-                    <div style="border: 1px solid #000; position: relative;">
-                        <div class="cart-image" style="display: inline-block; width: 20%;">
-                            <img src="{% thumbnail cart_item.product.main_image.image 100x75 crop %}" alt="product image"/>
+                    <div class="cart-item-box">
+                        <div class="cart-image">
+                            <img style="display: block; vertical-align: top;" src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}" alt="product image"/>
                         </div>
                         <div class="none" style="display: inline-block; width: 70%;">
                             <div class="cart-product-description">
@@ -38,7 +37,7 @@
                             <form class="inline-form" action="{% url 'cart_remove' %}"
                                   method="post">{% csrf_token %}
                                 <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>
-                                <input type="submit" value="{% trans 'Remove' %}"/>
+                                <input style="padding: 6px;" type="submit" value="{% trans 'Remove' %}"/>
                             </form>
                         </div>
                         <br class="clear" />
@@ -48,12 +47,14 @@
         {% endif %}
     </div>
     <div class="five columns cart-summary">
-        <h2>Cart Summary</h2>
-        <hr/>
-        <h5>{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
-        <hr/>
-        <h5>Subtotal: {{ cart.total_price|currency }}</h5>
-        <hr/>
-        <a href="{% url 'checkout_start' %}" class="button button-checkout">{% trans "Checkout" %}</a>
+        <div class="cart-summary-inner">
+            <h2 class="rule add-bottom">Cart Summary</h2>
+            <h5 class="rule add-top add-bottom">{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
+            <div class="rule">
+            <h5>Subtotal: {{ cart.total_price|currency }}</h5>
+            <p>*Taxes and shipping charges my apply.</p>
+            </div>
+            <a href="{% url 'checkout_start' %}" class="button button-checkout">{% trans "Checkout" %}</a>
+        </div>
     </div>
 {% endblock %}

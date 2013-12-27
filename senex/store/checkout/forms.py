@@ -37,12 +37,12 @@ class UserAddressForm(AbstractAddressForm):
 
 
 class GatewayForm(AuthenticationForm):
-    username = forms.EmailField(label=_("My email address is"))
+    username = forms.EmailField(label=_("My email address is:"))
     GUEST, NEW, EXISTING = 'anonymous', 'new', 'existing'
     CHOICES = (
-        (GUEST, _("I am a new customer and want to checkout as a guest")),
-        (NEW, _("I am a new customer and want to create an account before checkout uut")),
-        (EXISTING, _("I am a returning customer, and my password is"))
+        (NEW, _("No, I am a new customer.")),
+        (GUEST, _("I want to checkout as a guest.")),
+        (EXISTING, _("Yes, and my password is:")),
     )
     options = forms.ChoiceField(widget=forms.widgets.RadioSelect, choices=CHOICES, initial=GUEST)
 

@@ -89,7 +89,7 @@
 	blockquote cite:before { content: "\2014 \0020"; }
 	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
-	hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
+	hr { border: solid #ccc; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
 
 
 /* #Links
@@ -265,5 +265,10 @@
 	.remove-bottom { margin-bottom: 0 !important; }
 	.half-bottom { margin-bottom: 10px !important; }
 	.add-bottom { margin-bottom: 20px !important; }
+    .remove-top { margin-top: 0 !important; }
+    .half-top { margin-top: 10px !important; }
+	.add-top { margin-top: 20px !important; }
+
+    .padding-top { padding-top: 20px; !important; }
 
 
