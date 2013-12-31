@@ -6,3 +6,4 @@ class CartMiddleware(object):
         request.cart = SimpleLazyObject(
             lambda: Cart.objects.get_for_request(request)
         )
+

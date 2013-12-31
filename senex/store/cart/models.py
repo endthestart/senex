@@ -11,16 +11,28 @@ USER_MODULE_PATH = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 class CartManager(models.Manager):
     def get_for_request(self, request):
-        if request.user.is_authenticated():
-            return self.get_or_create(user=request.user)[0]
+        session_cart = None
         if 'cart' in request.session:
             try:
-                return self.get(pk=request.session['cart'])
-            except self.model.DoesNotExist:
-                pass
-        cart = self.create(user=None)
+                session_cart = self.get(pk=request.session['cart'])
+            except Cart.DoesNotExist:
+                session_cart = None
+
+        if request.user.is_authenticated():
+            cart = self.get_or_create(user=request.user)[0]
+            if session_cart:
+                self.merge_carts(cart, session_cart)
+                session_cart.delete()
+        elif session_cart:
+            cart = session_cart
+        else:
+            cart = self.create(user=None)
         request.session['cart'] = cart.pk
         return cart
+
+    def merge_carts(self, master, slave):
+        master.merge(slave)
+
 
 
 class Cart(models.Model):
@@ -104,6 +116,13 @@ class Cart(models.Model):
             item_to_modify.delete()
         else:
             item_to_modify.save()
+
+    def merge(self, cart):
+        for cart_item in cart.cartitem_set.all():
+            self.add_item(cart_item.product, cart_item.quantity)
+        cart.empty()
+        cart.save()
+    merge.alters_data = True
 
     def empty(self):
         for item in self.cartitem_set.all():
