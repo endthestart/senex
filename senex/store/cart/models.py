@@ -23,11 +23,12 @@ class CartManager(models.Manager):
             if session_cart:
                 self.merge_carts(cart, session_cart)
                 session_cart.delete()
+                del request.session['cart']
         elif session_cart:
             cart = session_cart
         else:
             cart = self.create(user=None)
-        request.session['cart'] = cart.pk
+            request.session['cart'] = cart.pk
         return cart
 
     def merge_carts(self, master, slave):
