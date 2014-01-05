@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+    <div class="six columns offset-by-five">
 {% block shipping_address %}
     <div class="sub-header">
         <h2>{% trans "Where should we ship to?" %}</h2>
@@ -64,5 +65,5 @@
         </div>
     </form>
 {% endblock shipping_address %}
-
+    </div>
 {% endblock %}

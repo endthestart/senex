@@ -18,10 +18,8 @@ def add(request, next='cart'):
     product, details = product_from_post(product_slug, form_data)
 
     quantity = Decimal(form_data['quantity'])
-    if quantity <= Decimal("0"):
-        quantity = Decimal("69")
-
-    request.cart.add_item(product, number_added=quantity, details=details)
+    if quantity >= Decimal('0'):
+        request.cart.add_item(product, number_added=quantity, details=details)
     return redirect(next)
 
 
@@ -30,8 +28,8 @@ def remove(request, next='cart'):
 
     if form_data.has_key('cart_item'):
         cart_item = form_data['cart_item']
+        removed_item = request.cart.remove_item(cart_item)
 
-    removed_item = request.cart.remove_item(cart_item)
     return redirect(next)
 
 def set_quantity(request, next='cart'):
@@ -93,7 +91,7 @@ def product_from_post(product_slug, form_data):
             else:
                 price_change = zero
             data = {
-                'name': unicode(result.option_group),
+                'name': unicode(result.option_group.name),
                 'value': unicode(result.name),
                 'sort_order': 1,
                 'price_change': price_change

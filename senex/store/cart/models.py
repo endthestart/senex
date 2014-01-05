@@ -80,7 +80,7 @@ class Cart(models.Model):
         already_in_cart = False
         item_to_modify = CartItem(cart=self, product=chosen_item, quantity=Decimal('0'))
         if 'CustomProduct' not in chosen_item.get_subtypes():
-            for similar_item in self.cartitem_set.filter(product__id = chosen_item.id):
+            for similar_item in self.cartitem_set.filter(product__id=chosen_item.id):
                 looks_the_same = len(details) == similar_item.details.count()
                 if looks_the_same:
                     for detail in details:
@@ -159,7 +159,7 @@ class CartItem(models.Model):
     )
 
     def _get_line_unit_price(self):
-        return self.product.price
+        return self.product.price + self.detail_price
     unit_price = property(_get_line_unit_price)
 
     def get_detail_price(self):
@@ -172,8 +172,12 @@ class CartItem(models.Model):
                 if detail.price_change and detail.value:
                     delta += detail.price_change
         return delta
+    detail_price = property(get_detail_price)
 
     def _get_line_total(self):
+        """
+        Returns the unit price + modifications multiplied by the quantity.
+        """
         return self.unit_price * self.quantity
     line_total = property(_get_line_total)
 
@@ -193,7 +197,6 @@ class CartItem(models.Model):
 
     def _has_details(self):
         return(self.details.count() > 0)
-
     has_details = property(_has_details)
 
     def __unicode__(self):

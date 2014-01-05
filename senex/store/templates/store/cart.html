@@ -20,12 +20,14 @@
                         <div class="none" style="display: inline-block; width: 70%;">
                             <div class="cart-product-description">
                                 <h4 class="cart-item-description"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a></h4>
-                                <ul>
-                                    <li>Option 1: Desc</li>
-                                    <li>Option 2: Desc</li>
-                                    <li>Option 3: Desc</li>
-                                    <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
-                                </ul>
+                                {% if cart_item.has_details %}
+                                    <ul>
+                                        {% for detail in cart_item.details.all %}
+                                            <li>{{ detail.name }}: {{ detail.value }}</li>
+                                        {% endfor %}
+                                            <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
+                                    </ul>
+                                {% endif %}
                             </div>
     {#                        <form class="inline-form" id="form-{{ cart_item.id }}"#}
     {#                              action="{% url 'cart_quantity' %}" method="post">{% csrf_token %}#}
