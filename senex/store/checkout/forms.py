@@ -3,6 +3,7 @@ from calendar import monthrange
 
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
+from django.utils.dates import MONTHS
 from django.utils.translation import ugettext_lazy as _
 
 from store.contact.forms import AbstractAddressForm

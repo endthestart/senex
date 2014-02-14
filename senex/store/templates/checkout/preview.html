@@ -2,22 +2,27 @@
 {% load i18n %}
 {% load static from staticfiles %}
 
-{% block title %}{% trans "Checkout - Shipping Address" %}{% endblock %}
+{% block title %}{% trans "Checkout - Payment Details" %}{% endblock %}
 
 {% block checkout_nav %}
     {% include 'checkout/nav.html' with step=1 %}
 {% endblock %}
 
+{% block content %}
+    <div class="six columns offset-by-five">
+    Show order summary
+    Show shipping information
+    Show card information
 {% block place_order %}
-<form action="" method="POST">{% csrf_token %}
-    <input type="hidden" name="action" value="place_order" />
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="{{ STRIPE_PUBLIC_KEY }}"
-    data-amount="{{ order_total_in_cents }}"
-    data-name="Senex Cycles, LLC"
-    data-description="Cart Information"
-    data-image="/128x128.png">
-  </script>
-</form>
+    <div class="sub-header">
+        <h2>{% trans "Confirm Order" %}</h2>
+    </div>
+    <form action="" method="POST" id="payment-form">{% csrf_token %}
+                <input type="hidden" name="stripeToken" value="{{ stripe_token }}" />
+                <input type="hidden" name="action" value="place_order" />
+        <button type="submit">Place Order</button>
+    </form>
 {% endblock place_order %}
+    </div>
+{% endblock %}
+

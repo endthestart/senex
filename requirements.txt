@@ -2,6 +2,7 @@ Django==1.6.1
 Fabric==1.6.0
 South==0.7.6
 Pillow==2.1.0
+django-debug-toolbar==1.0.1
 django-jenkins==0.14.1
 django-localflavor==1.0
 easy-thumbnails==1.4

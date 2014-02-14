@@ -1,5 +1,4 @@
 from django.db import models
-from decimal import Decimal
 from django.utils.translation import ugettext_lazy as _
 
 from ..cart.models import Cart
@@ -141,3 +140,94 @@ class Order(models.Model):
         if not self.user:
             return self.guest_email
         return self.user.email
+
+    def __unicode__(self):
+        return u"Order - {} - {}".format(self.user.get_full_name(), self.number)
+
+    class Meta:
+        verbose_name = _("User Payment Details")
+        verbose_name_plural = _("User Payment Details")
+        ordering = ('user',)
+
+
+class OrderNumberGenerator(object):
+    def order_number(self, cart):
+        return 100000 + cart.id
+
+
+class OrderCreator(object):
+    """
+    Places the order by creating the various models
+    """
+
+    def place_order(self, cart, total, user=None, shipping_method=None, shipping_address=None,
+                    billing_address=None, order_number=None, status=None, **kwargs):
+        if cart.is_empty:
+            raise ValueError(_("Empty carts cannot be submitted"))
+        if not order_number:
+            generator = OrderNumberGenerator()
+            generator.order_number(cart)
+
+        try:
+            Order.objects.get(number=order_number)
+        except Order.DoesNotExist:
+            pass
+        else:
+            raise ValueError(_("There is already an order with number {}".format(order_number)))
+
+        order = self.create_order_model(user, cart, shipping_address, shipping_method, billing_address, total, order_number, status, **kwargs)
+
+        #TODO: Maybe convert a cart into actual order line items
+
+        return order
+
+    def create_order_model(self, user, cart, shipping_address, shipping_method, billing_address, total, order_number, status, **extra_order_fields):
+        order_data = {
+            'cart_id': cart.id,
+            'number': order_number,
+            'total_incl_tax': total,
+            'total_excl_tax': total,
+            'shipping_incl_tax': 0,
+            'shipping_excl_tax': 0,
+            'shipping_method': shipping_method,
+            'shipping_code': 0,
+            'status': 0,
+        }
+        if shipping_address:
+            order_data['shipping_address'] = shipping_address
+        if billing_address:
+            order_data['billing_address'] = billing_address
+        if user and user.is_authenticated():
+            order_data['user'] = user
+        if extra_order_fields:
+            order_data.update(extra_order_fields)
+        order = Order(**order_data)
+        order.save()
+        return order
+
+
+class UserPaymentDetails(models.Model):
+    """
+    A place to store details about a contact's various payment methods
+    """
+    user = models.ForeignKey(
+        USER_MODULE_PATH,
+        blank=True,
+        null=True,
+        verbose_name=_("user"),
+    )
+
+    stripe_id = models.CharField(
+        _("shipping method"),
+        max_length=128,
+        null=True,
+        blank=True,
+    )
+
+    def __unicode__(self):
+        return u"Payment Details: {}".format(self.user.get_full_name())
+
+    class Meta:
+        verbose_name = _("User Payment Details")
+        verbose_name_plural = _("User Payment Details")
+        ordering = ('user',)

@@ -8,7 +8,7 @@ import methods
 
 class Repository(object):
     """
-    Repository class responsible for returning ShippingMethod objects for a given user, basket...
+    Repository class responsible for returning ShippingMethod objects for a given user, cart...
     """
     methods = (methods.Free(),)
 

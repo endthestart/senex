@@ -2,21 +2,83 @@
 {% load i18n %}
 {% load static from staticfiles %}
 
-{% block title %}{% trans "Checkout - Shipping Address" %}{% endblock %}
+{% block title %}{% trans "Checkout - Payment Details" %}{% endblock %}
 
 {% block checkout_nav %}
     {% include 'checkout/nav.html' with step=1 %}
 {% endblock %}
 
 {% block content %}
-<form action="" method="POST">{% csrf_token %}
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="{{ STRIPE_PUBLIC_KEY }}"
-    data-amount="{{ order_total_in_cents }}"
-    data-name="Senex Cycles, LLC"
-    data-description="Cart Information"
-    data-image="/128x128.png">
-  </script>
-</form>
+    <div class="six columns offset-by-five">
+        {% block place_order %}
+            <div class="sub-header">
+                <h2>{% trans "Payment Details" %}</h2>
+            </div>
+            <form action="{% url 'checkout_preview' %}" method="POST" id="payment-form">{% csrf_token %}
+                <span class=payment-errors"></span>
+
+                <div>
+                    <label>
+                        <span>Card Number</span>
+                        <input type="text" size="20" data-stripe="number"/>
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <span>CVC</span>
+                        <input type="text" size="4" data-strive="cvc"/>
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        <span>Expiration (MM/YYYY)</span>
+                        <input type="text" size="2" data-stripe="exp-month">
+                    </label>
+                    <span> / </span>
+                    <input type="text" size="4" data-stripe="exp-year"/>
+                </div>
+                <button type="submit">Preview Order</button>
+            </form>
+        {% endblock place_order %}
+    </div>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        // This identifies your website in the createToken call below
+        Stripe.setPublishableKey('{{ STRIPE_PUBLIC_KEY }}');
+
+        $(function ($) {
+            $('#payment-form').submit(function (event) {
+                var $form = $(this);
+
+                // Disable the submit button to prevent repeated clicks
+                $form.find('button').prop('disabled', true);
+
+                Stripe.card.createToken($form, stripeResponseHandler);
+
+                // Prevent the form from submitting with the default action
+                return false;
+            });
+        });
+
+        var stripeResponseHandler = function (status, response) {
+            var $form = $('#payment-form');
+
+            if (response.error) {
+                // Show the errors on the form
+                $form.find('.payment-errors').text(response.error.message);
+                $form.find('button').prop('disabled', false);
+            } else {
+                // token contains id, last4, and card type
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                // and submit
+                $form.get(0).submit();
+            }
+        };
+    </script>
+
 {% endblock %}
+

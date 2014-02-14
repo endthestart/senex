@@ -148,7 +148,7 @@ class CheckoutSessionData(object):
     def get_order_number(self):
         return self._get('submission', 'order_number')
 
-    def set_submitted_cart(self):
+    def set_submitted_cart(self, cart):
         self._set('submission', 'cart_id', cart.id)
 
     def get_submitted_cart_id(self):

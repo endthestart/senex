@@ -27,7 +27,7 @@
     							<span>{{ field }}</span>{% if not forloop.first %}<br/>{% endif %}
     							{% endfor %}
                             </address>
-							<form action="{% url 'checkout:shipping-address' %}" method="post">
+							<form action="{% url 'checkout_shipping_address' %}" method="post">
 								{% csrf_token %}
 								<input type="hidden" name="action" value="ship_to" />
 								<input type="hidden" name="address_id" value="{{ address.id }}" />
@@ -61,7 +61,7 @@
             {% csrf_token %}
             {% include "partials/form_fields.html" with form=form %}
             <button type="submit" class="btn btn-large btn-primary">{% trans "Continue" %}</button>
-            {% trans "or" %} <a href="{% url 'cart' %}">{% trans "return to basket" %}</a>
+            {% trans "or" %} <a href="{% url 'cart' %}">{% trans "return to cart" %}</a>
         </div>
     </form>
 {% endblock shipping_address %}

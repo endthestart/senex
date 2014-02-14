@@ -25,7 +25,7 @@ def build_commit(warn_only=True):
 
 
 def server():
-    env.host_string = 'senexcycles.com'
+    env.host_string = 'andermic.com'
     env.user = 'andermic'
 
 def staging():

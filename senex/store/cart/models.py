@@ -2,44 +2,34 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
+from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 
 from store.models import Product
+from .managers import CartManager, OpenCartManager
 
 USER_MODULE_PATH = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
-
-
-class CartManager(models.Manager):
-    def get_for_request(self, request):
-        session_cart = None
-        if 'cart' in request.session:
-            try:
-                session_cart = self.get(pk=request.session['cart'])
-            except Cart.DoesNotExist:
-                session_cart = None
-
-        if request.user.is_authenticated():
-            cart = self.get_or_create(user=request.user)[0]
-            if session_cart:
-                self.merge_carts(cart, session_cart)
-                session_cart.delete()
-                del request.session['cart']
-        elif session_cart:
-            cart = session_cart
-        else:
-            cart = self.create(user=None)
-            request.session['cart'] = cart.pk
-        return cart
-
-    def merge_carts(self, master, slave):
-        master.merge(slave)
-
 
 
 class Cart(models.Model):
     """
     Store items currently in a cart.
     """
+    OPEN, MERGED, SAVED, FROZEN, SUBMITTED = ("Open", "Merged", "Saved", "Frozen", "Submitted")
+    STATUS_CHOICES = (
+        (OPEN, _("Open - currently active")),
+        (MERGED, _("Merged - joined to another cart")),
+        (SAVED, _("Saved - for items to be purchased later")),
+        (FROZEN, _("Frozen - the cart cannot be modified")),
+        (SUBMITTED, _("Submitted - has been ordered at the checkout")),
+    )
+    status = models.CharField(
+        _("status"),
+        max_length=128,
+        default=OPEN,
+        choices=STATUS_CHOICES,
+        help_text=_("The status of the cart")
+    )
     description = models.CharField(
         _("description"),
         blank=True,
@@ -56,8 +46,17 @@ class Cart(models.Model):
         blank=True,
         null=True,
     )
+    date_submitted = models.DateTimeField(
+        _("date submitted"),
+        null=True,
+        blank=True,
+        help_text=_("The date the cart was submitted."),
+    )
+
+    editable_statuses = (OPEN, SAVED)
 
     objects = CartManager()
+    open = OpenCartManager()
 
     def is_shipping_required(self):
         return True
@@ -135,6 +134,39 @@ class Cart(models.Model):
             return False
         return True
     is_empty = property(_is_empty)
+
+    def freeze(self):
+        """
+        Freezes the cart so it cannot be modified.
+        """
+        self.status = self.FROZEN
+        self.save()
+    freeze.alters_data = True
+
+    def thaw(self):
+        """
+        Unfreezes a cart so it can be modified again
+        """
+        self.status = self.OPEN
+        self.save()
+    thaw.alters_data = True
+
+    def submit(self):
+        """
+        Mark this cart as submitted
+        """
+        self.status = self.SUBMITTED
+        self.date_submitted = now()
+        self.save()
+    submit.alters_data = True
+
+    @property
+    def is_submitted(self):
+        return self.status == self.SUBMITTED
+
+    @property
+    def can_be_edited(self):
+        return self.status in self.editable_statuses
 
     class Meta:
         verbose_name = _("Shopping Cart")
