@@ -15,7 +15,7 @@
     </div>
     {% for child in child_categories %}
     <div class="sixteen columns row category-row">
-        <div class="four columns alpha"><div class="category-image"><a href="{{ child.get_absolute_url }}"><img src="{% thumbnail child.image 220x100 crop %}" /></a></div></div>
+        <div class="four columns alpha"><div class="category-image"><a href="{{ child.get_absolute_url }}"><img src="{% if child.image %}{% thumbnail child.image 220x100 crop %}{% else %}None{% endif %}" /></a></div></div>
         <div class="twelve columns omega"><div class="category-description"><a href="{{ child.get_absolute_url }}"><h3>{{ child.name }}</h3></a><p>{{ child.description }}</p></div></div>
     </div>
     {% endfor %}

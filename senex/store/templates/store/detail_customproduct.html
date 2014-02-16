@@ -34,7 +34,7 @@
                         <div class="product-configuration-option-selection">
                             <select name="{{ option_group.id }}" id="{{ option_group.id }}" class="priced product-configuration-select">
                                 {% for choice in option_group.items %}
-                                    <option value="{{ choice.value }}"
+                                    <option data-price="{{ choice.price_change }}" value="{{ choice.value }}"
                                             {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
                                         {% if choice.price_change %}
                                             {{ choice.price_change|currency }}
@@ -54,12 +54,12 @@
         <div class="four columns">
             <div class="product-configuration-sidebar">
                 <h4>Subtotal:</h4>
-                <h5 class="add-bottom"><span id="price">{{ product.price|currency }}</span></h5>
+                <h5 class="add-bottom">$<span id="price">{{ product.price }}</span></h5>
                 <input type="submit" class="button" name="addcart" value="Add to Cart"/>
             </div>
             <div class="product-configuration-sidebar">
                 <h4>Summary:</h4>
-                <ul>
+                <ul class="summary-list">
                     <li>Large</li>
                     <li>Polished</li>
                     <li>Something</li>
