@@ -7,6 +7,8 @@ var CustomForm = {
     init: function () {
         this.submitButton = $(".addcart");
         this.customForm = $("#product-options-form");
+        this.placeOrderForm = $("#payment-form");
+        this.placeOrderButton = $(".place-order-button");
 
         this.bind();
     },
@@ -17,6 +19,10 @@ var CustomForm = {
         self.submitButton.click(function (e) {
             e.preventDefault();
             self.customForm.submit();
+        });
+
+        self.placeOrderForm.one('submit', function() {
+            self.placeOrderButton.attr('disabled','disabled');
         });
     }
 };
