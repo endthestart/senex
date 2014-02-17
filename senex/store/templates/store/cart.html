@@ -17,7 +17,7 @@
                         <div class="cart-image">
                             <img style="display: block; vertical-align: top;" src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}" alt="product image"/>
                         </div>
-                        <div class="none" style="display: inline-block; width: 70%;">
+                        <div class="none" style="display: inline-block; width: 70%; vertical-align: top;">
                             <div class="cart-product-description">
                                 <h4 class="cart-item-description"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a></h4>
                                 {% if cart_item.has_details %}
@@ -54,7 +54,7 @@
             <h5 class="rule add-top add-bottom">{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
             <div class="rule">
             <h5>Subtotal: {{ cart.total_price|currency }}</h5>
-            <p>*Taxes and shipping charges my apply.</p>
+            <p>*Taxes and shipping charges may apply.</p>
             </div>
             <a href="{% url 'checkout_start' %}" class="button button-checkout">{% trans "Checkout" %}</a>
         </div>

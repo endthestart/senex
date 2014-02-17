@@ -6,7 +6,7 @@ def get_all_options(obj, ids_only=False):
     masterlist = []
     #Create a list of all the options & create all combos of the options
     for opt in obj.option_group.select_related().all():
-        for value in opt.option_set.all():
+        for value in opt.option_set.all().order_by('ordering'):
             if ids_only:
                 sublist.append(value.unique_id)
             else:
@@ -63,7 +63,7 @@ def serialize_options(product, selected_options=()):
         groups = {}
         opts = {}
         serialized = {}
-
+        print(all_options)
         for options in all_options:
             for option in options:
                 if not opts.has_key(option):
@@ -108,6 +108,6 @@ def serialize_options(product, selected_options=()):
 
 
 def _sort_options(lst):
-    work = [(opt.name, opt) for opt in lst]
+    work = [(opt.ordering, opt) for opt in lst]
     work.sort()
     return zip(*work)[1]

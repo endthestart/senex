@@ -356,7 +356,7 @@ class OptionGroupManager(models.Manager):
         """Returns a dictionary mapping ids to sort order"""
 
         work = {}
-        for uid, order in self.values_list('id', 'name'):
+        for uid, order in self.values_list('id', 'ordering'):
             work[uid] = order
 
         return work
@@ -374,10 +374,16 @@ class OptionGroup(models.Model):
         blank=True,
         help_text=_("This should be a more lengthy description of the option group."),
     )
+    ordering = models.IntegerField(
+        _("ordering"),
+        default=0,
+        help_text=_("Override alphabetical order in the category display."),
+    )
 
     objects = OptionGroupManager()
 
     class Meta:
+        ordering = ('ordering',)
         verbose_name = _("option group")
         verbose_name_plural = _("option groups")
 
@@ -417,9 +423,14 @@ class Option(models.Model):
         default=0.00,
         help_text=_("The change in cost for a product."),
     )
+    ordering = models.IntegerField(
+        _("ordering"),
+        default=0,
+        help_text=_("Override alphabetical order in the category display."),
+    )
 
     class Meta:
-        ordering = ('option_group', 'name')
+        ordering = ('option_group', 'ordering')
         unique_together = (('option_group', 'value'),)
         verbose_name = _("option")
         verbose_name_plural = _("options")

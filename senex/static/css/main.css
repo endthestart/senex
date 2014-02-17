@@ -235,8 +235,8 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"]
 {
-    font-size: 14px;
-    padding: 16px;
+    font-size: 18px;
+    padding: 24px;
     background: #4479BA;
     color: #FFF;
     text-shadow: none;
@@ -280,6 +280,7 @@ select {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    margin-bottom: 0;
 }
 select {
     padding: 0;
@@ -462,6 +463,140 @@ h1.category-title {
 	position:relative;
 	top:1px;
 }
+
+/* Payment Page
+   ----------------------- */
+
+.payment-page .sub-header {
+    padding: 10px;
+}
+
+.payment-page .control-group {
+    padding-bottom: 20px;
+}
+
+.payment-page .control-label {
+    display: inline-block;
+    width: 22.22222%;
+    margin-left: 11.11111%;
+    vertical-align: top;
+}
+
+.payment-page .controls {
+    display: inline-block;
+    width: 55.55555%;
+}
+
+.payment-page .shipping-form-bottom {
+    float: right;
+}
+
+.payment-page .payment-form-bottom {
+    float: right;
+    margin-right: 11.11111%;
+}
+
+.payment-page .preview-form-bottom {
+    float: right;
+}
+
+.payment-page .cc-form-month {
+    width: 44.44444%;
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.payment-page .cc-form-year {
+    width: 44.44444%;
+    display: inline-block;
+}
+
+.payment-page .cc-security-code {
+    width: 44.44444%;
+}
+
+.payment-page .page-title {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-page .sub-header {
+    border-bottom: 1px solid #ccc;
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+}
+
+.payment-page .shipping-address {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5%;
+}
+
+.payment-page .shipping-instructions {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 11.11111%;
+}
+
+/* Checkout Progress
+   ----------------------- */
+.progress-container {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    position: relative;
+    display: block;
+}
+
+.progress {
+    display: block;
+    padding: 5px 0 0 0;
+    margin: 0;
+    border-bottom: 3px solid rgb(210, 210, 210);
+    font-family: "Georgia", "Times New Roman", serif;
+}
+
+.progress-inner {
+    text-align: center;
+}
+
+.progress-inner ul {
+    margin: 0;
+}
+
+.progress ul li {
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    height: 100%;
+    line-height: 30px;
+    width: 200px;
+}
+
+.progress ul li.active {
+    font-weight: bold;
+}
+
+
+.progress ul li a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.progress ul li a:hover {
+    text-decoration: none;
+    background: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+}
+
+
+
 
 /* Messages
    ----------------------- */

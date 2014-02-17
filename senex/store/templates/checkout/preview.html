@@ -4,25 +4,20 @@
 
 {% block title %}{% trans "Checkout - Payment Details" %}{% endblock %}
 
-{% block checkout_nav %}
-    {% include 'checkout/nav.html' with step=1 %}
+{% block checkout_progress %}
+    {% include 'checkout/progress.html' with step=3 %}
 {% endblock %}
 
-{% block content %}
-    <div class="six columns offset-by-five">
-    Show order summary
-    Show shipping information
-    Show card information
+{% block page_title %}{% trans "Review Order" %}{% endblock page_title %}
+
 {% block place_order %}
-    <div class="sub-header">
-        <h2>{% trans "Confirm Order" %}</h2>
-    </div>
+    <hr />
     <form action="" method="POST" id="payment-form">{% csrf_token %}
                 <input type="hidden" name="stripeToken" value="{{ stripe_token }}" />
                 <input type="hidden" name="action" value="place_order" />
-        <button type="submit">Place Order</button>
+                <div class="preview-form-bottom">
+                    <button type="submit">Place Order</button>
+                </div>
     </form>
 {% endblock place_order %}
-    </div>
-{% endblock %}
 

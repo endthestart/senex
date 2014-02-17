@@ -23,9 +23,9 @@ class CustomProduct(models.Model):
         blank=True,
     )
 
-    def _get_full_price(self):
+    @property
+    def unit_price(self):
         return self.product.unit_price
-    unit_price = property(_get_full_price)
 
     def add_template_context(self, context, selected_options, **kwargs):
         """

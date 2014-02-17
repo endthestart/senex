@@ -1,8 +1,12 @@
+import calendar
+from datetime import date
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
+from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DeleteView, FormView, TemplateView,  DetailView, UpdateView
 
@@ -43,12 +47,12 @@ class GatewayView(CheckoutSessionMixin, FormView):
             if form.is_new_account_checkout():
                 messages.info(
                     self.request,
-                    _("Create your account and then you will be redirected back to the checkout process")
+                    _("Create your account and then you will be redirected back to the checkout process.")
                 )
                 self.success_url = "{0}?next={1}&email={2}".format(
                     reverse('auth_register'),
-                    reverse('checkout_shipping_address'),
-                    email
+                    urlquote(reverse('checkout_shipping_address')),
+                    urlquote(email)
                 )
         else:
             user = form.get_user()
@@ -94,6 +98,7 @@ class ShippingAddressView(CheckoutSessionMixin, FormView):
 
     def get_context_data(self, **kwargs):
         kwargs = super(ShippingAddressView, self).get_context_data(**kwargs)
+        kwargs['cart'] = self.request.cart
         if self.request.user.is_authenticated():
             kwargs['addresses'] = self.get_available_addresses()
         return kwargs
@@ -389,14 +394,25 @@ class PaymentDetailsView(OrderPlacementMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = self.build_submission(**kwargs)
         ctx['STRIPE_PUBLIC_KEY'] = self.stripe_public_key
-        if not self.request.user.is_authenticated():
-            email = self.checkout_session.get_guest_email()
-        else:
-            email = self.request.user.email
-        ctx['STRIPE_EMAIL'] = email
+        ctx['months'] = self.get_month_list()
+        ctx['years'] = self.get_year_list()
         ctx.update(kwargs)
         ctx.update(ctx['order_kwargs'])
         return ctx
+
+    def get_month_list(self):
+        months = []
+        for i in range(1, 13):
+            months.append({'value': str(i).zfill(2), 'display': "{} - {}".format(str(i).zfill(2), calendar.month_name[i]),})
+            print(i)
+        return months
+
+    def get_year_list(self):
+        years = []
+        for i in range(0,10):
+            years.append(date.today().year + i)
+        return years
+
 
 
 class ThankYouView(DetailView):
@@ -405,10 +421,11 @@ class ThankYouView(DetailView):
 
     def get_object(self):
         order = None
-        import pdb; pdb.set_trace()
         if not order:
             if 'checkout_order_id' in self.request.session:
                 order = Order.objects.get(pk=self.request.session['checkout_order_id'])
+            elif self.request.GET.get('order_id', '') != '':
+                order = Order.objects.get(number=self.request.GET.get('order_id'))
             else:
                 raise Http404(_("No order found"))
 

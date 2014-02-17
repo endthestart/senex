@@ -239,7 +239,7 @@ class AbstractAddress(models.Model):
         title, first_name and last_name into a single line.
         """
         fields = [self.full_name, self.street1, self.street2,
-                  self.city, self.state, self.postal_code, self.country]
+                  self.city_state, self.postal_code, self.country]
         fields = map(string.strip, filter(bool, fields))
         return fields
 
@@ -265,6 +265,10 @@ class AbstractAddress(models.Model):
     @property
     def summary(self):
         return u", ".join(self.active_address_fields())
+
+    @property
+    def city_state(self):
+        return u"{}, {}".format(self.city, self.state)
 
     def __unicode__(self):
         return u"{}".format(self.street1)
