@@ -5,6 +5,9 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = DEBUG
 
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!e7=(lo95id2%tkk6o8qtz7b4np!5_3ed&v%i(u=dv+l^h_wfg')
+
 ########## MEDIA FILES CONFIGURATION
 MEDIA_ROOT = normpath(join(SITE_ROOT, '../media'))
 MEDIA_URL = '/media/'
@@ -53,3 +56,9 @@ ALLOWED_HOSTS = [
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 ########## END SSL CONFIGURATION
+
+########## STRIPE CONFIGURATION
+# See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_BnKaAmgD81hWGi1F1suzPmX6')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_x1CjT9YMoj30rlpg50CnmD8A')
+########## END STRIPE
