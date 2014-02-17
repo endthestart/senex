@@ -6,3 +6,5 @@ local_settings.py
 .DS_Store
 senex/media/*
 custom_auth
+static/
+venv/
