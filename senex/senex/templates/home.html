@@ -9,7 +9,6 @@
         <figure>
             <img src="{% static "img/carousel/c_1.jpg" %}">
         </figure>
-        <h1>Senex Cycles</h1>
 
         <p class="lead">Senex Cycles designs, assembled, and tests mountain, road, and fat bikes in beautiful Colorado
             Springs, CO. With a focus on fast, responsive geometry and affordable, race ready builds, Senex Cycles are
@@ -19,31 +18,27 @@
         <div class="promo-box">
             <h3>Pre-Order</h3>
 
-            <p>The bikes are being built. Pre-order yours now and receive a special bonus!</p>
+            <p>Order your new Senex now and receive an early bird discount.</p>
 
-            <p><a class="button bottom" href="{% url 'store_home' %}">View details &raquo;</a></p>
+            <p><a class="button bottom" href="{% url 'store_home' %}">Store home &raquo;</a></p>
         </div>
     </div>
     <div class="one-third column feature">
         <div class="promo-box">
-            <h3>Promo 2</h3>
+            <h3>Custom</h3>
 
-            <p>Features</p>
-            <ul class="square">
-                <li>Feature One</li>
-                <li>Feature Two</li>
-                <li>Feature Three</li>
-            </ul>
-            <p><a class="button bottom" href="#">View details &raquo;</a></p>
+            <p>Call or email us about custom geometry and options. We'll work with you to design your perfect frame.</p>
+            <p><a class="button bottom" href="#">Custom details &raquo;</a></p>
         </div>
     </div>
     <div class="one-third column feature">
         <div class="promo-box">
-            <h3>Promo 3</h3>
+            <h3>Media / Sponsorship Inquiries</h3>
 
-            <p>Promo text</p>
+            <p>Want to review a Senex for your publication?<br />Think you've got what it takes to represent the Senex brand on race day?</p>
+            <p>Let us know about you and we'll see what we can do together!</p>
 
-            <p><a class="button bottom" href="#">View details &raquo;</a></p>
+            <p><a class="button bottom" href="{% url 'contact' %}">Contact us &raquo;</a></p>
         </div>
     </div>
 {% endblock %}
