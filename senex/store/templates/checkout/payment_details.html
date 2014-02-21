@@ -68,7 +68,7 @@
             Stripe.card.createToken($form, stripeResponseHandler);
 
             // Prevent the form from submitting with the default action
-            return false;
+            event.preventDefault()
         });
     });
 
