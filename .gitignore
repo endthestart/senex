@@ -5,3 +5,5 @@
 .DS_Store
 /senex/custom_auth
 /static
+/venv
+/media/*
