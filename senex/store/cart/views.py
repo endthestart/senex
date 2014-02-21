@@ -32,6 +32,7 @@ def remove(request, next='cart'):
 
     return redirect(next)
 
+
 def set_quantity(request, next='cart'):
     """
     Set the quantity for a specific CartItem.

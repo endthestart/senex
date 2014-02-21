@@ -9,14 +9,14 @@ from .session import CheckoutSessionMixin
 from ..contact.models import ShippingAddress, UserAddress, BillingAddress
 
 
-
 class OrderPlacementMixin(CheckoutSessionMixin):
     def handle_order_placement(self, order_number, user, cart, shipping_address, shipping_method, total, **kwargs):
         order = self.place_order(order_number, user, cart, shipping_address, shipping_method, total, **kwargs)
         cart.submit()
         return self.handle_successful_order(order)
 
-    def place_order(self, order_number, user, cart, shipping_address, shipping_method, total, billing_address=None, **kwargs):
+    def place_order(self, order_number, user, cart, shipping_address, shipping_method, total, billing_address=None,
+                    **kwargs):
         shipping_address = self.create_shipping_address(user, shipping_address)
         billing_address = self.create_billing_address(billing_address, shipping_address, **kwargs)
 

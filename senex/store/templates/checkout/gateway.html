@@ -16,12 +16,14 @@
     <div class="six columns offset-by-five">
         <div class="register-form">
             <h3 class="bright-text">Sign In</h3>
+
             <form action="." method="post" class="form-stacked well">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
                 <h4 class="bright-text">What is your email address?</h4>
                 {% include "partials/form_field.html" with field=form.username %}
                 <h4 class="bright-text">Do you have an account?</h4>
+
                 <div class="control-group">
                     <div class="controls">
                         <div class="radio">

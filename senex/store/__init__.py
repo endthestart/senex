@@ -1,10 +1,9 @@
-
-
 def active_product_types():
     """Get a list of activated product modules, in the form of
     [(module, config module name),...]
     """
     from django.db import models
+
     gateways = []
     for app in models.get_apps():
         if hasattr(app, 'STORE_PRODUCT'):

@@ -116,6 +116,7 @@ class Category(models.Model):
     def _get_main_image(self):
         img = False
         return img
+
     main_image = property(_get_main_image)
 
     def save(self, **kwargs):
@@ -136,7 +137,7 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return('category', (), {'path': self.path})
+        return ('category', (), {'path': self.path})
 
 
 # class CurrencyField(models.DecimalField):
@@ -239,6 +240,7 @@ class Product(models.Model):
             return self.category.all()[0]
         else:
             return None
+
     main_category = property(_get_main_category)
 
     def _get_main_image(self):
@@ -253,21 +255,26 @@ class Product(models.Model):
             except IndexError:
                 #TODO: Remove this code when updating images
                 import sys
-                print >>sys.stderr, 'Warning: default product image not found'
+
+                print >> sys.stderr, 'Warning: default product image not found'
 
         return img
+
     main_image = property(_get_main_image)
 
     def _get_full_price(self):
         return self.price
+
     unit_price = property(_get_full_price)
 
     def _in_stock(self):
         return self.stock > 0
+
     is_in_stock = property(_in_stock)
 
     def _available(self):
         return True
+
     is_available = property(_available)
 
     def _get_category(self):
@@ -278,6 +285,7 @@ class Product(models.Model):
             return self.category.all()[0]
         except IndexError:
             return None
+
     get_category = property(_get_category)
 
     def get_subtypes(self):
@@ -319,7 +327,7 @@ class Product(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return('product_detail', (), {'slug': self.slug, 'path': self.category.path})
+        return ('product_detail', (), {'slug': self.slug, 'path': self.category.path})
 
     class Meta:
         ordering = ('ordering', 'name')
@@ -334,7 +342,7 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product,)
+    product = models.ForeignKey(Product, )
     image = ThumbnailerImageField(
         _("image"),
         upload_to='product',
@@ -437,6 +445,7 @@ class Option(models.Model):
 
     def _get_unique_id(self):
         return make_option_unique_id(self.option_group_id, self.value)
+
     unique_id = property(_get_unique_id)
 
     def __unicode__(self):
@@ -454,7 +463,7 @@ VALIDATIONS = [
     ('product.utils.validation_integer', _('Integer number')),
     ('product.utils.validation_yesno', _('Yes or No')),
     ('product.utils.validation_decimal', _('Decimal number')),
-    ]
+]
 #if user_validations:
 #    VALIDATIONS.extend(user_validations)
 

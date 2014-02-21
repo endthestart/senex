@@ -274,7 +274,6 @@ class AbstractAddress(models.Model):
         return u"{}".format(self.street1)
 
 
-
     class Meta:
         abstract = True
         verbose_name = _("address")
@@ -364,7 +363,6 @@ class UserAddress(ShippingAddress):
 
 
 class BillingAddress(AbstractAddress):
-
     class Meta:
         verbose_name = _("billing address")
         verbose_name_plural = _("billing addresses")

@@ -66,6 +66,7 @@ class Cart(models.Model):
         for item in self.cartitem_set.all():
             item_count += item.quantity
         return item_count
+
     num_items = property(_get_count)
 
     def _get_total(self):
@@ -73,6 +74,7 @@ class Cart(models.Model):
         for item in self.cartitem_set.all():
             total += item.line_total
         return total
+
     total_price = property(_get_total)
 
     def add_item(self, chosen_item, number_added, details=[]):
@@ -122,6 +124,7 @@ class Cart(models.Model):
             self.add_item(cart_item.product, cart_item.quantity)
         cart.empty()
         cart.save()
+
     merge.alters_data = True
 
     def empty(self):
@@ -133,6 +136,7 @@ class Cart(models.Model):
         if self.num_items > 0:
             return False
         return True
+
     is_empty = property(_is_empty)
 
     def freeze(self):
@@ -141,6 +145,7 @@ class Cart(models.Model):
         """
         self.status = self.FROZEN
         self.save()
+
     freeze.alters_data = True
 
     def thaw(self):
@@ -149,6 +154,7 @@ class Cart(models.Model):
         """
         self.status = self.OPEN
         self.save()
+
     thaw.alters_data = True
 
     def submit(self):
@@ -158,6 +164,7 @@ class Cart(models.Model):
         self.status = self.SUBMITTED
         self.date_submitted = now()
         self.save()
+
     submit.alters_data = True
 
     @property
@@ -192,6 +199,7 @@ class CartItem(models.Model):
 
     def _get_line_unit_price(self):
         return self.product.price + self.detail_price
+
     unit_price = property(_get_line_unit_price)
 
     def get_detail_price(self):
@@ -204,6 +212,7 @@ class CartItem(models.Model):
                 if detail.price_change and detail.value:
                     delta += detail.price_change
         return delta
+
     detail_price = property(get_detail_price)
 
     def _get_line_total(self):
@@ -211,10 +220,12 @@ class CartItem(models.Model):
         Returns the unit price + modifications multiplied by the quantity.
         """
         return self.unit_price * self.quantity
+
     line_total = property(_get_line_total)
 
     def _get_description(self):
         return self.product.name
+
     description = property(_get_description)
 
     def add_detail(self, data):
@@ -228,11 +239,13 @@ class CartItem(models.Model):
         detail.save()
 
     def _has_details(self):
-        return(self.details.count() > 0)
+        return (self.details.count() > 0)
+
     has_details = property(_has_details)
 
     def __unicode__(self):
-        return u"{quantity} - {name} {price}".format(quantity=self.quantity, name=self.product.name, price=self.line_total)
+        return u"{quantity} - {name} {price}".format(quantity=self.quantity, name=self.product.name,
+                                                     price=self.line_total)
 
     class Meta:
         verbose_name = _("Cart Item")

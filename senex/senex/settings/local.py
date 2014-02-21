@@ -15,7 +15,7 @@ DATABASES = {
         "NAME": "senex.db",
         "USER": "",
         "PASSWORD": "",
-        }
+    }
 }
 
 ########## CACHE CONFIGURATION

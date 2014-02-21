@@ -16,7 +16,7 @@ DATABASES = {
         "PASSWORD": "h3xag0n",
         "HOST": "localhost",
         "PORT": "",
-        }
+    }
 }
 
 ########## CACHE CONFIGURATION

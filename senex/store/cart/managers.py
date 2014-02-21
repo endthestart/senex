@@ -3,6 +3,7 @@ from django.db import models
 
 class CartManager(models.Manager):
     status_filter = 'Open'
+
     def get_for_request(self, request):
         session_cart = None
         if 'cart' in request.session:

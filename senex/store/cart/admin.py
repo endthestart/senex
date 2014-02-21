@@ -13,12 +13,15 @@ class CartItemDetails_Inline(admin.StackedInline):
     model = CartItemDetails
     extra = 1
 
+
 class CartOptions(admin.ModelAdmin):
     list_display = ('created', 'num_items', 'total_price')
     inlines = [CartItem_Inline]
 
+
 class CartItemOptions(admin.ModelAdmin):
     inlines = [CartItemDetails_Inline]
+
 
 admin.site.register(Cart, CartOptions)
 admin.site.register(CartItem, CartItemOptions)

@@ -4,38 +4,46 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<!-- Jumbotron -->
-<div class="jumbotron sixteen columns">
-    <figure>
-        <img src="{% static "img/carousel/c_1.jpg" %}">
-    </figure>
-    <h1>Senex Cycles</h1>
-    <p class="lead">Senex is custom bicycle company from Colorado. Our focus is fast and responsive geometry and race ready bicycles that are affordable. Senex bicycles are perfect for tight singletrack, epic cross country rides, and races on the weekend.</p>
-</div>
-<div class="one-third column feature">
-    <div class="promo-box">
-        <h3>Pre-Order</h3>
-        <p>The bikes are being built. Pre-order yours now and receive a special bonus!</p>
-        <p><a class="button bottom" href="{% url 'store_home' %}">View details &raquo;</a></p>
+    <!-- Jumbotron -->
+    <div class="jumbotron sixteen columns">
+        <figure>
+            <img src="{% static "img/carousel/c_1.jpg" %}">
+        </figure>
+        <h1>Senex Cycles</h1>
+
+        <p class="lead">Senex Cycles designs, assembled, and tests mountain, road, and fat bikes in beautiful Colorado
+            Springs, CO. With a focus on fast, responsive geometry and affordable, race ready builds, Senex Cycles are
+            perfect for tight singletrack, epic cross country rides, and weekend races.</p>
     </div>
-</div>
-<div class="one-third column feature">
-    <div class="promo-box">
-        <h3>Promo 2</h3>
-        <p>Features</p>
-        <ul class="square">
-            <li>Feature One</li>
-            <li>Feature Two</li>
-            <li>Feature Three</li>
-        </ul>
-        <p><a class="button bottom" href="#">View details &raquo;</a></p>
+    <div class="one-third column feature">
+        <div class="promo-box">
+            <h3>Pre-Order</h3>
+
+            <p>The bikes are being built. Pre-order yours now and receive a special bonus!</p>
+
+            <p><a class="button bottom" href="{% url 'store_home' %}">View details &raquo;</a></p>
+        </div>
     </div>
-</div>
-<div class="one-third column feature">
-    <div class="promo-box">
-        <h3>Promo 3</h3>
-        <p>Promo text</p>
-        <p><a class="button bottom" href="#">View details &raquo;</a></p>
+    <div class="one-third column feature">
+        <div class="promo-box">
+            <h3>Promo 2</h3>
+
+            <p>Features</p>
+            <ul class="square">
+                <li>Feature One</li>
+                <li>Feature Two</li>
+                <li>Feature Three</li>
+            </ul>
+            <p><a class="button bottom" href="#">View details &raquo;</a></p>
+        </div>
     </div>
-</div>
+    <div class="one-third column feature">
+        <div class="promo-box">
+            <h3>Promo 3</h3>
+
+            <p>Promo text</p>
+
+            <p><a class="button bottom" href="#">View details &raquo;</a></p>
+        </div>
+    </div>
 {% endblock %}

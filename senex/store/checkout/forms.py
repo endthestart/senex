@@ -14,6 +14,7 @@ from custom_auth.models import User
 from localflavor.us.us_states import STATE_CHOICES
 from localflavor.us.forms import USStateSelect, USZipCodeField
 
+
 class ShippingAddressForm(AbstractAddressForm):
     def __init__(self, *args, **kwargs):
         super(ShippingAddressForm, self).__init__(*args, **kwargs)
@@ -26,8 +27,8 @@ class ShippingAddressForm(AbstractAddressForm):
         'state': USStateSelect(),
     }
 
-class UserAddressForm(AbstractAddressForm):
 
+class UserAddressForm(AbstractAddressForm):
     class Meta:
         model = UserAddress
         exclude = ('user', 'is_default_billing', 'is_default_shipping')
@@ -83,6 +84,7 @@ class CCExpWidget(forms.MultiWidget):
     """
     Widget containing two select boxes for selecting the month and year.
     """
+
     def decompress(self, value):
         return [value.month, value.year] if value else [None, None]
 

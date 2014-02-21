@@ -15,25 +15,28 @@
 {% block order_contents %}{% endblock order_contents %}
 
 {% block payment_details %}
-<form action="{% url 'checkout_preview' %}" method="POST" id="payment-form">{% csrf_token %}
-    <span class=payment-errors"></span>
+    <form action="{% url 'checkout_preview' %}" method="POST" id="payment-form">{% csrf_token %}
+        <span class=payment-errors"></span>
 
-    <div class="control-group">
-        <label class="control-label"><span>Card Number</span></label>
-        <div class="controls">
-            <input type="text" size="20" data-stripe="number" />
+        <div class="control-group">
+            <label class="control-label"><span>Card Number</span></label>
+
+            <div class="controls">
+                <input type="text" size="20" data-stripe="number"/>
+            </div>
         </div>
-    </div>
 
-    <div class="control-group">
-        <label class="control-label"><span>Security Code</span></label>
-        <div class="controls">
-            <input class="cc-security-code" type="text" size="4" data-strive="cvc" />
+        <div class="control-group">
+            <label class="control-label"><span>Security Code</span></label>
+
+            <div class="controls">
+                <input class="cc-security-code" type="text" size="4" data-strive="cvc"/>
+            </div>
         </div>
-    </div>
 
-    <div class="control-group">
-        <label class="control-label"><span>Expiration Date</span></label>
+        <div class="control-group">
+            <label class="control-label"><span>Expiration Date</span></label>
+
             <div class="controls">
                 <select class="cc-form-month" data-stripe="exp-month">
                     <option value="month">Month</option>
@@ -48,45 +51,45 @@
                     {% endfor %}
                 </select>
             </div>
-    </div>
-    <div class="payment-form-bottom">
-        <button type="submit">Preview Order</button>
-    </div>
-</form>
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    // This identifies your website in the createToken call below
-    Stripe.setPublishableKey('{{ STRIPE_PUBLIC_KEY }}');
+        </div>
+        <div class="payment-form-bottom">
+            <button type="submit">Preview Order</button>
+        </div>
+    </form>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+        // This identifies your website in the createToken call below
+        Stripe.setPublishableKey('{{ STRIPE_PUBLIC_KEY }}');
 
-    $(function ($) {
-        $('#payment-form').submit(function (event) {
-            var $form = $(this);
+        $(function ($) {
+            $('#payment-form').submit(function (event) {
+                var $form = $(this);
 
-            // Disable the submit button to prevent repeated clicks
-            $form.find('button').prop('disabled', true);
+                // Disable the submit button to prevent repeated clicks
+                $form.find('button').prop('disabled', true);
 
-            Stripe.card.createToken($form, stripeResponseHandler);
+                Stripe.card.createToken($form, stripeResponseHandler);
 
-            // Prevent the form from submitting with the default action
-            event.preventDefault()
+                // Prevent the form from submitting with the default action
+                event.preventDefault()
+            });
         });
-    });
 
-    var stripeResponseHandler = function (status, response) {
-        var $form = $('#payment-form');
+        var stripeResponseHandler = function (status, response) {
+            var $form = $('#payment-form');
 
-        if (response.error) {
-            // Show the errors on the form
-            $form.find('.payment-errors').text(response.error.message);
-            $form.find('button').prop('disabled', false);
-        } else {
-            // token contains id, last4, and card type
-            var token = response.id;
-            // Insert the token into the form so it gets submitted to the server
-            $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-            // and submit
-            $form.get(0).submit();
-        }
-    };
-</script>
+            if (response.error) {
+                // Show the errors on the form
+                $form.find('.payment-errors').text(response.error.message);
+                $form.find('button').prop('disabled', false);
+            } else {
+                // token contains id, last4, and card type
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                // and submit
+                $form.get(0).submit();
+            }
+        };
+    </script>
 {% endblock payment_details %}

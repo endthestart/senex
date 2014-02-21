@@ -15,10 +15,12 @@
         <div class="twelve columns">
             <div class="product-configuration">
                 <div>
-                    <img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
+                    <img src="
+                            {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
                 </div>
                 <div>
                     <h2>{% blocktrans with product.name as name %}Configure your {{ name }}{% endblocktrans %}</h2>
+
                     <p>{% autoescape off %}{{ product.description }}{% endautoescape %}</p>
                 </div>
                 {% if error_message %}
@@ -32,7 +34,8 @@
                             <p>{{ option_group.description }}</p>
                         </div>
                         <div class="product-configuration-option-selection">
-                            <select name="{{ option_group.id }}" id="{{ option_group.id }}" class="priced product-configuration-select">
+                            <select name="{{ option_group.id }}" id="{{ option_group.id }}"
+                                    class="priced product-configuration-select">
                                 {% for choice in option_group.items %}
                                     <option data-price="{{ choice.price_change }}" value="{{ choice.value }}"
                                             {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}

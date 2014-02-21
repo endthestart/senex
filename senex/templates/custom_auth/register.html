@@ -16,8 +16,9 @@
                 {% endif %}
                 <form action="" method="post">{% csrf_token %}
                     {{ form.as_p }}
-                    <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url 'store_home' %}{% endif %}" />
-                    <input type="submit" name="submit" value="Register" />
+                    <input type="hidden" name="next"
+                           value="{% if next %}{{ next }}{% else %}{% url 'store_home' %}{% endif %}"/>
+                    <input type="submit" name="submit" value="Register"/>
                 </form>
             </div>
         </div>

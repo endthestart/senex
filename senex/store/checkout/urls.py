@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
-from store.checkout.views import GatewayView, ShippingAddressView, ShippingMethodView, PaymentMethodView, PaymentDetailsView, UserAddressUpdateView, UserAddressDeleteView, ThankYouView
+from store.checkout.views import GatewayView, ShippingAddressView, ShippingMethodView, PaymentMethodView, \
+    PaymentDetailsView, UserAddressUpdateView, UserAddressDeleteView, ThankYouView
 
 urlpatterns = patterns('',
                        url(r'^$', GatewayView.as_view(), name='checkout_start'),
@@ -14,4 +15,4 @@ urlpatterns = patterns('',
                        url(r'^payment-details/$', PaymentDetailsView.as_view(), name='checkout_payment_details'),
                        url(r'^preview/$', PaymentDetailsView.as_view(preview=True), name='checkout_preview'),
                        url(r'^thank-you/$', ThankYouView.as_view(), name='checkout_thank_you'),
-                       )
+)

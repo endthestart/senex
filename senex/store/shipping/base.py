@@ -59,18 +59,18 @@ class Base(object):
 
     def cart_charge_excl_tax(self):
         warnings.warn((
-            "Use the charge_excl_tax property not cart_charge_excl_tax. "
-            "Cart.cart_charge_excl_tax will be removed "
-            "in v0.7"),
-            DeprecationWarning)
+                          "Use the charge_excl_tax property not cart_charge_excl_tax. "
+                          "Cart.cart_charge_excl_tax will be removed "
+                          "in v0.7"),
+                      DeprecationWarning)
         return self.charge_excl_tax
 
     def cart_charge_incl_tax(self):
         warnings.warn((
-            "Use the charge_incl_tax property not cart_charge_incl_tax. "
-            "Cart.cart_charge_incl_tax will be removed "
-            "in v0.7"),
-            DeprecationWarning)
+                          "Use the charge_incl_tax property not cart_charge_incl_tax. "
+                          "Cart.cart_charge_incl_tax will be removed "
+                          "in v0.7"),
+                      DeprecationWarning)
         return self.charge_incl_tax
 
 

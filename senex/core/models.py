@@ -15,7 +15,7 @@ class Address(models.Model):
         max_length=128,
         blank=True,
         help_text=_("Address 2"),
-        )
+    )
     city = models.CharField(
         _("city"),
         max_length=64,

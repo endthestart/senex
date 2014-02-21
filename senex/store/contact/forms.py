@@ -3,8 +3,8 @@ from django import forms
 
 from .models import UserAddress
 
-class AbstractAddressForm(forms.ModelForm):
 
+class AbstractAddressForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AbstractAddressForm, self).__init__(*args, **kwargs)
         #field_names = (set(self.fields) &
@@ -14,7 +14,6 @@ class AbstractAddressForm(forms.ModelForm):
 
 
 class UserAddressForm(AbstractAddressForm):
-
     class Meta:
         model = UserAddress
         exclude = ('user', 'num_orders', 'is_default_billing', 'is_default_shipping')

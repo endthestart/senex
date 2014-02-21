@@ -20,7 +20,7 @@ def get_all_options(obj, ids_only=False):
 def cross_list(sequences):
     result = [[]]
     for seq in sequences:
-        result = [sublist+[item] for sublist in result for item in seq]
+        result = [sublist + [item] for sublist in result for item in seq]
     return result
 
 
@@ -72,7 +72,7 @@ def serialize_options(product, selected_options=()):
                     groups[k] = False
                     opts[option] = None
 
-        for option in Option.objects.filter(option_group__id__in = groups.keys(), value__in = vals.keys()):
+        for option in Option.objects.filter(option_group__id__in=groups.keys(), value__in=vals.keys()):
             uid = option.unique_id
             if opts.has_key(uid):
                 opts[uid] = option

@@ -87,6 +87,7 @@ class CheckoutSessionData(object):
         Get user address id from session.
         """
         return self._get('shipping', 'user_address_id')
+
     user_address_id = shipping_user_address_id
 
     def is_shipping_address_set(self):

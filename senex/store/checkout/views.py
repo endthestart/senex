@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponseBadRequest, Http404
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import DeleteView, FormView, TemplateView,  DetailView, UpdateView
+from django.views.generic import DeleteView, FormView, TemplateView, DetailView, UpdateView
 
 from .exceptions import UnableToPlaceOrder, PaymentError
 from .forms import GatewayForm, ShippingAddressForm, UserAddressForm
@@ -233,7 +233,7 @@ class ShippingMethodView(CheckoutSessionMixin, TemplateView):
 
 class PaymentMethodView(CheckoutSessionMixin, TemplateView):
     def get(self, request, *args, **kwargs):
-    # check that the user's cart is not empty
+        # check that the user's cart is not empty
         if request.cart.is_empty:
             messages.error(request, _("You need to add some items to your cart to checkout"))
             return HttpResponseRedirect(reverse('cart'))
@@ -328,7 +328,8 @@ class PaymentDetailsView(OrderPlacementMixin, TemplateView):
         ctx.update(kwargs)
         return self.render_to_response(ctx)
 
-    def submit(self, user, cart, shipping_address, shipping_method, order_total, stripe_token, payment_kwargs=None, order_kwargs=None):
+    def submit(self, user, cart, shipping_address, shipping_method, order_total, stripe_token, payment_kwargs=None,
+               order_kwargs=None):
         if payment_kwargs is None:
             payment_kwargs = {}
         if order_kwargs is None:
@@ -356,7 +357,8 @@ class PaymentDetailsView(OrderPlacementMixin, TemplateView):
             messages.error(self.request, _("There was an error processing your payment. Please try agian."))
             return self.render_to_response(self.get_context_data(error=unicode(e)))
         try:
-            return self.handle_order_placement(order_number, user, cart, shipping_address, shipping_method, order_total, **order_kwargs)
+            return self.handle_order_placement(order_number, user, cart, shipping_address, shipping_method, order_total,
+                                               **order_kwargs)
         # except UnableToPlaceOrder, e:
         except UnableToPlaceOrder, e:
             # logger.error(
@@ -383,7 +385,8 @@ class PaymentDetailsView(OrderPlacementMixin, TemplateView):
         stripe.api_key = self.stripe_secret_key
         #TODO: If user is authenticated, create/retrieve stripe customer and set/update UserPaymentDetails
         try:
-            charge = stripe.Charge.create(amount=int(self.request.cart.total_price * 100), currency="usd", card=token, description=email)
+            charge = stripe.Charge.create(amount=int(self.request.cart.total_price * 100), currency="usd", card=token,
+                                          description=email)
         except (stripe.CardError, stripe.InvalidRequestError) as e:
             messages.error(e)
             self.restore_frozen_cart(self.request.cart)
@@ -403,16 +406,16 @@ class PaymentDetailsView(OrderPlacementMixin, TemplateView):
     def get_month_list(self):
         months = []
         for i in range(1, 13):
-            months.append({'value': str(i).zfill(2), 'display': "{} - {}".format(str(i).zfill(2), calendar.month_name[i]),})
+            months.append(
+                {'value': str(i).zfill(2), 'display': "{} - {}".format(str(i).zfill(2), calendar.month_name[i]), })
             print(i)
         return months
 
     def get_year_list(self):
         years = []
-        for i in range(0,10):
+        for i in range(0, 10):
             years.append(date.today().year + i)
         return years
-
 
 
 class ThankYouView(DetailView):

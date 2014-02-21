@@ -68,7 +68,7 @@ PriceForm.prototype.onPriceChange = function (event) {
     this.$summaryList.empty();
     this.$selects.each(function () {
         total += parseFloat($(this).find("option:selected").data('price'));
-        self.$summaryList.append('<li>'+ $(this).find("option:selected").text() +'</li>');
+        self.$summaryList.append('<li>' + $(this).find("option:selected").text() + '</li>');
     });
     this.updateTotal(total);
 };

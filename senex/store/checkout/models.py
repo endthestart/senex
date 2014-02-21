@@ -15,6 +15,7 @@ class Sale(models.Model):
         super(Sale, self).__init__(*args, **kwargs)
 
         import stripe
+
         stripe.api_key = settings.STRIPE_SECRET_KEY
 
         self.stripe = stripe
@@ -35,9 +36,9 @@ class Sale(models.Model):
 
         try:
             response = self.stripe.Charge.create(
-                amount = price_in_cents,
-                currency = "usd",
-                card = {
+                amount=price_in_cents,
+                currency="usd",
+                card={
                     "number": number,
                     "exp_month": exp_month,
                     "exp_year": exp_year,
@@ -175,13 +176,15 @@ class OrderCreator(object):
         else:
             raise ValueError(_("There is already an order with number {}".format(order_number)))
 
-        order = self.create_order_model(user, cart, shipping_address, shipping_method, billing_address, total, order_number, status, **kwargs)
+        order = self.create_order_model(user, cart, shipping_address, shipping_method, billing_address, total,
+                                        order_number, status, **kwargs)
 
         #TODO: Maybe convert a cart into actual order line items
 
         return order
 
-    def create_order_model(self, user, cart, shipping_address, shipping_method, billing_address, total, order_number, status, **extra_order_fields):
+    def create_order_model(self, user, cart, shipping_address, shipping_method, billing_address, total, order_number,
+                           status, **extra_order_fields):
         order_data = {
             'cart_id': cart.id,
             'number': order_number,

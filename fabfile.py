@@ -28,6 +28,7 @@ def server():
     env.host_string = 'andermic.com'
     env.user = 'andermic'
 
+
 def staging():
     path = "/srv/www/staging.senexcycles.com"
     process = "nginx"
@@ -76,6 +77,7 @@ def prepare_deployment(branch_name):
     local('python manage.py test senex')
     local('git add -p && git commit')
     local('git checkout master && git merge ' + branch_name)
+
 
 def deploy():
     with lcd('/srv/www/senexcycles.com/src/senex/'):
