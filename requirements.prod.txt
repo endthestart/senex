@@ -1,6 +1,6 @@
 Django==1.6.1
 Fabric==1.6.0
-South==0.7.6
+South==0.8.4
 Pillow==2.1.0
 django-jenkins==0.14.1
 django-localflavor==1.0
