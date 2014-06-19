@@ -38,7 +38,6 @@ def category(request, path=None, template_name="category.html"):
 
 def product_detail(request, path=None, slug=None, selected_options=(), template_name="store/product.html"):
     #errors = [m for m in get_messages(request) if m.level == constants.ERROR]
-
     product = get_object_or_404(Product, active=True, slug=slug)
 
     subtype_names = product.get_subtypes()

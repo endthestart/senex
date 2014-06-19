@@ -1,3 +1,5 @@
+import newrelic.agent
+
 from .models import OptionGroup, Option, split_option_unique_id
 
 
@@ -23,7 +25,7 @@ def cross_list(sequences):
         result = [sublist + [item] for sublist in result for item in seq]
     return result
 
-
+@newrelic.agent.function_trace()
 def serialize_options(product, selected_options=()):
     """
     Return a list of optiongroups and options for display to the customer.
@@ -63,7 +65,6 @@ def serialize_options(product, selected_options=()):
         groups = {}
         opts = {}
         serialized = {}
-        print(all_options)
         for options in all_options:
             for option in options:
                 if not opts.has_key(option):

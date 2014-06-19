@@ -1,3 +1,5 @@
+import newrelic.agent
+
 from django.db import models
 from store.models import Product, OptionGroup
 from django.utils.translation import ugettext_lazy as _
@@ -26,7 +28,8 @@ class CustomProduct(models.Model):
     @property
     def unit_price(self):
         return self.product.unit_price
-
+    
+    @newrelic.agent.function_trace()
     def add_template_context(self, context, selected_options, **kwargs):
         """
         Add context for the product template.
