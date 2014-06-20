@@ -218,4 +218,7 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlp
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 ########## END MESSAGE STORAGE CONFIGURATION
 
-
+########## NEW RELIC CONFIGURATION
+# See: 
+NEW_RELIC = False
+########## END NEW RELIC CONFIGURATION

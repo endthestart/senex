@@ -28,15 +28,15 @@ class CustomProduct(models.Model):
     @property
     def unit_price(self):
         return self.product.unit_price
-    
-    @newrelic.agent.function_trace()
+
     def add_template_context(self, context, selected_options, **kwargs):
         """
         Add context for the product template.
         Return the updated context.
         """
 
-        options = utils.serialize_options(self, selected_options)
+        #options = utils.serialize_options(self, selected_options)
+        options = self.option_group.all()
         if not 'options' in context:
             context['options'] = options
         else:

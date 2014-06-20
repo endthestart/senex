@@ -36,7 +36,7 @@
                         <div class="product-configuration-option-selection">
                             <select name="{{ option_group.id }}" id="{{ option_group.id }}"
                                     class="priced product-configuration-select">
-                                {% for choice in option_group.items %}
+                                {% for choice in option_group.option_set.all %}
                                     <option data-price="{{ choice.price_change }}" value="{{ choice.value }}"
                                             {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
                                         {% if choice.price_change %}

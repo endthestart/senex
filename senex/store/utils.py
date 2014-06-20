@@ -1,4 +1,18 @@
-import newrelic.agent
+import cProfile
+from pprint import pprint
+from .models import OptionGroup, Option, split_option_unique_id
+
+def do_cprofile(func):
+    def profiled_func(*args, **kwargs):
+        profile = cProfile.Profile()
+        try:
+            profile.enable()
+            result = func(*args, **kwargs)
+            profile.disable()
+            return result
+        finally:
+            profile.print_stats()
+    return profiled_func
 
 from .models import OptionGroup, Option, split_option_unique_id
 
@@ -25,7 +39,7 @@ def cross_list(sequences):
         result = [sublist + [item] for sublist in result for item in seq]
     return result
 
-@newrelic.agent.function_trace()
+@do_cprofile
 def serialize_options(product, selected_options=()):
     """
     Return a list of optiongroups and options for display to the customer.

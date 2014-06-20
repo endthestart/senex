@@ -26,9 +26,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "senex.settings")
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 from django.core.wsgi import get_wsgi_application
-
+from django.conf import settings
 application = get_wsgi_application()
 
-import newrelic.agent
-newrelic.agent.initialize('/srv/www/newrelic/senex.newrelic.ini')
-application = newrelic.agent.wsgi_application()(application)
+if settings.NEW_RELIC:
+    import newrelic.agent
+    newrelic.agent.initialize('/srv/www/newrelic/senex.newrelic.ini')
+    application = newrelic.agent.wsgi_application()(application)

@@ -62,3 +62,8 @@ CSRF_COOKIE_SECURE = True
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_BnKaAmgD81hWGi1F1suzPmX6')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_x1CjT9YMoj30rlpg50CnmD8A')
 ########## END STRIPE
+
+########## NEW RELIC CONFIGURATION
+# See:
+NEW_RELIC = True
+########## END NEW RELIC CONFIGURATION

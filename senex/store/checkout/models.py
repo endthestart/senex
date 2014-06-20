@@ -209,6 +209,47 @@ class OrderCreator(object):
         return order
 
 
+class PaymentType(models.Model):
+    name = models.CharField(
+        _("payment name"),
+        max_length=128,
+        null=False,
+        blank=False,
+    )
+    code = models.SlugField(
+        max_length=128,
+        null=False,
+        blank=False,
+    )
+
+
+class PaymentDetails(models.Model):
+    """
+    A place to store details about the payment.
+    """
+    order = models.ForeignKey(
+        Order,
+        null=False,
+        blank=False,
+    )
+    payment_type = models.ForeignKey(
+        PaymentType,
+        null=False,
+        blank=False,
+    )
+    amount = models.DecimalField(
+        _("amount of transaction"),
+        decimal_places=2,
+        max_digits=12,
+    )
+
+    def charge(self):
+        pass
+
+    def refund(self):
+        pass
+
+
 class UserPaymentDetails(models.Model):
     """
     A place to store details about a contact's various payment methods
@@ -221,7 +262,7 @@ class UserPaymentDetails(models.Model):
     )
 
     stripe_id = models.CharField(
-        _("shipping method"),
+        _("stripe id"),
         max_length=128,
         null=True,
         blank=True,
