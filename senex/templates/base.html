@@ -103,7 +103,7 @@
 </div>
 <div class="container footer">
     <div class="three columns">
-        About Senex
+        About {{ shop.name }}
         <br/>Hours + Location
         <br/>Privacy Policy
         <br/>Site Map
@@ -114,15 +114,15 @@
         <br/>SAT 9am-5pm
         <br/>SUN Closed
         <br/>Phone
-        <br/>719.422.9339
+        <br/>{{ shop.phone }}
     </div>
     <div class="three columns">
         Address
-        <br/>5040 Corporate Plaze Dr Suite 11
-        <br/>Colorado Springs, CO 80919
+        <br/>{{ shop.address_1 }} {{ shop.address_2 }}
+        <br/>{{ shop.city }}, {{ shop.state }} {{ shop.zip_code }}
         <br/>Email
-        <br/>info@senexcycles.com
-        <br/>&copy; Senex Cycles, LLC
+        <br/>{{ shop.from_email }}
+        <br/>&copy; {{ shop.name }}
     </div>
 </div>
 

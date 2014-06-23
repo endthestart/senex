@@ -117,7 +117,12 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    'store.cart.middleware.CartMiddleware'
+    'senex_shop.cart.middleware.CartMiddleware'
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'senex_shop.core.context_processors.get_default_shop',
 )
 
 ROOT_URLCONF = '%s.urls' % SITE_NAME
@@ -151,12 +156,13 @@ THIRD_PARTY_APPS = (
 
 LOCAL_APPS = (
     'senex',
-    'store',
-    'store.custom',
-    'store.cart',
-    'store.checkout',
-    'store.contact',
-    'store.shipping',
+    'senex_shop',
+    'senex_shop.cart',
+    'senex_shop.checkout',
+    'senex_shop.contact',
+    'senex_shop.core',
+    'senex_shop.custom',
+    'senex_shop.shipping',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

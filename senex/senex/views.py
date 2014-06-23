@@ -1,9 +1,13 @@
-from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from .forms import ContactForm
+
+
+# Load Logging
+import logging
+logger = logging.getLogger("default")
 
 
 def home(request, template_name='home.html'):
@@ -15,6 +19,7 @@ def about(request, template_name='about.html'):
 
 
 def contact(request, template_name='contact.html'):
+    form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -34,10 +39,12 @@ def contact(request, template_name='contact.html'):
 
             send_mail(subject, email_message, sender_email, recipients)
             return HttpResponseRedirect('/contact/thanks/')
-    else:
-        form = ContactForm()
 
-    return render_to_response(template_name, {'form': form}, RequestContext(request))
+    context = {
+        'form': form,
+    }
+
+    return render_to_response(template_name, context, RequestContext(request))
 
 
 def contact_thanks(request, template_name="contact_thanks.html"):
