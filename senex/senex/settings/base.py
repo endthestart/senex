@@ -93,8 +93,8 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -122,6 +122,7 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
     'senex_shop.core.context_processors.get_default_shop',
 )
 
@@ -142,6 +143,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.flatpages',
 )
@@ -151,11 +153,6 @@ THIRD_PARTY_APPS = (
     'custom_auth',
     'localflavor',
     'easy_thumbnails',
-    'django_jenkins',
-)
-
-LOCAL_APPS = (
-    'senex',
     'senex_shop',
     'senex_shop.cart',
     'senex_shop.checkout',
@@ -163,6 +160,11 @@ LOCAL_APPS = (
     'senex_shop.core',
     'senex_shop.custom',
     'senex_shop.shipping',
+)
+
+LOCAL_APPS = (
+    'senex',
+
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
