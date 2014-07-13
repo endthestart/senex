@@ -1,0 +1,807 @@
+[
+{
+    "pk": 1, 
+    "model": "senex_shop.category", 
+    "fields": {
+        "name": "Bikes", 
+        "parent": null, 
+        "ordering": 0, 
+        "image": "", 
+        "is_active": true, 
+        "related_categories": [], 
+        "meta": "", 
+        "name_path": "Bikes", 
+        "path": "bikes", 
+        "slug": "bikes", 
+        "description": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "senex_shop.category", 
+    "fields": {
+        "name": "Mountain", 
+        "parent": 1, 
+        "ordering": 0, 
+        "image": "", 
+        "is_active": true, 
+        "related_categories": [], 
+        "meta": "Mountain Bikes", 
+        "name_path": "Bikes > Mountain", 
+        "path": "bikes/mountain", 
+        "slug": "mountain", 
+        "description": "Mountain Bikes"
+    }
+},
+{
+    "pk": 3, 
+    "model": "senex_shop.category", 
+    "fields": {
+        "name": "Road", 
+        "parent": 1, 
+        "ordering": 0, 
+        "image": "", 
+        "is_active": true, 
+        "related_categories": [], 
+        "meta": "Road Bikes", 
+        "name_path": "Bikes > Road", 
+        "path": "bikes/road", 
+        "slug": "road", 
+        "description": "Road Bikes"
+    }
+},
+{
+    "pk": 1, 
+    "model": "senex_shop.product", 
+    "fields": {
+        "sku": "", 
+        "category": 2, 
+        "name": "650b Ti MTB Customized Build", 
+        "created": "2014-02-18T00:27:06.597Z", 
+        "ordering": 4, 
+        "price": "1399.00", 
+        "description": "650b Titanium Mountain Bike. Choose your components.", 
+        "modified": "2014-06-19T03:48:54.031Z", 
+        "active": true, 
+        "meta": "650b Titanium Mountain Bike, Customized Build", 
+        "short_description": "650b Titanium Mountain Bike, Customized Build", 
+        "slug": "650b-custom-titanium-mountain-bike", 
+        "stock": "10.000000"
+    }
+},
+{
+    "pk": 2, 
+    "model": "senex_shop.product", 
+    "fields": {
+        "sku": "", 
+        "category": 2, 
+        "name": "650b Ti MTB Frame Only", 
+        "created": "2014-06-19T02:25:36.293Z", 
+        "ordering": 0, 
+        "price": "1399.00", 
+        "description": "650b Titanium Mountain Frame, Tapered Headtube, 12x142 Rear Axle, Replaceable Hanger. \r\n\r\nIncludes Headset.\r\n\r\nEtched Frame Logo and CNC Engraved Head Badge.", 
+        "modified": "2014-06-19T03:54:36.448Z", 
+        "active": true, 
+        "meta": "Bare 650b Titanium Mountain Bike Frame.", 
+        "short_description": "Bare 650b Titanium Mountain Bike Frame.", 
+        "slug": "650b-ti-mtb-frame", 
+        "stock": "0.000000"
+    }
+},
+{
+    "pk": 3, 
+    "model": "senex_shop.product", 
+    "fields": {
+        "sku": "", 
+        "category": 2, 
+        "name": "650b Ti MTB SLX Build", 
+        "created": "2014-06-19T02:34:30.276Z", 
+        "ordering": 1, 
+        "price": "3599.00", 
+        "description": "650b Titanium Mountain Frame, Tapered Headtube, 12x142 Rear Axle, Replaceable Hanger. \r\n\r\nIncludes Headset.\r\n\r\nEtched Frame Logo and CNC Engraved Head Badge.\r\n\r\nMRP Loop R Fork, 100mm Travel.\r\n\r\nSLX Drivetrain and Brakes.\r\n\r\nWippermann Connex Chain with Connector Link.\r\n\r\nLoaded Precision Alloy Wheels, Tubeless.\r\n\r\nLoaded Precision Cockpit, Carbon Handlebars, Alloy Seatpost, Stem and Clamp.\r\n\r\nCrank Brothers Foam Grips.\r\n\r\nFizik Tundra M5 Saddle.\r\n\r\nContinental Race King Tires, 27.5x2.2", 
+        "modified": "2014-06-19T03:57:28.222Z", 
+        "active": true, 
+        "meta": "650b Titanium Mountain Bike, SLX Build", 
+        "short_description": "650b Titanium Mountain Bike, SLX Build", 
+        "slug": "650b-ti-mtb-slx-build", 
+        "stock": "0.000000"
+    }
+},
+{
+    "pk": 4, 
+    "model": "senex_shop.product", 
+    "fields": {
+        "sku": "", 
+        "category": 2, 
+        "name": "650b Ti MTB XT Build", 
+        "created": "2014-06-19T02:35:51.514Z", 
+        "ordering": 2, 
+        "price": "4599.00", 
+        "description": "650b Titanium Mountain Frame, Tapered Headtube, 12x142 Rear Axle, Replaceable Hanger. \r\n\r\nIncludes Headset.\r\n\r\nEtched Frame Logo and CNC Engraved Head Badge.\r\n\r\nMRP Loop SL Fork, 10mm.\r\n\r\nXT Drivetrain and Brakes.\r\n\r\nWippermann Connex Chain with Connector Link.\r\n\r\nIndustry Nine Trail Alloy Wheels, Tubeless.\r\n\r\nLoaded Precision Cockpit, Carbon Seatpost and Handlebars, Alloy Stem and Clamp.\r\n\r\nCrank Brothers Foam Grips.\r\n\r\nFizik Tundra M3 Saddle.\r\n\r\nContinental Race King Tires, 27.5x2.2", 
+        "modified": "2014-06-19T04:00:14.996Z", 
+        "active": true, 
+        "meta": "650b Titanium Mountain Bike, SLX Build", 
+        "short_description": "650b Titanium Mountain Bike, XT Build", 
+        "slug": "650b-ti-mtb-xt-build", 
+        "stock": "0.000000"
+    }
+},
+{
+    "pk": 5, 
+    "model": "senex_shop.product", 
+    "fields": {
+        "sku": "", 
+        "category": 2, 
+        "name": "650b Ti MTB XTR Build", 
+        "created": "2014-06-19T02:43:09.251Z", 
+        "ordering": 3, 
+        "price": "6799.00", 
+        "description": "650b Titanium Mountain Frame, Tapered Headtube, 12x142 Rear Axle, Replaceable Hanger. \r\n\r\nIncludes Headset.\r\n\r\nEtched Frame Logo and CNC Engraved Head Badge.\r\n\r\nMRP Loop SL Fork, 100mm Travel.\r\n\r\nXTR Drivetrain and Brakes.\r\n\r\nWippermann Connex Chain with Connector Link.\r\n\r\nIndustry Nine Trail Carbon Wheels, Tubeless.\r\n\r\nLoaded Precision Cockpit, Carbon Seatpost and Handlebars, Alloy Stem and Clamp.\r\n\r\nCrank Brothers Foam Grips.\r\n\r\nFizik Tundra M1 Saddle.\r\n\r\nContinental Race King Tires, 27.5x2.2", 
+        "modified": "2014-06-19T03:59:57.041Z", 
+        "active": true, 
+        "meta": "650b Titanium Mountain Bike, XTR Build", 
+        "short_description": "650b Titanium Mountain Bike, XTR Build", 
+        "slug": "650b-ti-mtb-xtr-build", 
+        "stock": "0.000000"
+    }
+},
+{
+    "pk": 1, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 0, 
+        "product": 1, 
+        "image": "product/1078921_389822337786014_436909710_o_1.jpg"
+    }
+},
+{
+    "pk": 2, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 0, 
+        "product": 2, 
+        "image": "product/P1100786.JPG"
+    }
+},
+{
+    "pk": 3, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 0, 
+        "product": 3, 
+        "image": "product/Senex_Complete.jpg"
+    }
+},
+{
+    "pk": 4, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 0, 
+        "product": 4, 
+        "image": "product/Senex_Complete_1.jpg"
+    }
+},
+{
+    "pk": 5, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 0, 
+        "product": 5, 
+        "image": "product/Senex_Complete_2.jpg"
+    }
+},
+{
+    "pk": 6, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 1, 
+        "product": 2, 
+        "image": "product/geometry.PNG"
+    }
+},
+{
+    "pk": 7, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 1, 
+        "product": 5, 
+        "image": "product/geometry_1.PNG"
+    }
+},
+{
+    "pk": 8, 
+    "model": "senex_shop.productimage", 
+    "fields": {
+        "sort": 1, 
+        "product": 1, 
+        "image": "product/geometry_2.PNG"
+    }
+},
+{
+    "pk": 1, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 0, 
+        "name": "Frame Size", 
+        "description": "Select the size of your frame."
+    }
+},
+{
+    "pk": 2, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 4, 
+        "name": "Wheelset", 
+        "description": "Select your wheelset."
+    }
+},
+{
+    "pk": 3, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 2, 
+        "name": "Drivetrain", 
+        "description": "Select your drivetrain component group."
+    }
+},
+{
+    "pk": 4, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 3, 
+        "name": "Brakes", 
+        "description": "Select your brake set."
+    }
+},
+{
+    "pk": 5, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 1, 
+        "name": "Fork", 
+        "description": "Select a fork model."
+    }
+},
+{
+    "pk": 6, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 5, 
+        "name": "Tires", 
+        "description": "Select your tires."
+    }
+},
+{
+    "pk": 7, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 6, 
+        "name": "Saddle", 
+        "description": "Select your saddle."
+    }
+},
+{
+    "pk": 8, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 7, 
+        "name": "Handlebars", 
+        "description": "Select your handlebars"
+    }
+},
+{
+    "pk": 9, 
+    "model": "senex_shop.optiongroup", 
+    "fields": {
+        "ordering": 8, 
+        "name": "Seatpost", 
+        "description": "Select your seatpost."
+    }
+},
+{
+    "pk": 2, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Small", 
+        "value": "s"
+    }
+},
+{
+    "pk": 3, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Medium", 
+        "value": "m"
+    }
+},
+{
+    "pk": 4, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Large", 
+        "value": "l"
+    }
+},
+{
+    "pk": 5, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 4, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "X-Large", 
+        "value": "xl"
+    }
+},
+{
+    "pk": 6, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 5, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Women's X-Small", 
+        "value": "wxs"
+    }
+},
+{
+    "pk": 7, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 6, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Women's Small", 
+        "value": "ws"
+    }
+},
+{
+    "pk": 8, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 7, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Women's Medium", 
+        "value": "wm"
+    }
+},
+{
+    "pk": 9, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 8, 
+        "price_change": "0.00", 
+        "option_group": 1, 
+        "name": "Women's Large", 
+        "value": "wl"
+    }
+},
+{
+    "pk": 10, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "499.00", 
+        "option_group": 2, 
+        "name": "Loaded Precision X-Lite Alloy", 
+        "value": "xlite-alloy"
+    }
+},
+{
+    "pk": 11, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "949.00", 
+        "option_group": 2, 
+        "name": "Industry Nine Trail 24-Spoke Alloy", 
+        "value": "i9-trail-24-alloy"
+    }
+},
+{
+    "pk": 12, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "949.00", 
+        "option_group": 2, 
+        "name": "Industry Nine Trail 32-Spoke Alloy", 
+        "value": "i9-trail-32-alloy"
+    }
+},
+{
+    "pk": 13, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 5, 
+        "price_change": "1999.00", 
+        "option_group": 2, 
+        "name": "Industry Nine Trail 24-Spoke Carbon", 
+        "value": "i9-trail-carbon"
+    }
+},
+{
+    "pk": 14, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "499.00", 
+        "option_group": 3, 
+        "name": "Shimano SLX", 
+        "value": "slx"
+    }
+},
+{
+    "pk": 15, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "699.00", 
+        "option_group": 3, 
+        "name": "Shimano XT", 
+        "value": "xt"
+    }
+},
+{
+    "pk": 16, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "1399.00", 
+        "option_group": 3, 
+        "name": "Shimano XTR", 
+        "value": "xtr"
+    }
+},
+{
+    "pk": 17, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "299.00", 
+        "option_group": 4, 
+        "name": "Shimano SLX", 
+        "value": "slx"
+    }
+},
+{
+    "pk": 18, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "399.00", 
+        "option_group": 4, 
+        "name": "Shimano XT", 
+        "value": "xt"
+    }
+},
+{
+    "pk": 19, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "699.00", 
+        "option_group": 4, 
+        "name": "Shimano XTR", 
+        "value": "xtr"
+    }
+},
+{
+    "pk": 20, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 2, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 21, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 3, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 22, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 4, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 23, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "549.00", 
+        "option_group": 5, 
+        "name": "MRP Loop R 100mm", 
+        "value": "mrp-loop-100-r"
+    }
+},
+{
+    "pk": 24, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 4, 
+        "price_change": "549.00", 
+        "option_group": 5, 
+        "name": "MRP Loop R 120mm", 
+        "value": "mrp-loop-120-r"
+    }
+},
+{
+    "pk": 25, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "549.00", 
+        "option_group": 5, 
+        "name": "MRP Loop R 80mm", 
+        "value": "mrp-loop-80-r"
+    }
+},
+{
+    "pk": 26, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 5, 
+        "price_change": "599.00", 
+        "option_group": 5, 
+        "name": "MRP Loop SL 80mm", 
+        "value": "mrp-loop-sl-80"
+    }
+},
+{
+    "pk": 27, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 6, 
+        "price_change": "599.00", 
+        "option_group": 5, 
+        "name": "MRP Loop SL 100mm", 
+        "value": "mrp-loop-sl-100"
+    }
+},
+{
+    "pk": 28, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "349.00", 
+        "option_group": 5, 
+        "name": "MRP Rock Solid Carbon", 
+        "value": "mrp-rock-solid"
+    }
+},
+{
+    "pk": 29, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 5, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 30, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "99.00", 
+        "option_group": 6, 
+        "name": "Continental Race King 2.2", 
+        "value": "conti-race-king-2.2"
+    }
+},
+{
+    "pk": 31, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "99.00", 
+        "option_group": 6, 
+        "name": "Continental Mountain King II 2.4", 
+        "value": "conti-mount-king-2.4"
+    }
+},
+{
+    "pk": 32, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 6, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 33, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "99.00", 
+        "option_group": 6, 
+        "name": "Continental Trail King 2.2", 
+        "value": "conti-trail-king-2.2"
+    }
+},
+{
+    "pk": 34, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 7, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 35, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "85.00", 
+        "option_group": 7, 
+        "name": "Fizik Tundra M5 Black/Red", 
+        "value": "tundra-m5"
+    }
+},
+{
+    "pk": 36, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "175.00", 
+        "option_group": 7, 
+        "name": "Fizik Tundra M3 White/Green", 
+        "value": "tundra-m3"
+    }
+},
+{
+    "pk": 37, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "285.00", 
+        "option_group": 7, 
+        "name": "Fizik Tundra M1 Black", 
+        "value": "tundra-m1"
+    }
+},
+{
+    "pk": 38, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 4, 
+        "price_change": "1199.00", 
+        "option_group": 2, 
+        "name": "Loaded Precision X-Lite Ultra Carbon", 
+        "value": "xlite-carbon"
+    }
+},
+{
+    "pk": 39, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 3, 
+        "price_change": "129.00", 
+        "option_group": 8, 
+        "name": "Loaded Precision Napalm Carbon Flat Bar 710mm", 
+        "value": "loaded-napalm-flat"
+    }
+},
+{
+    "pk": 40, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 4, 
+        "price_change": "129.00", 
+        "option_group": 8, 
+        "name": "Loaded Precision Napalm Carbon Riser Bar 680mm", 
+        "value": "loaded-napalm-riser"
+    }
+},
+{
+    "pk": 41, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 5, 
+        "price_change": "89.00", 
+        "option_group": 8, 
+        "name": "Loaded Precision AMXC Carbon Wide Riser Bar 760mm", 
+        "value": "loaded-amxc-wide"
+    }
+},
+{
+    "pk": 42, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 8, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 43, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "99.00", 
+        "option_group": 8, 
+        "name": "Loaded Precision X-Lite Carbon Flat Bar 710mm", 
+        "value": "loaded-xlite-flat"
+    }
+},
+{
+    "pk": 44, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "99.00", 
+        "option_group": 8, 
+        "name": "Loaded Precision X-Lite Carbon Riser Bar 680mm", 
+        "value": "loaded-xlite-riser"
+    }
+},
+{
+    "pk": 45, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 1, 
+        "price_change": "49.00", 
+        "option_group": 9, 
+        "name": "Loaded Precision X-Lite Alloy 27.2", 
+        "value": "xlite-alloy"
+    }
+},
+{
+    "pk": 46, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 0, 
+        "price_change": "0.00", 
+        "option_group": 9, 
+        "name": "None", 
+        "value": "none"
+    }
+},
+{
+    "pk": 47, 
+    "model": "senex_shop.option", 
+    "fields": {
+        "ordering": 2, 
+        "price_change": "129.00", 
+        "option_group": 9, 
+        "name": "Loaded Precision X-Lite Ultra Carbon 27.2", 
+        "value": "xlite-seatpost-carbon"
+    }
+}
+]
