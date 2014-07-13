@@ -159,6 +159,7 @@ THIRD_PARTY_APPS = (
     'senex_shop.contact',
     'senex_shop.core',
     'senex_shop.custom',
+    'senex_shop.news',
     'senex_shop.shipping',
 )
 

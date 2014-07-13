@@ -66,66 +66,102 @@
             </div>
             <div class="fourteen columns omega">
                 <div class="upper-nav-container">
-                    <div class="upper-nav-left"><h3 class="remove-bottom">Senex Cycles</h3></div>
+                    <div class="upper-nav-left"><h3 class="remove-bottom"><span class="upper-nav-company-name">Senex Cycles</span>
+                    </h3></div>
                     <div class="upper-nav-right">{% if user.is_authenticated %}<a href="{% url 'auth_logout' %}">Logout
                         </a>{% else %}<a href="{% url 'auth_login' %}?next={{ request.path }}">Login</a> or
                         <a href="{% url 'auth_register' %}">Register</a>{% endif %}&nbsp;|&nbsp;<a
                             href="{% url 'cart' %}">Cart</a></div>
                 </div>
-                <div class="nav">
-                    <div class="nav-inner">
-                        <ul>
-                            <li><a href="{% url 'category' 'bikes/mountain' %}">Mountain</a></li>
-                            <li><a href="{% url 'category' 'bikes/road' %}">Road</a></li>
-                            <li><a href="{% url 'custom' %}">Custom</a></li>
-                            <li><a href="{% url 'about' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
-                        </ul>
-                    </div>
+            </div>
+        </div>
+        <div class="sixteen columns">
+            <div class="nav">
+                <div class="nav-inner">
+                    <ul>
+                        <li class="center-text"><a href="{% url 'category' 'bikes/mountain' %}">Mountain</a></li>
+                        <li class="center-text"><a href="{% url 'category' 'bikes/road' %}">Road</a></li>
+                        <li class="center-text"><a href="{% url 'custom' %}">Custom</a></li>
+                        <li class="center-text"><a href="{% url 'about' %}">About</a></li>
+                        <li class="center-text"><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-<div class="container content">
-    {% if messages %}
-        <div class="sixteen columns messages">
-            {% for message in messages %}
-                <div{% if message.tags %} class="message {{ message.tags }} message-dismissable"{% endif %}>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ message }}
+</div>
+<div class="content">
+    <div class="container content-main">
+        {% if messages %}
+            <div class="sixteen columns messages">
+                {% for message in messages %}
+                    <div{% if message.tags %} class="message {{ message.tags }} message-dismissable"{% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+            {% block content %}This page doesn't have any content.{% endblock content %}
+    </div>
+</div>
+{% block footer %}
+<div class="bottom">
+    <div class="container">
+        <div class="sixteen columns">
+            <div class="four columns alpha">
+                <div class="footer-column">
+                    <h4>Social</h4>
+                    <ul>
+                        <li>Facebook</li>
+                    </ul>
                 </div>
-            {% endfor %}
+            </div>
+            <div class="four columns">
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li>About {{ shop.name }}</li>
+                        <li>Hours + Location</li>
+                        <li>Privacy Policy</li>
+                        <li>Site Map</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="four columns">
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li>Contact</li>
+                        <li>FAQs</li>
+                        <li>Owners Manuals</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="four columns omega">
+                <div class="footer-column">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>News</li>
+                        <li>Events</li>
+                        <li>Technology</li>
+                        <li>Teams &amp; Riders</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    {% endif %}
-    {% block content %}This page doesn't have any content.{% endblock content %}
-</div>
-<div class="container footer">
-    <div class="three columns">
-        About {{ shop.name }}
-        <br/>Hours + Location
-        <br/>Privacy Policy
-        <br/>Site Map
-    </div>
-    <div class="three columns">
-        Hours
-        <br/>MON-FRI 8am-6pm
-        <br/>SAT 9am-5pm
-        <br/>SUN Closed
-        <br/>Phone
-        <br/>{{ shop.phone }}
-    </div>
-    <div class="three columns">
-        Address
-        <br/>{{ shop.address_1 }} {{ shop.address_2 }}
-        <br/>{{ shop.city }}, {{ shop.state }} {{ shop.zip_code }}
-        <br/>Email
-        <br/>{{ shop.from_email }}
-        <br/>&copy; {{ shop.name }}
+{#        <div class="three columns">#}
+{#            Address#}
+{#            <br/>{{ shop.address_1 }} {{ shop.address_2 }}#}
+{#            <br/>{{ shop.city }}, {{ shop.state }} {{ shop.zip_code }}#}
+{#            <br/>Email#}
+{#            <br/>{{ shop.from_email }}#}
+{#            <br/>&copy; {{ shop.name }}#}
+{#        </div>#}
     </div>
 </div>
-
+{% endblock footer %}
 <!-- End Document
 ================================================== -->
 <script src="{% static "js/main.js" %}"></script>

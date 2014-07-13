@@ -7,12 +7,15 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$', 'senex.views.home', name='home'),
+                       url(r'^css-test/$', 'senex.views.css_test', name='css_test'),
                        url(r'^contact/$', 'senex.views.contact', name='contact'),
                        url(r'^contact/thanks/$', 'senex.views.contact_thanks', name='contact_thanks'),
                        url(r'^checkout/', include('senex_shop.checkout.urls')),
                        url(r'^cart/', include('senex_shop.cart.urls')),
                        url(r'^shop/', include('senex_shop.urls')),
+                       url(r'^news/', include('senex_shop.news.urls')),
                        url(r'^account/', include('custom_auth.urls')),
+                       url(r'^grappelli/', include('grappelli.urls')),
                        url(r'^admin/', include(admin.site.urls)),
 )
 

@@ -4,17 +4,9 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-    <!-- Jumbotron -->
-    <div class="sixteen columns">
-        <div class="jumbotron">
-            <figure>
-                <img src="{% static "img/carousel/c_1.jpg" %}">
-            </figure>
-        </div>
-    </div>
-    <div class="ten columns home-left">
+    <div class="twelve columns">
         <div class="sixteen columns clearfix">
-            <div class="five columns alpha">
+            <div class="six columns alpha">
                 <div class="promo-box">
                     <img src="{% static "img/promo/image1.jpg" %}">
                     <div class="promo-box-text">
@@ -22,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="five columns omega">
+            <div class="six columns omega">
                 <div class="promo-box">
                     <img src="{% static "img/promo/image1.jpg" %}">
                     <div class="promo-box-text">
@@ -32,7 +24,7 @@
             </div>
         </div>
         <div class="sixteen columns clearfix">
-            <div class="five columns alpha">
+            <div class="six columns alpha">
                 <div class="promo-box">
                     <img src="{% static "img/promo/image1.jpg" %}">
                     <div class="promo-box-text">
@@ -40,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="five columns omega">
+            <div class="six columns omega">
                 <div class="promo-box">
                     <img src="{% static "img/promo/image1.jpg" %}">
                     <div class="promo-box-text">
@@ -50,19 +42,25 @@
             </div>
         </div>
     </div>
-    <div class="six columns">
-        <div class="home-right">
-            <h4>LATEST NEWS</h4>
-            <ul class="latest-news">
-            {% for post in posts %}
-                <li class="latest-news-item">
-                    <div class="latest-news-item-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></div>
-                    <div class="latest-news-item-date">{{ post.publish|date }}</div>
-                    <div class="latest-news-item-content">{{ post.body|slice:":100" }}...</div>
-                </li>
-            {% endfor %}
-            </ul>
-            <div class="more-news"><a href="#">MORE NEWS >></a></div>
-        </div>
+    <div class="four columns">
+        <h4>LATEST NEWS</h4>
+        <ul class="latest-news">
+            <li class="latest-news-item">
+                <div class="latest-news-item-title"><a href="#">News Items 1</a></div>
+                <div class="latest-news-item-date">May 11, 2014</div>
+                <div class="latest-news-item-content">This is some sort of long content that fills the whole width....</div>
+            </li>
+            <li class="latest-news-item">
+                <div class="latest-news-item-title"><a href="#">News Item 2</a></div>
+                <div class="latest-news-item-date">April 15, 2014</div>
+                <div class="latest-news-item-content">This is some sort of long content....</div>
+            </li>
+            <li class="latest-news-item">
+                <div class="latest-news-item-title"><a href="#">News Item 3</a></div>
+                <div class="latest-news-item-date">January 25, 1986</div>
+                <div class="latest-news-item-content">This is some sort of long content....</div>
+            </li>
+        </ul>
+        <div class="more-news"><a href="#">More News >></a></div>
     </div>
 {% endblock %}

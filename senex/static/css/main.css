@@ -4,7 +4,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: rgb(212, 223, 228);
+    background: rgb(217, 217, 218);
 }
 
 img {
@@ -21,11 +21,9 @@ img {
    -------------------------------------------------- */
 
 .top {
-    background: rgb(255, 255, 255);
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    background: rgb(0, 0, 0);
 }
+
 
 /* Navigation
    -------------------------------------------------- */
@@ -36,26 +34,44 @@ img {
     position: relative;
 }
 
+.upper-nav-company-name {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 1.7em;
+}
+
 .upper-nav-left {
-    display: inline-block;;
+    padding-top: 20px;
+    display: inline-block;
 }
 
 .upper-nav-right {
     position: absolute;
     right: 20px;
     top: 0;
+    color: rgb(200, 200, 200);
+}
+
+.upper-nav-right a {
+    color: rgb(200, 200, 200);
+}
+
+.upper-nav-right a:hover {
+    color: rgb(255, 255, 255);
 }
 
 .nav {
     display: block;
-    padding: 5px 0 0 0;
+    padding: 5px 5px 0 5px;
     margin: 0;
-    border-top: 3px solid rgb(210, 210, 210);
-    font-family: "Georgia", "Times New Roman", serif;
+    font-family: "Arial", "Helvetica", sans-serif;
+    background: url('/static/img/menu-bg.png') repeat-x;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .nav-inner {
-    text-align: right;
+    padding-left: 10px;
 }
 
 .nav-inner ul {
@@ -63,19 +79,16 @@ img {
 }
 
 .nav ul li {
-    text-align: center;
     display: inline-block;
-    padding: 0;
-    margin: 0;
-    font-size: 20px;
-    height: 100%;
-    line-height: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.5em;
     width: 120px;
 }
 
 .nav ul li a {
     text-decoration: none;
-    color: #000;
+    color: rgb(158, 207, 236);
     display: inline-block;
     width: 100%;
     text-transform: uppercase;
@@ -83,15 +96,13 @@ img {
 
 .nav ul li a:hover {
     text-decoration: none;
-    background: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
 }
 
 .top .brand {
     display: block;
     float: left;
-    padding: 5px 0;
-    font-size: 20px;
+    font-size: 1em;
     color: #fff;
 }
 
@@ -105,32 +116,74 @@ img {
     color: #fff;
 }
 
+/* Home Page
+   -------------------------------------------------- */
+.home-left {
+}
+
+.home-right {
+    background: rgb(230, 230, 230);
+    padding: 10px 0 70px 10px;
+    position: relative;
+}
+
+.latest-news-item {
+    padding: 5px 0 10px 0;
+    margin: 5px 0 10px 0;
+}
+
+.latest-news-item-title {
+    padding: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.latest-news-item-date {
+    padding: 5px;
+    font-size: .8em;
+}
+
+.latest-news-item-content {
+    padding: 5px;
+    line-height: 1.1em;
+}
+
+.more-news {
+    text-align: right;
+    padding: 20px 20px 10px 0;
+    background: rgb(200, 200, 200);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 /* Content
    -------------------------------------------------- */
 .content {
-    min-height: 600px;
-    padding: 10px 0 10px 0;
-    margin: 15px auto;
-    background: rgb(255, 255, 255);
-    -webkit-box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
-    box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, .5);
-    -webkit-border-radius: 4px / 4px;
-    -moz-border-radius: 4px / 4px;
-    border-radius: 4px / 4px;
 }
+
+.content-main {
+    /*background: rgb(211, 211, 211);*/
+    /*-webkit-box-shadow: 0px 6px 5px 5px rgba(0,0,0,0.75);*/
+    /*-moz-box-shadow: 0px 6px 5px 5px rgba(0,0,0,0.75);*/
+    /*box-shadow: 0px 4px 5px 5px rgba(0,0,0,0.75);*/
+    /*box-shadow: 6px 0 4px -4px #222 , -6px 0 4px -4px #222; */
+    min-height: 600px;
+    background: url('/static/img/content-bg.png') repeat-y;
+}
+
 
 /* Main marketing message and sign up button */
 .jumbotron {
     margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-figure {
-    padding: 6px;
-    border: 1px solid #ededed;
+.figure {
     background: #ffffff;
     line-height: 0px;
-    margin: 6px;
 }
 
 .jumbotron img {
@@ -163,15 +216,24 @@ figure {
     margin-top: 28px;
 }
 
-.promo-box {
-    height: 300px;
-    position: relative;
-    background: #f1f6f0;
-    padding: 5px;
+.feature {
+    width: 300px;
+    display: inline-block;
 }
 
-.promo-box h3 {
-    text-align: center;
+.promo-box {
+    height: 150px;
+    background: #f1f6f0;
+    margin: 10px 0 10px 0;
+    padding: 0;
+    position: relative;
+}
+
+.promo-box img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .promo-box a.button {
@@ -182,6 +244,74 @@ figure {
     color: #fff;
 
 }
+
+.promo-box-text {
+    background: rgb(0, 0, 0);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.promo-box-text h4 {
+    padding: 0 0 0 10px;
+    color: rgb(255, 255, 255);
+}
+
+/* News
+================================================== */
+.post {
+    padding: 10px 0 10px 0;
+    background: #fff;
+}
+.post_title {
+    padding: 0 0 10px 10px;
+    font-size: 2em;
+}
+.post_metadata {
+    font-size: .9em;
+    padding: 0 0 5px 15px;
+}
+.post_photo {
+}
+
+.post_photo img {
+    width: 100%;
+    text-align: center;
+}
+.post_body {
+    min-height: 100px;
+    padding: 0 0 0 15px;
+}
+
+.news-categories h4 {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 0;
+    color: rgb(100, 100, 100);
+}
+.news-category {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 0 0 10px 0;
+}
+.news-category-post {
+    padding: 5px 0 5px 0;
+}
+.news-category-post ul {
+
+}
+.news-category-post ul li {
+    padding: 10px;
+    border-top: 1px solid #fff;
+    background: rgb(250, 250, 250);
+}
+
+.news-category-post ul li:last-of-type {
+    padding: 10px;
+    border-bottom: 1px solid rgb(250, 250, 250);
+}
+
 
 /* Login Form
 ================================================== */
@@ -264,13 +394,22 @@ li p {
 
 /* Footer
    ----------------------- */
-.footer {
-    font-size: 12px;
-    color: #000;
-    padding: 0;
-    margin: 30px auto 0 auto;;
-    height: 150px;
-    line-height: 1.3;
+.bottom {
+    background: rgb(50, 50, 50);
+    min-height: 250px;
+    padding: 10px 0 0 0;
+}
+
+.bottom h4 {
+    color: rgb(170, 170, 170);
+    padding: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.footer-column {
+    border-left: 1px dotted rgb(150, 150, 150);
+    padding: 0 0 0 10px;
+    color: rgb(255, 255, 255);
 }
 
 /* Buttons
