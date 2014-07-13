@@ -227,6 +227,7 @@ img {
     margin: 10px 0 10px 0;
     padding: 0;
     position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
 }
 
 .promo-box img {
@@ -254,8 +255,15 @@ img {
 }
 
 .promo-box-text h4 {
-    padding: 0 0 0 10px;
+    padding: 5px 0 0 10px;
+    font-size: 1.3em;
+    line-height: 1em;
     color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.promo-box-text a {
+    text-decoration: none;
 }
 
 /* News
@@ -398,12 +406,18 @@ li p {
     background: rgb(50, 50, 50);
     min-height: 250px;
     padding: 10px 0 0 0;
+    border-top: 1px dotted rgb(255, 255, 255);
 }
 
 .bottom h4 {
     color: rgb(170, 170, 170);
     padding: 0 0 10px 0;
     font-weight: bold;
+}
+
+.bottom a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 .footer-column {

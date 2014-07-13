@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from .forms import ContactForm
+from .models import PromoBox
 from senex_shop.news.models import Post
 
 
@@ -13,8 +14,10 @@ logger = logging.getLogger("default")
 
 def home(request, template_name='home.html'):
     posts = Post.objects.all()[:3]
+    promo_boxes = PromoBox.objects.all()[:4]
     context = {
         'posts': posts,
+        'promo_boxes': promo_boxes,
     }
     return render_to_response(template_name, context, RequestContext(request))
 
