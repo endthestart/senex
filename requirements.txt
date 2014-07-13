@@ -15,7 +15,7 @@ stripe==1.9.8
 wsgiref==0.1.2
 
 # Django Custom Auth
-django-custom-auth==0.1.2
+django-custom-auth==0.1.3
 
 # Django Senex Shop
 django-senex-shop==0.1.3
