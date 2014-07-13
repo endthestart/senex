@@ -257,6 +257,7 @@ img {
 .promo-box-text h4 {
     padding: 5px 0 0 10px;
     font-size: 1.3em;
+    line-height: 1em;
     color: rgb(255, 255, 255);
     font-weight: bold;
 }
@@ -405,12 +406,18 @@ li p {
     background: rgb(50, 50, 50);
     min-height: 250px;
     padding: 10px 0 0 0;
+    border-top: 1px dotted rgb(255, 255, 255);
 }
 
 .bottom h4 {
     color: rgb(170, 170, 170);
     padding: 0 0 10px 0;
     font-weight: bold;
+}
+
+.bottom a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 .footer-column {
