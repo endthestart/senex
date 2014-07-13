@@ -227,6 +227,7 @@ img {
     margin: 10px 0 10px 0;
     padding: 0;
     position: relative;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
 }
 
 .promo-box img {
@@ -254,8 +255,14 @@ img {
 }
 
 .promo-box-text h4 {
-    padding: 0 0 0 10px;
+    padding: 5px 0 0 10px;
+    font-size: 1.3em;
+}
+
+.promo-box-text h4 a {
     color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 /* News

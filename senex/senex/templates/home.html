@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
+{% load thumbnail %}
 
 {% block title %}Home{% endblock title %}
 
@@ -13,42 +14,29 @@
         </div>
     </div>
     <div class="ten columns home-left">
-        <div class="sixteen columns clearfix">
-            <div class="five columns alpha">
-                <div class="promo-box">
-                    <img src="{% static "img/promo/image1.jpg" %}">
-                    <div class="promo-box-text">
-                        <h4>EVENTS &amp; DEMOS</h4>
-                    </div>
-                </div>
-            </div>
+    {% for promo in promo_boxes %}
+        {% if forloop.counter|divisibleby:"2" %}
             <div class="five columns omega">
                 <div class="promo-box">
-                    <img src="{% static "img/promo/image1.jpg" %}">
+                    <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
                     <div class="promo-box-text">
-                        <h4>LATEST NEWS</h4>
+                        <h4><a href="{{ promo.link }}">{{ promo.label|upper }}</a></h4>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sixteen columns clearfix">
-            <div class="five columns alpha">
-                <div class="promo-box">
-                    <img src="{% static "img/promo/image1.jpg" %}">
-                    <div class="promo-box-text">
-                        <h4>TECHNOLOGY</h4>
+        {% else %}
+            <div class="sixteen columns clearfix">
+                <div class="five columns alpha">
+                    <div class="promo-box">
+                        <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
+                        <div class="promo-box-text">
+                        <h4><a href="{{ promo.link }}">{{ promo.label|upper }}</a></h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="five columns omega">
-                <div class="promo-box">
-                    <img src="{% static "img/promo/image1.jpg" %}">
-                    <div class="promo-box-text">
-                        <h4>TEAMS &amp; RIDERS</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endif %}
+    {% endfor %}
     </div>
     <div class="six columns">
         <div class="home-right">
