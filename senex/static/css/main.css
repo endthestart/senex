@@ -257,11 +257,11 @@ img {
 .promo-box-text h4 {
     padding: 5px 0 0 10px;
     font-size: 1.3em;
-}
-
-.promo-box-text h4 a {
     color: rgb(255, 255, 255);
     font-weight: bold;
+}
+
+.promo-box-text a {
     text-decoration: none;
 }
 

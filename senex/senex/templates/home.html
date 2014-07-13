@@ -17,23 +17,27 @@
     {% for promo in promo_boxes %}
         {% if forloop.counter|divisibleby:"2" %}
             <div class="five columns omega">
+                <a href="{% if promo.link %}{{ promo.link }}{% else %}#{% endif %}">
                 <div class="promo-box">
                     <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
                     <div class="promo-box-text">
-                        <h4><a href="{{ promo.link }}">{{ promo.label|upper }}</a></h4>
+                        <h4>{{ promo.label|upper }}</h4>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
         {% else %}
             <div class="sixteen columns clearfix">
                 <div class="five columns alpha">
+                <a href="{% if promo.link %}{{ promo.link }}{% else %}#{% endif %}">
                     <div class="promo-box">
                         <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
                         <div class="promo-box-text">
-                        <h4><a href="{{ promo.link }}">{{ promo.label|upper }}</a></h4>
+                        <h4>{{ promo.label|upper }}</h4>
                         </div>
                     </div>
+                </a>
                 </div>
         {% endif %}
     {% endfor %}

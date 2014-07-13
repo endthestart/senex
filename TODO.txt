@@ -1,7 +1,6 @@
 Fix decimals to show only 2 digits in templates/models
 Change order of address fields during checkout
 Adjust country to be only US for now (implement international shipping later)
-make front promo boxes database driven
 update links on bottom of the page
 add home link to menu
 change background color to be a bit brighter
