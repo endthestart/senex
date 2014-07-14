@@ -3,3 +3,9 @@ Change order of address fields during checkout
 Adjust country to be only US for now (implement international shipping later)
 make a flatpages fixture (how does this work?)
 fix summary on configurator to only show parts selected
+create carousel on homepage
+fix typography on site, convert to same as header.
+make login alerts more noticeable
+fix border shadows on home page
+remove dotted border from footer
+implement caching
