@@ -39,6 +39,9 @@ class PromoBox(models.Model):
         help_text=_("The relevant content link for the promotion box."),
     )
 
+    def __unicode__(self):
+        return self.label
+
     class Meta:
         ordering = ('ordering', 'label')
         verbose_name = _("promo box")

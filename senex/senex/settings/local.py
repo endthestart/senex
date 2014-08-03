@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 #THUMBNAIL_DEBUG = DEBUG
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 DATABASES = {

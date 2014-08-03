@@ -159,6 +159,7 @@ THIRD_PARTY_APPS = (
     'senex_shop.checkout',
     'senex_shop.core',
     'senex_shop.custom',
+    'senex_shop.discounts',
     'senex_shop.news',
     'senex_shop.shipping',
 )
@@ -200,6 +201,18 @@ LOGGING = {
     }
 }
 
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.senexcycles.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'info@senexcycles.com'
+EMAIL_HOST_PASSWORD = 'h3xag0n'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'noreply@senexcycles.com'
+########## END EMAIL CONFIGURATION
+
+
 ########## THUMBNAIL CONFIGURATION
 # See: http://easy-thumbnails.readthedocs.org/en/latest/ref/settings/
 THUMBNAIL_BASEDIR = 'thumbs'
@@ -224,7 +237,7 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlp
 
 ########## MESSAGE STORAGE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/messages/
-MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 ########## END MESSAGE STORAGE CONFIGURATION
 
 ########## NEW RELIC CONFIGURATION

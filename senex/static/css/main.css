@@ -665,6 +665,21 @@ h1.category-title {
     display: inline-block;
 }
 
+.discount-box {
+    position: relative;
+}
+
+.discount-box .button-discount {
+    width: 50px;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: -2px;
+    font-size: 1.2em;
+}
+
 .button-checkout {
     display: block;
     font-size: 25px;
@@ -873,4 +888,18 @@ button.close {
     background: transparent;
     border: 0;
     -webkit-appearance: none;
+}
+
+
+/* Errors
+   ----------------------- */
+
+.errorlist {
+  margin: 0;
+  padding: 5px 0 5px 0;
+  color: #B94A48;
+}
+.errorlist li {
+  padding: 0 0 5px 0;
+  list-style: none;
 }

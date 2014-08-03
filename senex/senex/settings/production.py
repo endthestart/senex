@@ -18,8 +18,16 @@ STATIC_ROOT = normpath(join(SITE_ROOT, '../static'))
 STATIC_URL = '/static/'
 ########## END OF STATIC FILES CONFIGURATION
 
-# Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.senexcycles.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'info@senexcycles.com'
+EMAIL_HOST_PASSWORD = 'h3xag0n'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+########## END EMAIL CONFIGURATION
 
 # Database
 DATABASES = {
