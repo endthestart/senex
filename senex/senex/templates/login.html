@@ -20,7 +20,7 @@
                         {{ field }}
                         {{ field.errors }}
                     {% endfor %}
-                    <div><a href="{% url 'auth_password_reset' %}">{% trans "Get a password reminder" %}</a></div>
+                    <div><a href="{% url 'password_reset' %}">{% trans "Get a password reminder" %}</a></div>
                     <input type="hidden" name="next" value="{% url 'store_home' %}"/>
                     <input type="submit" name="Login" value="Login"/>
                 </form>

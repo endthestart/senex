@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load currency_filters %}
+{% load thumbnail %}
+
+{% block title %}{% trans "Register" %}{% endblock %}
+
+{% block content %}
+    <div class="six columns offset-by-five">
+        <div class="register-form" style="margin-top: 40px;">
+            <h3 class="bright-text">{% trans "Register" %}</h3>
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <form action="" method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="next"
+                       value="{% if next %}{{ next }}{% else %}{% url 'store_home' %}{% endif %}"/>
+                <input type="submit" name="submit" value="Register"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

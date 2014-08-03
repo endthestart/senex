@@ -21,7 +21,7 @@ img {
    -------------------------------------------------- */
 
 .top {
-    background: rgb(0, 0, 0);
+    background: rgb(50, 50, 50);
 }
 
 
@@ -333,6 +333,10 @@ img {
     border-radius: 4px / 4px;
 }
 
+.login-form a {
+    color: rgb(255, 255, 255);
+}
+
 .register-form {
     background: #222c30;
     color: #fff;
@@ -406,7 +410,6 @@ li p {
     background: rgb(50, 50, 50);
     min-height: 250px;
     padding: 10px 0 0 0;
-    border-top: 1px dotted rgb(255, 255, 255);
 }
 
 .bottom h4 {

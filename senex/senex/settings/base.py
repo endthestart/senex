@@ -123,6 +123,7 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
     'senex_shop.core.context_processors.get_default_shop',
 )
 
@@ -150,7 +151,6 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
-    'custom_auth',
     'localflavor',
     'easy_thumbnails',
     'senex_shop',
@@ -223,11 +223,11 @@ THUMBNAIL_BASEDIR = 'thumbs'
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
 
-########## AUTH CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/topics/auth/customizing/
-AUTHENTICATION_BACKENDS = ('custom_auth.auth.Authenticate',)
-AUTH_USER_MODEL = 'custom_auth.User'
-########## END AUTH CONFIGURATION
+# ########## AUTH CONFIGURATION
+# # See: https://docs.djangoproject.com/en/dev/topics/auth/customizing/
+# AUTHENTICATION_BACKENDS = ('custom_auth.auth.Authenticate',)
+# AUTH_USER_MODEL = 'custom_auth.User'
+# ########## END AUTH CONFIGURATION
 
 ########## STRIPE CONFIGURATION
 # See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
