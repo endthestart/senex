@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load currency_filters %}
+<div class="five columns cart-summary">
+    <div class="cart-summary-inner">
+        <h2 class="rule add-bottom">Cart Summary</h2>
+        <h5 class="rule add-top add-bottom">{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
+
+        <div class="rule">
+            <h5>Subtotal: {{ cart.total_price|currency }}</h5>
+            {% if cart.discount %}
+                <h5>Discount: {{ cart.discount_amount|currency }}</h5>
+            {% endif %}
+            <hr />
+            <h5>Cart total: {{ cart.total_less_discount|currency }}</h5>
+
+            <p>*Taxes and shipping charges may apply.</p>
+        </div>
+
+        {% if cart.discount %}
+            <p>{{ cart.discount }}</p>
+        {% endif %}
+        <form action="" method="post" class="discount-form">
+            {% csrf_token %}
+            <div class="discount-box">
+                <input type="text" name="discount_code" placeholder="Discount Code"/>
+                {% if form.discount_code.errors %}
+                    {{ form.discount_code.errors }}
+                {% endif %}
+
+                <input class="button button-discount" type="submit" value="Go"/>
+            </div>
+        </form>
+        <a href="{% url 'checkout_start' %}" class="button button-checkout">{% trans "Checkout" %}</a>
+    </div>
+</div>

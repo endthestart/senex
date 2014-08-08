@@ -1,0 +1,31 @@
+{% load currency_filters %}
+<div class="five columns cart-summary">
+    <div class="cart-summary-inner">
+        <h2 class="rule add-bottom">Order Summary</h2>
+        <table class="order-summary-table">
+            <tbody>
+                <tr>
+                    <td>Item{{ cart.num_items|pluralize }} subtotal:</td>
+                    <td>{{ cart.total_price|currency }}</td>
+                </tr>
+                <tr>
+                    <td>Shipping:</td>
+                    <td>{{ 0|currency }}</td>
+                </tr>
+                {% if cart.discount %}
+                    <tr>
+                        <td>Discounts:</td>
+                        <td>-{{ cart.discount_amount|currency }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td colspan="2"><hr style="margin: 0px; padding: 0px;" /></td>
+                </tr>
+                <tr>
+                    <td>Order total:</td>
+                    <td>{{ cart.total_less_discount|currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

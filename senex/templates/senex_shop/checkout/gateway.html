@@ -14,6 +14,7 @@
 
 {% block content %}
     <div class="six columns offset-by-five">
+        <div class="top-spacer">
         <div class="register-form">
             <h3 class="bright-text">Sign In</h3>
 
@@ -38,8 +39,7 @@
                             {{ form.options.2 }}
                             <div class="form-inline">
                                 {{ form.password }}
-                                <small><a href="{% url 'auth_password_reset' %}" tabindex="-1"
-                                          class="bright-text">{% trans "Get a password reminder" %}</a></small>
+                                <small><a href="{% url 'password_reset' %}" tabindex="-1">{% trans "Get a password reminder" %}</a></small>
                                 {% for error in form.password.errors %}
                                     <span class="help-block">{{ error }}</span>
                                 {% endfor %}
@@ -64,6 +64,7 @@
                 </div>
             </form>
         </div>
+    </div>
     </div>
 {% endblock content %}
 

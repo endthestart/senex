@@ -60,6 +60,12 @@ img {
     color: rgb(255, 255, 255);
 }
 
+.container .sixteen.columns.nav-container {
+    width: 960px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .nav {
     display: block;
     padding: 5px 5px 0 5px;
@@ -164,13 +170,18 @@ img {
 }
 
 .content-main {
-    /*background: rgb(211, 211, 211);*/
+    background: rgb(255, 255, 255);
     /*-webkit-box-shadow: 0px 6px 5px 5px rgba(0,0,0,0.75);*/
     /*-moz-box-shadow: 0px 6px 5px 5px rgba(0,0,0,0.75);*/
     /*box-shadow: 0px 4px 5px 5px rgba(0,0,0,0.75);*/
     /*box-shadow: 6px 0 4px -4px #222 , -6px 0 4px -4px #222; */
     min-height: 600px;
-    background: url('/static/img/content-bg.png') repeat-y;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+}
+
+.top-spacer {
+    margin-top: 40px;
 }
 
 
@@ -346,6 +357,10 @@ img {
     border-radius: 4px / 4px;
 }
 
+.register-form a {
+    color: rgb(255, 255, 255);
+}
+
 .bright-text {
     color: #fff;
 }
@@ -392,7 +407,7 @@ ol ol li, ol ul li {
 }
 
 li {
-    line-height: 10px;
+    line-height: 1em;
     margin-bottom: 6px;
 }
 
@@ -707,77 +722,104 @@ h1.category-title {
 /* Payment Page
    ----------------------- */
 
-.payment-page .sub-header {
-    padding: 10px;
-}
-
-.payment-page .control-group {
+.checkout-page {
     padding-bottom: 20px;
 }
 
-.payment-page .control-label {
+.checkout-page .sub-header {
+    padding: 10px;
+}
+
+.checkout-page .control-group {
+    padding-bottom: 20px;
+}
+
+.checkout-page .control-label {
     display: inline-block;
     width: 22.22222%;
     margin-left: 11.11111%;
     vertical-align: top;
 }
 
-.payment-page .controls {
+.checkout-page .controls {
     display: inline-block;
     width: 55.55555%;
 }
 
-.payment-page .shipping-form-bottom {
-    float: right;
-}
-
-.payment-page .payment-form-bottom {
+.checkout-page .shipping-form-bottom {
     float: right;
     margin-right: 11.11111%;
 }
 
-.payment-page .preview-form-bottom {
+.checkout-page .payment-form-bottom {
+    float: right;
+    margin-right: 11.11111%;
+}
+
+.checkout-page .preview-form-bottom {
     float: right;
 }
 
-.payment-page .cc-form-month {
+.checkout-page .cc-form-month {
     width: 44.44444%;
     display: inline-block;
     margin-right: 5%;
 }
 
-.payment-page .cc-form-year {
+.checkout-page .cc-form-year {
     width: 44.44444%;
     display: inline-block;
 }
 
-.payment-page .cc-security-code {
+.checkout-page .cc-security-code {
     width: 44.44444%;
 }
 
-.payment-page .page-title {
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+.checkout-page .page-title {
 }
 
-.payment-page .sub-header {
+.checkout-page .sub-header {
     border-bottom: 1px solid #ccc;
     padding-top: 10px;
     padding-bottom: 0;
     margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
-.payment-page .shipping-address {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 5%;
+.checkout-page .sub-header .change-link {
+    font-size: .5em;
 }
 
-.payment-page .shipping-instructions {
-    display: inline-block;
+.checkout-page .shipping-address {
+    float: left;
+    display: inline;
+    margin-left: 0;
+    margin-right: 10px;
+    width: 280px;
+    height: 130px;
+    padding: 10px;
+}
+
+.checkout-page .selected-shipping-address {
+    margin-bottom: 10px;
+}
+
+.checkout-page button.ship-to-button {
+    padding: 3px;
+    margin: 0;
+}
+
+
+.checkout-page .shipping-instructions {
     vertical-align: top;
-    margin-left: 11.11111%;
+}
+
+.checkout-page .order-summary-table {
+    width: 100%;
+}
+
+.checkout-page .order-summary-table td + td {
+    text-align: right;
 }
 
 /* Checkout Progress

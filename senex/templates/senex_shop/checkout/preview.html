@@ -1,14 +1,14 @@
-{% extends 'senex_store/checkout/checkout.html' %}
+{% extends 'senex_shop/checkout/checkout.html' %}
 {% load i18n %}
 {% load static from staticfiles %}
 
 {% block title %}{% trans "Checkout - Payment Details" %}{% endblock %}
 
 {% block checkout_progress %}
-    {% include 'senex_store/checkout/progress.html' with step=3 %}
+    {% include 'senex_shop/checkout/progress.html' with step=3 %}
 {% endblock %}
 
-{% block page_title %}{% trans "Review Order" %}{% endblock page_title %}
+{% block page_title %}{% trans "Review your order" %}{% endblock page_title %}
 
 {% block place_order %}
     <hr/>
@@ -17,7 +17,7 @@
         <input type="hidden" name="action" value="place_order"/>
 
         <div class="preview-form-bottom">
-            <button type="submit" class="place-order-button">Place Order</button>
+            <button type="submit" class="place-order-button">Place your order</button>
         </div>
     </form>
 {% endblock place_order %}

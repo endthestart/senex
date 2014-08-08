@@ -223,12 +223,6 @@ THUMBNAIL_BASEDIR = 'thumbs'
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 ########## END WSGI CONFIGURATION
 
-# ########## AUTH CONFIGURATION
-# # See: https://docs.djangoproject.com/en/dev/topics/auth/customizing/
-# AUTHENTICATION_BACKENDS = ('custom_auth.auth.Authenticate',)
-# AUTH_USER_MODEL = 'custom_auth.User'
-# ########## END AUTH CONFIGURATION
-
 ########## STRIPE CONFIGURATION
 # See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_BnKaAmgD81hWGi1F1suzPmX6")
