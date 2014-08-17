@@ -24,18 +24,18 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.senexcycles.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'info@senexcycles.com'
-EMAIL_HOST_PASSWORD = 'h3xag0n'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'notarealpassword')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 ########## END EMAIL CONFIGURATION
-
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'notarealpassword')
 # Database
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "senex",
         "USER": "senex",
-        "PASSWORD": "h3xag0n",
+        "PASSWORD": DATABASE_PASSWORD,
         "HOST": "localhost",
         "PORT": "",
         }
