@@ -1,4 +1,7 @@
+import os
+
 from os.path import join, normpath
+
 from .base import *
 
 DEBUG = False
@@ -24,12 +27,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.senexcycles.com'
 EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'info@senexcycles.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'notarealpassword')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 ########## END EMAIL CONFIGURATION
-DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'notarealpassword')
+
 # Database
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
