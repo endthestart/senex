@@ -24,14 +24,17 @@ def build_commit(warn_only=True):
     local('git checkout %s' % local_branch)
 
 
-def server():
-    env.host_string = 'andermic.com'
+def deploy():
+    env.host_string = 'senexcycles.com'
     env.user = 'andermic'
+
+    if not os.path.exists('./fabfile.py'):
+        print "Run in the directory containing fabfile.py"
+        return
 
 
 def staging():
     path = "/srv/www/staging.senexcycles.com"
-    process = "nginx"
 
     print(red("Beginning Deployment:"))
     with cd("%s/senex" % path):
@@ -39,15 +42,15 @@ def staging():
         print(green("Pulling develop from GitHub..."))
         run("git pull origin develop")
         print(green("Installing requirements..."))
-        run("source %s/venv/bin/activate && pip install -r ../requirements.txt" % path)
+        run("%s/venv/bin/pip install -r ../requirements/production.txt" % path)
         print(green("Collecting static files..."))
-        run("source %s/venv/bin/activate && python manage.py collectstatic --noinput" % path)
-        # print(green("Syncing the database..."))
-        # run("source %s/venv/bin/activate && python manage.py syncdb" % path)
-        # print(green("Migrating the database"))
-        # run("source %s/venv/bin/activate && python manage.py migrate" % path)
+        run("%s/venv/bin/python manage.py collectstatic --noinput" % path)
+        print(green("Syncing the database..."))
+        run("%s/venv/bin/python manage.py syncdb" % path)
+        print(green("Migrating the database"))
+        run("%s/venv/bin/python manage.py migrate" % path)
         print(green("Restarting the uwsgi process..."))
-        run("sudo server %s restart" % process)
+        run("touch %s/senex/senex/wsgi.py" % path)
     print(red("DONE..."))
 
 
@@ -61,7 +64,7 @@ def production():
         print(green("Pulling master from GitHub..."))
         run("git pull origin master")
         print(green("Installing requirements..."))
-        run("source %s/venv/bin/activate && pip install -r requirements.txt" % path)
+        run(" %s/venv/bin/python && pip install -r requirements.txt" % path)
         print(green("Collecting static files..."))
         run("source %s/venv/bin/activate && python manage.py collectstatic --noinput" % path)
         print(green("Syncing the database..."))
@@ -77,13 +80,3 @@ def prepare_deployment(branch_name):
     local('python manage.py test senex')
     local('git add -p && git commit')
     local('git checkout master && git merge ' + branch_name)
-
-
-def deploy():
-    with lcd('/srv/www/senexcycles.com/src/senex/'):
-        local('git pull origin')
-
-        # With both
-        local('python manage.py migrate senex')
-        local('python manage.py test senex')
-        local('service nginx restart')
