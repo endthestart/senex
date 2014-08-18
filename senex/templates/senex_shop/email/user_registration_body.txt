@@ -1,0 +1,14 @@
+Dear {{ user.first_name }} {{user.last_name }}:
+
+Welcome to Senex Cycles.
+
+https://www.senexcycles.com
+Your username name is: {{ user.email }}
+
+If you have any questions or feedback, you can always reach us through our contact page https://www.senexcycles.com/contact/
+
+For more information on Senex Cycles, please visit https://www.senexcycles.com/about/
+
+Regards,
+
+The team at Senex Cycles
