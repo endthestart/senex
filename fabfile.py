@@ -1,3 +1,5 @@
+import os
+
 from fabric.api import *
 from fabric.colors import green, red
 
@@ -38,41 +40,42 @@ def staging():
 
     print(red("Beginning Deployment:"))
     with cd("%s/senex" % path):
-        run("pwd")
-        print(green("Pulling develop from GitHub..."))
-        run("git pull origin develop")
-        print(green("Installing requirements..."))
-        run("%s/venv/bin/pip install -r ../requirements/production.txt" % path)
-        print(green("Collecting static files..."))
-        run("%s/venv/bin/python manage.py collectstatic --noinput" % path)
-        print(green("Syncing the database..."))
-        run("%s/venv/bin/python manage.py syncdb" % path)
-        print(green("Migrating the database"))
-        run("%s/venv/bin/python manage.py migrate" % path)
-        print(green("Restarting the uwsgi process..."))
-        run("touch %s/senex/senex/wsgi.py" % path)
+        with prefix('source %s/venv/bin/activate' % path):
+            run("pwd")
+            print(green("Pulling develop from GitHub..."))
+            run("git pull origin develop")
+            print(green("Installing requirements..."))
+            run("pip install -r ../requirements/production.txt")
+            print(green("Collecting static files..."))
+            run("python manage.py collectstatic --noinput")
+            print(green("Syncing the database..."))
+            run("python manage.py syncdb")
+            print(green("Migrating the database"))
+            run("python manage.py migrate")
+            print(green("Restarting the uwsgi process..."))
+            run("touch %s/senex/senex/wsgi.py" % path)
     print(red("DONE..."))
 
 
 def production():
-    path = "/srv/www/senexcycles.com/src/senex"
-    process = "nginx"
+    path = "/srv/www/senexcycles.com"
 
     print(red("Beginning Deployment:"))
     with cd("%s/app" % path):
-        run("pwd")
-        print(green("Pulling master from GitHub..."))
-        run("git pull origin master")
-        print(green("Installing requirements..."))
-        run(" %s/venv/bin/python && pip install -r requirements.txt" % path)
-        print(green("Collecting static files..."))
-        run("source %s/venv/bin/activate && python manage.py collectstatic --noinput" % path)
-        print(green("Syncing the database..."))
-        run("source %s/venv/bin/activate && python manage.py syncdb" % path)
-        print(green("Migrating the database"))
-        run("source %s/venv/bin/activate && python manage.py migrate" % path)
-        print(green("Restarting the uwsgi process..."))
-        run("sudo server %s restart" % process)
+        with prefix('source %s/venv/bin/activate' % path):
+            run("pwd")
+            print(green("Pulling master from GitHub..."))
+            run("git pull origin master")
+            print(green("Installing requirements..."))
+            run("pip install -r ../requirements/production.txt")
+            print(green("Collecting static files..."))
+            run("python manage.py collectstatic --noinput")
+            print(green("Syncing the database..."))
+            run("python manage.py syncdb")
+            print(green("Migrating the database"))
+            run("python manage.py migrate")
+            print(green("Restarting the uwsgi process..."))
+            run("touch %s/senex/senex/wsgi.py" % path)
     print(red("DONE..."))
 
 
