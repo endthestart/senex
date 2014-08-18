@@ -207,7 +207,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.senexcycles.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'info@senexcycles.com'
-EMAIL_HOST_PASSWORD = 'h3xag0n'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'notarealpassword')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'noreply@senexcycles.com'
 ########## END EMAIL CONFIGURATION

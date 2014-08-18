@@ -8,12 +8,13 @@ TEMPLATE_DEBUG = DEBUG
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'notarealpassword')
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "senex_staging",
         "USER": "senex",
-        "PASSWORD": "h3xag0n",
+        "PASSWORD": DATABASE_PASSWORD,
         "HOST": "localhost",
         "PORT": "",
     }

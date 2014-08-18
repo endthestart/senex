@@ -61,7 +61,7 @@ def production():
     path = "/srv/www/senexcycles.com"
 
     print(red("Beginning Deployment:"))
-    with cd("%s/app" % path):
+    with cd("%s/senex" % path):
         with prefix('source %s/venv/bin/activate' % path):
             run("pwd")
             print(green("Pulling master from GitHub..."))
