@@ -178,6 +178,7 @@ img {
     min-height: 600px;
     border-left: 1px solid rgb(0, 0, 0);
     border-right: 1px solid rgb(0, 0, 0);
+    padding-bottom: 20px;
 }
 
 .top-spacer {
