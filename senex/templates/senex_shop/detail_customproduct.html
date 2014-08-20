@@ -8,7 +8,7 @@
     <form id="product-options-form" class="remove-bottom" action="{% url 'cart_add' %}" method="post">{% csrf_token %}
         <div class="category-navigation sixteen columns">
             {% block breadcrumbs %}
-                <a href="{% url 'store_home' %}">Home</a> {% for ancestor in product.category.get_ancestors %} >
+                <a href="{% url 'store_home' %}">Store</a> {% for ancestor in product.category.get_ancestors %} >
                 <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
             {% endblock breadcrumbs %}
         </div>

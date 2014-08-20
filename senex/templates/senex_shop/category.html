@@ -7,7 +7,7 @@
 {% block content %}
     <div class="category-navigation sixteen columns">
         {% block breadcrumbs %}
-            <a href="{% url 'store_home' %}">Home</a> {% for ancestor in category.get_ancestors %} >
+            <a href="{% url 'store_home' %}">Store</a> {% for ancestor in category.get_ancestors %} >
             <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
         {% endblock breadcrumbs %}
     </div>
