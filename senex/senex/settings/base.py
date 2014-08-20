@@ -150,6 +150,7 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
+    'djcelery',
     'south',
     'localflavor',
     'easy_thumbnails',
@@ -234,7 +235,14 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlp
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 ########## END MESSAGE STORAGE CONFIGURATION
 
+########## CELERY CONFIGURATION
+# See:
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = "amqp://guest@localhost"
+########## END CELERY CONFIGURATION
+
 ########## NEW RELIC CONFIGURATION
-# See: 
+# See:
 NEW_RELIC = False
 ########## END NEW RELIC CONFIGURATION
