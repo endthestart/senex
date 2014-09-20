@@ -15,8 +15,14 @@
         <div class="twelve columns">
             <div class="product-configuration">
                 <div>
-                    <img src="
-                            {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
+                    <img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
+                </div>
+                <div class="product-photo-gallery">
+                  {% for product_image in product.productimage_set.all %}
+                      <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
+                        <img src="{% thumbnail product_image.image 75x75 crop %}"/>
+                      </a>
+                  {% endfor %}
                 </div>
                 <div>
                     <h2>{% blocktrans with product.name as name %}Configure your {{ name }}{% endblocktrans %}</h2>
@@ -54,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="four columns">
+        <div class="four columns scroll">
             <div class="product-configuration-sidebar">
                 <h4>Subtotal:</h4>
                 <h5 class="add-bottom">$<span id="price">{{ product.price }}</span></h5>
@@ -71,4 +77,26 @@
             </div>
         </div>
     </form>
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript">
+var scrollTop = $(window).scrollTop();
+var elementOffset = $('.scroll').offset().top;
+var distance = (elementOffset - scrollTop);
+$(window).on('scroll', function () {
+    var scrollPos = $(document).scrollTop();
+    var newposition = scrollPos-distance+10
+//    console.log("scrollPost: "+ scrollPos);
+//    console.log("scrollTop: "+ scrollTop);
+//    console.log("elementOffset: "+ elementOffset);
+//    console.log("distance: "+ distance);
+//    console.log("new position: "+ newposition)
+    if (newposition < 0) {
+      newposition = 0;
+    }
+    $('.scroll').css({
+      top: newposition
+    });
+}).scroll();
+</script>
 {% endblock %}

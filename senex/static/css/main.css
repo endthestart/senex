@@ -544,6 +544,13 @@ legend span {
 
 /* Products
    ----------------------- */
+.scroll {
+    position:relative;
+    top:0;
+    left:0;
+}
+
+
 .product-configuration {
     border: 1px solid #ccc;
     padding: 3px;

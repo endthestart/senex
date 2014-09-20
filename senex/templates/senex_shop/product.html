@@ -15,7 +15,7 @@
         <div class="twelve columns">
             <div class="product-configuration">
                 <div>
-                    <img src="
+                    <img rel="shadowbox" src="
                             {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
                 </div>
                 <div>
@@ -63,3 +63,18 @@
         </div>
     </form>
 {% endblock content %}
+{% block extrajs %}
+<script type="text/javascript">
+$(window).on('scroll', function () {
+    var scrollPos = $(document).scrollTop();
+    console.log(scrollPos);
+    if (scrollPos >= 0)
+    {
+      $('.scroll').css({
+        top: scrollPos
+      });
+    }
+
+}).scroll();
+</script>
+{% endblock %}

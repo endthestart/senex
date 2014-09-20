@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
     <link rel="stylesheet" href="{% static "css/layout.css" %}">
     <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="{% static "shadowbox/shadowbox.css" %}">
 
     <!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -166,6 +167,12 @@
 <!-- End Document
 ================================================== -->
 <script src="{% static "js/main.js" %}"></script>
+
+<script src="{% static "shadowbox/shadowbox.js" %}"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
+
 <script src="//checkout.stripe.com/v2/checkout.js"></script>
 <script>
     $(function () {
@@ -188,5 +195,7 @@
         });
     });
 </script>
+{% block extrajs %}
+{% endblock extrajs %}
 </body>
 </html>
