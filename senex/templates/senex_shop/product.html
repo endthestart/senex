@@ -15,9 +15,16 @@
         <div class="twelve columns">
             <div class="product-configuration">
                 <div>
-                    <img rel="shadowbox" src="
-                            {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
+                    <img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
                 </div>
+                <div class="product-photo-gallery">
+                  {% for product_image in product.productimage_set.all %}
+                      <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
+                        <img src="{% thumbnail product_image.image 75x75 crop %}"/>
+                      </a>
+                  {% endfor %}
+                </div>
+                <div>
                 <div>
                     <h2>{% blocktrans with product.name as name %}{{ name }}{% endblocktrans %}</h2>
 
