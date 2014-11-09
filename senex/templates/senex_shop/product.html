@@ -25,9 +25,9 @@
                   {% endfor %}
                 </div>
                 <div>
-                    <h2>{% blocktrans with product.name as name %}{{ name }}{% endblocktrans %}</h2>
+                    <h2>{{ product.name }}</h2>
 
-                    <p>{% autoescape off %}{{ product.description }}{% endautoescape %}</p>
+                    <p>{{ product.description|safe }}</p>
                 </div>
                 {% if error_message %}
                     <div><p><strong>{{ error_message }}</strong></p></div>

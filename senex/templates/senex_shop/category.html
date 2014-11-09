@@ -39,7 +39,7 @@
                 <div class="product-description"><a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3>
                 </a>
 
-                    <p>{{ product.description }}</p></div>
+                    <p>{{ product.short_description|safe }}</p></div>
             </div>
         </div>
     {% endfor %}

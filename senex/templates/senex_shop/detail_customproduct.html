@@ -25,9 +25,9 @@
                   {% endfor %}
                 </div>
                 <div>
-                    <h2>{% blocktrans with product.name as name %}Configure your {{ name }}{% endblocktrans %}</h2>
+                    <h2>{{ product.name }}</h2>
 
-                    <p>{% autoescape off %}{{ product.description }}{% endautoescape %}</p>
+                    <p>{{ product.description|safe }}</p>
                 </div>
                 {% if error_message %}
                     <div><p><strong>{{ error_message }}</strong></p></div>
@@ -46,7 +46,7 @@
                                     <option data-price="{{ choice.price_change }}" value="{{ choice.value }}"
                                             {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
                                         {% if choice.price_change %}
-                                            {{ choice.price_change|currency }}
+                                            ({{ choice.price_change|currency }})
                                         {% endif %}
                                     </option>
                                 {% endfor %}
