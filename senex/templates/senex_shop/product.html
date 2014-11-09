@@ -32,28 +32,6 @@
                 {% if error_message %}
                     <div><p><strong>{{ error_message }}</strong></p></div>
                 {% endif %}
-                <!--{% for option_group in options %}-->
-                    <!--<div class="product-configuration-option">-->
-                        <!--<div class="product-configuration-option-header">-->
-                            <!--<h5 class="product-configuration-option-name">{{ option_group.name }}</h5>-->
-
-                            <!--<p>{{ option_group.description }}</p>-->
-                        <!--</div>-->
-                        <!--<div class="product-configuration-option-selection">-->
-                            <!--<select name="{{ option_group.id }}" id="{{ option_group.id }}"-->
-                                    <!--class="priced product-configuration-select">-->
-                                <!--{% for choice in option_group.option_set.all %}-->
-                                    <!--<option data-price="{{ choice.price_change }}" value="{{ choice.value }}"-->
-                                            <!--{% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}-->
-                                        <!--{% if choice.price_change %}-->
-                                            <!--{{ choice.price_change|currency }}-->
-                                        <!--{% endif %}-->
-                                    <!--</option>-->
-                                <!--{% endfor %}-->
-                            <!--</select>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--{% endfor %}-->
                 <div>
                     <input type="hidden" name="product_name" id="product_name" value="{{ product.slug }}"/>
                     <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>

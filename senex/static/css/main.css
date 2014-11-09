@@ -28,42 +28,31 @@ img {
 /* Navigation
    -------------------------------------------------- */
 
-.upper-nav-container {
+.nav-container {
     margin-bottom: 5px;
     margin-top: 5px;
     position: relative;
 }
 
-.upper-nav-company-name {
+.nav-company-name h3 {
     color: rgb(255, 255, 255);
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 3em;
 }
 
-.upper-nav-left {
-    padding-top: 20px;
+.nav-company-name a {
+    text-decoration: none;
+}
+
+.nav-left {
+    padding: 20px 0;
     display: inline-block;
 }
 
-.upper-nav-right {
+.nav-right {
     position: absolute;
     right: 20px;
-    top: 0;
-    color: rgb(200, 200, 200);
-}
-
-.upper-nav-right a {
-    color: rgb(200, 200, 200);
-}
-
-.upper-nav-right a:hover {
-    color: rgb(255, 255, 255);
-}
-
-.container .sixteen.columns.nav-container {
-    width: 960px;
-    margin-left: 0;
-    margin-right: 0;
+    bottom: 0;
 }
 
 .nav {
@@ -71,7 +60,6 @@ img {
     padding: 5px 5px 0 5px;
     margin: 0;
     font-family: "Arial", "Helvetica", sans-serif;
-    background: url('/static/img/menu-bg.png') repeat-x;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
 }
@@ -89,7 +77,7 @@ img {
     font-size: 1.2em;
     font-weight: bold;
     line-height: 1.5em;
-    width: 120px;
+    padding: 0 20px;
 }
 
 .nav ul li a {
@@ -105,21 +93,19 @@ img {
     color: rgb(255, 255, 255);
 }
 
-.top .brand {
-    display: block;
-    float: left;
-    font-size: 1em;
-    color: #fff;
+.upper-nav-right {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: rgb(200, 200, 200);
 }
 
-.top .brand img {
-    width: 100px;
+.upper-nav-right a {
+    color: rgb(200, 200, 200);
 }
 
-.top .brand:hover,
-.top .brand:focus {
-    text-decoration: none;
-    color: #fff;
+.upper-nav-right a:hover {
+    color: rgb(255, 255, 255);
 }
 
 /* Home Page
@@ -585,17 +571,47 @@ legend span {
 }
 
 .product-row {
-    background-color: #ccc;
     margin-bottom: 10px;
 }
 
-.product-image {
-    padding: 5px;
+ul.category-product-list li {
+    width: 230px;
+    display: inline-block;
+    border: 1px solid #000;
+}
+
+ul.category-product-list li a {
+    text-decoration: none;
+}
+
+div.category-product-image {
+    padding-top: 5px;
+    text-align: center;
+    min-height: 220px;
+    width: 100%;
+}
+
+.category-product-title {
     text-align: center;
 }
 
+.category-product-price {
+    text-align: center;
+}
+
+
 /* Categories
    ----------------------- */
+
+ul.child-category-list li {
+    width: 230px;
+    display: inline-block;
+}
+
+ul.child-category-list li a {
+    text-decoration: none;
+}
+
 .category-navigation {
     font-size: 11px;
     margin: 0 0 5px 0;
@@ -610,13 +626,21 @@ h1.category-title {
 }
 
 .category-row {
-    background-color: #ccc;
     margin-bottom: 10px;
 }
 
-.category-image {
+div.child-category-image {
     padding: 5px;
     text-align: center;
+    min-height: 230px;
+    width: 100%;
+}
+
+.child-category-title {
+    text-align: center;
+}
+.child-category-title a {
+    text-decoration: none;
 }
 
 /* Cart
