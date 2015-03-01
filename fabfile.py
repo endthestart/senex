@@ -70,12 +70,13 @@ def production():
             run("pip install -r ../requirements/production.txt")
             print(green("Collecting static files..."))
             run("python manage.py collectstatic --noinput")
-            print(green("Syncing the database..."))
-            run("python manage.py syncdb")
+            # print(green("Syncing the database..."))
+            # run("python manage.py syncdb")
             print(green("Migrating the database"))
             run("python manage.py migrate")
             print(green("Restarting the uwsgi process..."))
-            run("touch %s/senex/senex/wsgi.py" % path)
+            sudo("restart gunicorn-senex")
+            # run("touch %s/senex/senex/wsgi.py" % path)
     print(red("DONE..."))
 
 
