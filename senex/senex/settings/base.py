@@ -233,3 +233,10 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 # See: 
 NEW_RELIC = False
 ########## END NEW RELIC CONFIGURATION
+
+########## TEST CONFIGURATION
+TEST_RUNNER = "django.test.runner.DiscoverRunner"
+TEST_DISCOVER_TOP_LEVEL = SITE_ROOT
+TEST_DISCOVER_ROOT = SITE_ROOT
+TEST_DISCOVER_PATTERN = "test_*"
+########## END TEST CONFIGURATION
