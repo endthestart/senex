@@ -97,7 +97,10 @@ def contact(request, template_name='contact.html'):
 
             email_message = "A new message from: {0}<br /><br />{1}".format(sender_name, message)
 
-            send_mail(subject, email_message, sender_email, recipients)
+            from django.core.mail import EmailMessage
+            email = EmailMessage(subject, email_message, 'info@senexcycles.com', ['info@senexcycles.com',], headers={'Reply-To': sender_email})
+            email.send()
+            #send_mail(subject, email_message, sender_email, recipients)
             return HttpResponseRedirect('/contact/thanks/')
 
     context = {

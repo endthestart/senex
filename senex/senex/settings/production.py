@@ -25,7 +25,7 @@ STATIC_URL = '/static/'
 # See: https://docs.djangoproject.com/en/dev/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.senexcycles.com'
-EMAIL_PORT = '587'
+EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'info@senexcycles.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = False
@@ -80,3 +80,4 @@ STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_x1CjT9YMoj30rlp
 # See:
 NEW_RELIC = True
 ########## END NEW RELIC CONFIGURATION
+
