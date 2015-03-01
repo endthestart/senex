@@ -39,6 +39,27 @@ class PromoBox(models.Model):
         help_text=_("The relevant content link for the promotion box."),
     )
 
+    def save(self, *args, **kwargs):
+        if self.ordering is None:
+            self.ordering = self.next_available_order()
+
+        try:
+            dup_box = PromoBox.objects.get(ordering=self.ordering)
+            dup_boxes = PromoBox.objects.filter(ordering__gte=self.ordering)
+            for dup_box in dup_boxes:
+                dup_box.ordering += 1
+                dup_box.save()
+        except PromoBox.DoesNotExist:
+            pass
+        super(PromoBox, self).save(*args, **kwargs)
+
+    def next_available_order(self):
+        try:
+            order = max(PromoBox.objects.values_list('ordering', flat=True)) + 1
+        except ValueError:
+            order = 0
+        return order
+
     def __unicode__(self):
         return self.label
 
