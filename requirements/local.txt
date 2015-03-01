@@ -1,5 +1,5 @@
 # Local development dependencies go here
 -r test.txt
 bpython==0.13.1
-django-debug-toolbar==1.2.1
+django-debug-toolbar==1.2.2
 Sphinx==1.2.2
