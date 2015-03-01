@@ -29,7 +29,7 @@ from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 application = get_wsgi_application()
 
-if settings.NEW_RELIC:
-    import newrelic.agent
-    newrelic.agent.initialize('/srv/www/newrelic/senex.newrelic.ini')
-    application = newrelic.agent.wsgi_application()(application)
+# if settings.NEW_RELIC:
+#     import newrelic.agent
+#     newrelic.agent.initialize('/srv/www/newrelic/senex.newrelic.ini')
+#     application = newrelic.agent.wsgi_application()(application)

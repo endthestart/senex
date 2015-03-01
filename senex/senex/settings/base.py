@@ -23,6 +23,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
+AUTH_USER_MODEL = 'auth.User'
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -150,7 +152,6 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-    'south',
     'localflavor',
     'easy_thumbnails',
     'senex_shop',
@@ -203,13 +204,7 @@ LOGGING = {
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/topics/email/
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.senexcycles.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'info@senexcycles.com'
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'notarealpassword')
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'noreply@senexcycles.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ########## END EMAIL CONFIGURATION
 
 

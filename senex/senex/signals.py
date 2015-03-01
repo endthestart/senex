@@ -1,5 +1,5 @@
 from django.db.models.signals import post_save
-from django.contrib.auth import get_user_model
+from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
@@ -14,4 +14,4 @@ def send_registration_email(sender, **kwargs):
     if kwargs['created']:
         send_mail(email_subject, email_text, 'info@senexcycles.com', [user.email])
 
-post_save.connect(send_registration_email, sender=get_user_model())
+post_save.connect(send_registration_email, sender=settings.AUTH_USER_MODEL)

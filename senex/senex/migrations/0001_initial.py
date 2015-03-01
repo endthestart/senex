@@ -1,65 +1,44 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import easy_thumbnails.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Company'
-        db.create_table(u'senex_company', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('address_1', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('address_2', self.gf('django.db.models.fields.CharField')(max_length=128, blank=True)),
-            ('city', self.gf('django.db.models.fields.CharField')(max_length=64)),
-            ('state', self.gf('localflavor.us.models.USStateField')(max_length=2)),
-            ('zip_code', self.gf('localflavor.us.models.USPostalCodeField')(max_length=2)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('logo', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
-            ('phone', self.gf('localflavor.us.models.PhoneNumberField')(max_length=20)),
-            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
-        ))
-        db.send_create_signal(u'senex', ['Company'])
+    dependencies = [
+    ]
 
-        # Adding model 'CustomBuild'
-        db.create_table(u'senex_custombuild', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('type', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('description', self.gf('django.db.models.fields.TextField')()),
-        ))
-        db.send_create_signal(u'senex', ['CustomBuild'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Company'
-        db.delete_table(u'senex_company')
-
-        # Deleting model 'CustomBuild'
-        db.delete_table(u'senex_custombuild')
-
-
-    models = {
-        u'senex.company': {
-            'Meta': {'object_name': 'Company'},
-            'address_1': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'address_2': ('django.db.models.fields.CharField', [], {'max_length': '128', 'blank': 'True'}),
-            'city': ('django.db.models.fields.CharField', [], {'max_length': '64'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'logo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'phone': ('localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
-            'state': ('localflavor.us.models.USStateField', [], {'max_length': '2'}),
-            'zip_code': ('localflavor.us.models.USPostalCodeField', [], {'max_length': '2'})
-        },
-        u'senex.custombuild': {
-            'Meta': {'object_name': 'CustomBuild'},
-            'description': ('django.db.models.fields.TextField', [], {}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'type': ('django.db.models.fields.CharField', [], {'max_length': '128'})
-        }
-    }
-
-    complete_apps = ['senex']
+    operations = [
+        migrations.CreateModel(
+            name='CustomBuild',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('type', models.CharField(help_text='The type of customization.', max_length=128, verbose_name='custom type')),
+                ('description', models.TextField(help_text='The customization description.', verbose_name='description')),
+            ],
+            options={
+                'verbose_name': 'custom build',
+                'verbose_name_plural': 'custom builds',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PromoBox',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('ordering', models.IntegerField(default=0, help_text='Override default alphabetical ordering', verbose_name='ordering')),
+                ('label', models.CharField(default=b'', help_text='The label for the promotion box.', max_length=25, verbose_name='label', blank=True)),
+                ('description', models.TextField(default=b'', help_text='Additional text that can be used for alt text, etc.', max_length=255, verbose_name='description', blank=True)),
+                ('image', easy_thumbnails.fields.ThumbnailerImageField(help_text='The image associated with the promotion box.', upload_to=b'promobox', null=True, verbose_name='image', blank=True)),
+                ('link', models.CharField(help_text='The relevant content link for the promotion box.', max_length=255, null=True, verbose_name='link', blank=True)),
+            ],
+            options={
+                'ordering': ('ordering', 'label'),
+                'verbose_name': 'promo box',
+                'verbose_name_plural': 'promo boxes',
+            },
+            bases=(models.Model,),
+        ),
+    ]

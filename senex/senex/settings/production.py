@@ -30,6 +30,7 @@ EMAIL_HOST_USER = 'info@senexcycles.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'info@senexcycles.com'
 ########## END EMAIL CONFIGURATION
 
 # Database
