@@ -1,4 +1,3 @@
-from os.path import join, normpath
 from .base import *
 
 DEBUG = True
@@ -7,28 +6,64 @@ TEMPLATE_DEBUG = DEBUG
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!e7=(lo95id2%tkk6o8qtz7b4np!5_3ed&v%i(u=dv+l^h_wfg')
+
+########## MEDIA FILES CONFIGURATION
+MEDIA_ROOT = normpath(join(SITE_ROOT, '../media'))
+MEDIA_URL = '/media/'
+########## END OF MEDIA FILES CONFIGURATION
+
+########## STATIC FILES CONFIGURATION
+STATIC_ROOT = normpath(join(SITE_ROOT, '../static'))
+STATIC_URL = '/static/'
+########## END OF STATIC FILES CONFIGURATION
+
 # Database
-DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'notarealpassword')
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "senex_staging",
+        "NAME": "senex",
         "USER": "senex",
         "PASSWORD": DATABASE_PASSWORD,
         "HOST": "localhost",
         "PORT": "",
-    }
+        }
 }
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 ########## END CACHE CONFIGURATION
 
-########## STATIC FILES CONFIGURATION
-STATIC_ROOT = normpath(join(SITE_ROOT, '../static'))
-########## END OF STATIC FILES CONFIGURATION
+# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+INTERNAL_IPS = ('127.0.0.1',)
+
+########## ALLOWED HOSTS CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = [
+    '.senexcycles.com',
+]
+########## END ALLOWED HOSTS CONFIGURATION
+
+########## SSL CONFIGURATION
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+########## END SSL CONFIGURATION
+
+########## STRIPE CONFIGURATION
+# See: http://django-stripe-payments.readthedocs.org/en/latest/installation.html
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', 'pk_test_BnKaAmgD81hWGi1F1suzPmX6')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', 'sk_test_x1CjT9YMoj30rlpg50CnmD8A')
+########## END STRIPE
+
+########## NEW RELIC CONFIGURATION
+# See:
+NEW_RELIC = False
+########## END NEW RELIC CONFIGURATION
+
