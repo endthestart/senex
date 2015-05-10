@@ -1097,7 +1097,7 @@ h4 {
                                 <td><strong>Item{{ order.cart.num_items|pluralize }} Subtotal</strong></td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
-                                <td style="text-align: right;"><strong>{{ order.cart.total_price|currency }}</strong></td>
+                                <td style="text-align: right;"><strong>{{ order.cart.subtotal|currency }}</strong></td>
                             </tr>
                             <tr>
                                 <td style="padding-left: 8px;">Shipping</td>
@@ -1117,7 +1117,7 @@ h4 {
                                 <td><strong>Order Total</strong></td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
-                                <td style="text-align: right;"><strong>{{ order.cart.total_less_discount|currency }}</strong></td>
+                                <td style="text-align: right;"><strong>{{ order.cart.total_price|currency }}</strong></td>
                             </tr>
                             </tbody>
                         </table>

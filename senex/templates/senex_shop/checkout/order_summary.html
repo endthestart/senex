@@ -6,11 +6,11 @@
             <tbody>
                 <tr>
                     <td>Item{{ cart.num_items|pluralize }} subtotal:</td>
-                    <td>{{ cart.total_price|currency }}</td>
+                    <td>{{ cart.subtotal|currency }}</td>
                 </tr>
                 <tr>
                     <td>Shipping:</td>
-                    <td>{{ 0|currency }}</td>
+                    <td>{{ cart.calculate_shipping|currency }}</td>
                 </tr>
                 {% if cart.discount %}
                     <tr>
@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>Order total:</td>
-                    <td>{{ cart.total_less_discount|currency }}</td>
+                    <td>{{ cart.total_price|currency }}</td>
                 </tr>
             </tbody>
         </table>

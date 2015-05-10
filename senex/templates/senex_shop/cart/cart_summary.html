@@ -6,14 +6,13 @@
         <h5 class="rule add-top add-bottom">{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
 
         <div class="rule">
-            <h5>Subtotal: {{ cart.total_price|currency }}</h5>
+            <h5>Subtotal: {{ cart.subtotal|currency }}</h5>
+            <h5>{{ cart.calculate_shipping|currency }}</h5>
             {% if cart.discount %}
                 <h5>Discount: {{ cart.discount_amount|currency }}</h5>
             {% endif %}
             <hr />
-            <h5>Cart total: {{ cart.total_less_discount|currency }}</h5>
-
-            <p>*Taxes and shipping charges may apply.</p>
+            <h5>Cart total: {{ cart.total_price|currency }}</h5>
         </div>
 
         {% if cart.discount %}
