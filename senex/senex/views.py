@@ -22,6 +22,14 @@ def home(request, template_name='home.html'):
     }
     return render_to_response(template_name, context, RequestContext(request))
 
+def test(request, template_name='test.html'):
+    posts = Post.objects.all()[:3]
+    promo_boxes = PromoBox.objects.all()[:4]
+    context = {
+        'posts': posts,
+        'promo_boxes': promo_boxes,
+    }
+    return render_to_response(template_name, context, RequestContext(request))
 
 def login(request, template_name='login.html'):
     if request.user.is_authenticated():

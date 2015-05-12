@@ -6,18 +6,18 @@
 {% block title %}{{ category.name_path }}{% endblock %}
 
 {% block content %}
-<!--<div class="category-navigation sixteen columns">-->
+<!--<div class="category-navigation twelve columns">-->
     <!--{% block breadcrumbs %}-->
     <!--<a href="{% url 'store_home' %}">Store</a> {% for ancestor in category.get_ancestors %} >-->
     <!--<a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}-->
     <!--{% endblock breadcrumbs %}-->
 <!--</div>-->
-<div class="category-name sixteen columns">
+<div class="category-name twelve columns">
     <h1 class="category-title">{% if category.name %}{{ category.name }}{% else %}Senex Shop{% endif %}</h1>
 </div>
 
 {% if child_categories %}
-<div class="sixteen columns category-row">
+<div class="twelve columns category-row">
     <ul class="child-category-list">
         {% for child in child_categories %}
             <li>
@@ -36,7 +36,7 @@
 {% endif %}
 
 {% if products %}
-<div class="sixteen columns product-row">
+<div class="twelve columns product-row">
     <ul class="category-product-list">
         {% for product in products %}
           <li>

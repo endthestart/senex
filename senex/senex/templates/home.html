@@ -5,56 +5,88 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-    <!-- Jumbotron -->
-    <div class="sixteen columns">
-        <div class="jumbotron">
-            <figure>
-                <img src="{% static "img/carousel/c_1.jpg" %}">
-            </figure>
-        </div>
-    </div>
-    <div class="ten columns home-left">
-    {% for promo in promo_boxes %}
-        {% if forloop.counter|divisibleby:"2" %}
-            <div class="five columns omega">
-                <a href="{% if promo.link %}{{ promo.link }}{% else %}#{% endif %}">
-                <div class="promo-box">
-                    <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
-                    <div class="promo-box-text">
-                        <h4>{{ promo.label|upper }}</h4>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="first-slide" src="{% static "img/carousel/c_1.jpg" %}" alt="First slide">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Senex Cycles</h1>
+
+                        <p>Pure, race inspired titanium bicycles at a reasonable price.</p>
+
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Shop</a></p>
                     </div>
                 </div>
-                </a>
+            </div>
+            <div class="item">
+                <img class="second-slide" src="{% static "img/carousel/c_2.jpg" %}" alt="Second slide">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Custom</h1>
+
+                        <p>Complete Senex bikes comes in all sorts of varieties. Always wanted a green bike? We can make
+                            that happen.</p>
+
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Customize</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img class="third-slide" src="{% static "img/carousel/c_3.jpg" %}" alt="Third slide">
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Attention to detail.</h1>
+
+                        <p>Senex frames come with CNC machined head badges, etched logo, replaceable derailleur hangers,
+                            and tapered headtubes.</p>
+
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-        {% else %}
-            <div class="sixteen columns clearfix">
-                <div class="five columns alpha">
-                <a href="{% if promo.link %}{{ promo.link }}{% else %}#{% endif %}">
-                    <div class="promo-box">
-                        <img src="{% if promo.image %}{% thumbnail promo.image 280x150 crop %}{% else %}None{% endif %}"/>
-                        <div class="promo-box-text">
-                        <h4>{{ promo.label|upper }}</h4>
-                        </div>
-                    </div>
-                </a>
-                </div>
-        {% endif %}
-    {% endfor %}
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="six columns">
-        <div class="home-right">
-            <h4>LATEST NEWS</h4>
-            <ul class="latest-news">
-            {% for post in posts %}
-                <li class="latest-news-item">
-                    <div class="latest-news-item-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></div>
-                    <div class="latest-news-item-date">{{ post.publish|date }}</div>
-                    <div class="latest-news-item-content">{{ post.body|slice:":100" }}...</div>
-                </li>
-            {% endfor %}
-            </ul>
-            <div class="more-news"><a href="{% url 'news_index' %}">MORE NEWS >></a></div>
-        </div>
+    <!-- /.carousel -->
+
+    <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        {% for promo in promo_boxes %}
+            <div class="col-lg-4">
+                <img class="img-circle"
+                     src="{% if promo.image %}{% thumbnail promo.image 140x140 crop %}{% else %}None{% endif %}"
+                     alt="news" width="140" height="140">
+
+                <h2>{{ promo.label|upper }}</h2>
+
+                <p>Nothing</p>
+
+                <p><a class="btn btn-default" href="{{ promo.link }}" role="button">View details &raquo;</a></p>
+            </div>
+        {% endfor %}
+        <!-- /.col-lg-4 -->
     </div>
+    </div>
+    <!-- /.row -->
 {% endblock %}
