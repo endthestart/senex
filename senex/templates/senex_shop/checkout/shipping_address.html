@@ -1,6 +1,7 @@
 {% extends 'senex_shop/checkout/checkout.html' %}
 {% load i18n %}
 {% load currency_filters %}
+{% load bootstrap3 %}
 {% load static from staticfiles %}
 
 {% block title %}{% trans "Checkout - Shipping Address" %}{% endblock %}
@@ -38,13 +39,13 @@
         {% endif %}
     {% endif %}
     <form action="{% url 'checkout_shipping_address' %}" method="post"
-          class="shipping-form {% if request.user.is_authenticated and addresses %}collapse{% endif %}"
+          class="form-horizontal shipping-form {% if request.user.is_authenticated and addresses %}collapse{% endif %}"
           id="new_shipping_address">
-        <div class="well">
+        <div>
             {% csrf_token %}
-            {% include "senex_shop/partials/form_fields.html" with form=form %}
+            {% bootstrap_form form layout='horizontal' show_help=False %}
             <div class="shipping-form-bottom">
-                <button type="submit" class="btn btn-large btn-primary">{% trans "Ship to this address" %}</button>
+                <button type="submit" class="btn btn-lg btn-primary pull-right">{% trans "Ship to this address" %}</button>
             </div>
         </div>
     </form>

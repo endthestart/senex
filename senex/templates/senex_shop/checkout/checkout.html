@@ -7,111 +7,118 @@
 {% block title %}{% trans "Checkout" %} | {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="checkout-page clearfix">
-        {% block checkout_progress %}
-            {% include 'senex_shop/checkout/progress.html' %}
-        {% endblock %}
-        {% if error %}
-            <div class="alert alert-error">
-                {{ error }}
-            </div>
-        {% endif %}
-        <div class="eleven columns">
-            <h2 class="page-title">{% block page_title %}{% trans "Checkout" %}{% endblock %}</h2>
-            {% block order_confirmation %}
-            {% endblock order_confirmation %}
-            {% block shipping_address %}
-                <div class="sub-header">
-                    {% trans "Shipping address" %}
-                    <a href="{% url 'checkout_shipping_address' %}" class="btn change-link">{% trans "Change" %}</a>
-                </div>
-                {% if shipping_address %}
-                    <div class="selected-shipping-address">
-                        <span>{{ shipping_address.full_name }}</span><br/>
-                        <span>{{ shipping_address.street1 }} {{ shipping_address.street2 }}</span><br/>
-                        <span>{{ shipping_address.city_state }} {{ shipping_address.postal_code }}</span><br/>
-                        <span>{{ shipping_address.country }}</span><br/>
-
-                        {% if shipping_address.phone_number %}
-                            {% trans "Phone" %}: {{ shipping_address.phone_number }}
-                            {% if guest_email %}
-                                <br/>{% trans "Email" %}: {{ guest_email }}
-                            {% endif %}
-                        {% endif %}
-                    </div>
-
-                    <div>{% trans "Shipping notes" %}:</div>
-                    <div class="shipping-instructions">
-                        {% if shipping_address.notes %}
-                            <p>{{ shipping_address.notes|escape }}</p>
-                        {% else %}
-                            <p>None</p>
-                        {% endif %}
-                    </div>
-                {% endif %}
-            {% endblock shipping_address %}
-
-            {% block billing_address %}
-                <div class="sub-header">
-                    {% trans "Billing address" %}
-                    <a href="{% url 'checkout_shipping_address' %}" class="btn change-link">{% trans "Change" %}</a>
-                </div>
-                <div class="selected-billing-address">
-                    <p>Same as shipping address.</p>
-                </div>
+    <div class="container checkout-page">
+        <div class="row">
+            {% block checkout_progress %}
+                {% include 'senex_shop/checkout/progress.html' %}
             {% endblock %}
-
-            {% block payment_details %}
-                {#                 TODO: Add payment details here#}
-            {% endblock payment_details %}
-
-            {% block order_contents %}
-                <div class="sub-header">
-                    {% trans "Cart Items" %}
-                    <a href="{% url 'cart' %}" class="btn change-link">{% trans "Change" %}</a>
+            {% if error %}
+                <div class="alert alert-error">
+                    {{ error }}
                 </div>
-                {% if not cart.num_items %}
-                    <h2>{% trans "Your shopping cart is empty." %}</h2>
-                {% else %}
-                    {% for cart_item in cart.cartitem_set.all %}
-                        <div class="cart-item-box">
-                            <div class="cart-image">
-                                <img style="display: block; vertical-align: top;"
-                                     src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}"
-                                     alt="product image"/>
-                            </div>
-                            <div class="none" style="display: inline-block; width: 70%; vertical-align: top;">
-                                <div class="cart-product-description">
-                                    <h4 class="cart-item-description"><a
-                                            href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a>
-                                    </h4>
-                                    {% if cart_item.has_details %}
-                                        <ul>
-                                            {% for detail in cart_item.details.all %}
-                                                <li>{{ detail.name }}: {{ detail.value }}</li>
-                                            {% endfor %}
-                                            <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
-                                        </ul>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <br class="clear"/>
-
-                            <div style="position: absolute; top: 10px; right: 10px;"
-                                 class="cart-item-line-price">{{ cart_item.line_total|currency }}</div>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endblock order_contents %}
-
-            {% block place_order %}
-            {% endblock place_order %}
-
-            {% block payment_info %}
-            {% endblock payment_info %}
+            {% endif %}
         </div>
-        {% block order_summary %}
-            {% include 'senex_shop/checkout/order_summary.html' %}
-        {% endblock order_summary %}
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="page-title">{% block page_title %}{% trans "Checkout" %}{% endblock %}</h2>
+                {% block order_confirmation %}
+                {% endblock order_confirmation %}
+                {% block shipping_address %}
+                    <div class="sub-header">
+                        {% trans "Shipping address" %}
+                        <a href="{% url 'checkout_shipping_address' %}"
+                           class="btn change-link">{% trans "Change" %}</a>
+                    </div>
+                    {% if shipping_address %}
+                        <div class="selected-shipping-address">
+                            <span>{{ shipping_address.full_name }}</span><br/>
+                            <span>{{ shipping_address.street1 }} {{ shipping_address.street2 }}</span><br/>
+                            <span>{{ shipping_address.city_state }} {{ shipping_address.postal_code }}</span><br/>
+                            <span>{{ shipping_address.country }}</span><br/>
+
+                            {% if shipping_address.phone_number %}
+                                {% trans "Phone" %}: {{ shipping_address.phone_number }}
+                                {% if guest_email %}
+                                    <br/>{% trans "Email" %}: {{ guest_email }}
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                        <div>{% trans "Shipping notes" %}:</div>
+                        <div class="shipping-instructions">
+                            {% if shipping_address.notes %}
+                                <p>{{ shipping_address.notes|escape }}</p>
+                            {% else %}
+                                <p>None</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endblock shipping_address %}
+
+                {% block billing_address %}
+                    <div class="sub-header">
+                        {% trans "Billing address" %}
+                        <a href="{% url 'checkout_shipping_address' %}"
+                           class="btn change-link">{% trans "Change" %}</a>
+                    </div>
+                    <div class="selected-billing-address">
+                        <p>Same as shipping address.</p>
+                    </div>
+                {% endblock %}
+
+                {% block payment_details %}
+                    {#                 TODO: Add payment details here#}
+                {% endblock payment_details %}
+
+                {% block order_contents %}
+                    <div class="sub-header">
+                        {% trans "Cart Items" %}
+                        <a href="{% url 'cart' %}" class="btn change-link">{% trans "Change" %}</a>
+                    </div>
+                    {% if not cart.num_items %}
+                        <h2>{% trans "Your shopping cart is empty." %}</h2>
+                    {% else %}
+                        {% for cart_item in cart.cartitem_set.all %}
+                            <div class="cart-item-box">
+                                <div class="cart-image">
+                                    <img style="display: block; vertical-align: top;"
+                                         src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}"
+                                         alt="product image"/>
+                                </div>
+                                <div class="none" style="display: inline-block; width: 70%; vertical-align: top;">
+                                    <div class="cart-product-description">
+                                        <h4 class="cart-item-description"><a
+                                                href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a>
+                                        </h4>
+                                        {% if cart_item.has_details %}
+                                            <ul>
+                                                {% for detail in cart_item.details.all %}
+                                                    <li>{{ detail.name }}: {{ detail.value }}</li>
+                                                {% endfor %}
+                                                <li>Qty: {{ cart_item.quantity }}
+                                                    @ {{ cart_item.unit_price|currency }}</li>
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <br class="clear"/>
+
+                                <div style="position: absolute; top: 10px; right: 10px;"
+                                     class="cart-item-line-price">{{ cart_item.line_total|currency }}</div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endblock order_contents %}
+
+                {% block place_order %}
+                {% endblock place_order %}
+
+                {% block payment_info %}
+                {% endblock payment_info %}
+            </div>
+            {% block order_summary %}
+                {% include 'senex_shop/checkout/order_summary.html' %}
+            {% endblock order_summary %}
+        </div>
     </div>
 {% endblock content %}

@@ -3,7 +3,7 @@ from .base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-#THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_DEBUG = DEBUG
 
 # Email
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

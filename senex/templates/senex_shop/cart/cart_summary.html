@@ -1,17 +1,15 @@
 {% load i18n %}
 {% load currency_filters %}
-<div class="five columns cart-summary">
+<div class="col-lg-4 cart-summary">
     <div class="cart-summary-inner">
-        <h2 class="rule add-bottom">Cart Summary</h2>
-        <h5 class="rule add-top add-bottom">{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
-
+        <h4 class="rule">Cart Summary</h4>
+        <h5>{{ cart.num_items }} Item{{ cart.num_items|pluralize }}</h5>
+        <h5 class="rule">Subtotal: {{ cart.subtotal|currency }}</h5>
         <div class="rule">
-            <h5>Subtotal: {{ cart.subtotal|currency }}</h5>
-            <h5>{{ cart.calculate_shipping|currency }}</h5>
+            <h5>Shipping: {{ cart.calculate_shipping|currency }}</h5>
             {% if cart.discount %}
                 <h5>Discount: {{ cart.discount_amount|currency }}</h5>
             {% endif %}
-            <hr />
             <h5>Cart total: {{ cart.total_price|currency }}</h5>
         </div>
 
@@ -26,9 +24,9 @@
                     {{ form.discount_code.errors }}
                 {% endif %}
 
-                <input class="button button-discount" type="submit" value="Go"/>
+                <input class="btn btn-default" type="submit" value="Go"/>
             </div>
         </form>
-        <a href="{% url 'checkout_start' %}" class="button button-checkout">{% trans "Checkout" %}</a>
+        <a href="{% url 'checkout_start' %}" class="btn btn-primary btn-block">{% trans "Checkout" %}</a>
     </div>
 </div>

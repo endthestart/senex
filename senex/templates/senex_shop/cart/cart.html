@@ -7,39 +7,41 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
-    <div class="twelve columns">
-        <h1>{% trans "Shopping Cart" %}</h1>
-    </div>
-    <div class="eleven columns">
-        {% if not cart.num_items %}<h2>{% trans "Your shopping cart is empty." %}</h2>{% else %}
-            {% for cart_item in cart_items %}
-                <div class="cart-item-box">
-                    <div class="cart-image">
-                        <img style="display: block; vertical-align: top;" src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}" alt="product image"/>
-                    </div>
-                    <div class="none" style="display: inline-block; width: 70%; vertical-align: top;">
-                        <div class="cart-product-description">
-                            <h4 class="cart-item-description">
-                                <a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a></h4>
-                                <ul>
-                                    {% for detail in cart_item.details.all %}
-                                        <li>{{ detail.name }}: {{ detail.value }}</li>
-                                    {% endfor %}
-                                    <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
-                                </ul>
-                        </div>
-                        <form class="inline-form" action="{% url 'cart_remove' %}"
-                              method="post">{% csrf_token %}
-                            <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>
-                            <input style="padding: 6px;" type="submit" value="{% trans 'Remove' %}"/>
-                        </form>
-                    </div>
-                    <br class="clear"/>
+    <div class="container">
+        <div class="row">
+            <h1>{% trans "Shopping Cart" %}</h1>
+            <div class="col-lg-8">
+                {% if not cart.num_items %}<h2>{% trans "Your shopping cart is empty." %}</h2>{% else %}
+                    {% for cart_item in cart_items %}
+                        <div class="cart-item-box">
+                            <div class="cart-image">
+                                <img src="{% thumbnail cart_item.product.main_image.image 140x140 crop %}" alt="product image"/>
+                            </div>
+                            <div class="none" style="display: inline-block; width: 70%; vertical-align: top;">
+                                <div class="cart-product-description">
+                                    <h3 class="cart-item-description"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.description }}</a></h3>
+                                    <ul class="list-unstyled">
+                                        {% for detail in cart_item.details.all %}
+                                            <li>{{ detail.name }}: {{ detail.value }}</li>
+                                        {% endfor %}
+                                        <li>Qty: {{ cart_item.quantity }} @ {{ cart_item.unit_price|currency }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br class="clear"/>
 
-                    <div style="position: absolute; top: 10px; right: 10px;" class="cart-item-line-price">{{ cart_item.line_total|currency }}</div>
-                </div>
-            {% endfor %}
-        {% endif %}
+                            <div style="position: absolute; top: 10px; right: 10px;" class="cart-item-line-price">
+                                <h3>{{ cart_item.line_total|currency }}</h3>
+                                <form class="form-inline" action="{% url 'cart_remove' %}" method="post">{% csrf_token %}
+                                    <input type="hidden" name="cart_item" value="{{ cart_item.id }}"/>
+                                    <input class="btn btn-default btn-xs" style="padding: 6px;" type="submit" value="{% trans 'Remove' %}"/>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% include 'senex_shop/cart/cart_summary.html' %}
+        </div>
     </div>
-    {% include 'senex_shop/cart/cart_summary.html' %}
 {% endblock %}

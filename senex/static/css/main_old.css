@@ -264,59 +264,6 @@ img {
     text-decoration: none;
 }
 
-/* News
-================================================== */
-.post {
-    padding: 10px 0 10px 0;
-    background: #fff;
-}
-.post_title {
-    padding: 0 0 10px 10px;
-    font-size: 2em;
-}
-.post_metadata {
-    font-size: .9em;
-    padding: 0 0 5px 15px;
-}
-.post_photo {
-}
-
-.post_photo img {
-    width: 100%;
-    text-align: center;
-}
-.post_body {
-    min-height: 100px;
-    padding: 0 0 0 15px;
-}
-
-.news-categories h4 {
-    font-size: 2em;
-    font-weight: bold;
-    padding: 10px 0;
-    color: rgb(100, 100, 100);
-}
-.news-category {
-    font-size: 1.4em;
-    font-weight: bold;
-    padding: 0 0 10px 0;
-}
-.news-category-post {
-    padding: 5px 0 5px 0;
-}
-.news-category-post ul {
-
-}
-.news-category-post ul li {
-    padding: 10px;
-    border-top: 1px solid #fff;
-    background: rgb(250, 250, 250);
-}
-
-.news-category-post ul li:last-of-type {
-    padding: 10px;
-    border-bottom: 1px solid rgb(250, 250, 250);
-}
 
 
 /* Login Form
@@ -528,120 +475,22 @@ legend span {
     color: #444;
 }
 
-/* Products
-   ----------------------- */
-.scroll {
-    position:relative;
-    top:0;
-    left:0;
-}
 
 
-.product-configuration {
-    border: 1px solid #ccc;
-    padding: 3px;
-}
 
-.product-configuration-sidebar {
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin-bottom: 10px;
-}
 
-.product-configuration-sidebar h4 {
-    border-bottom: 1px solid #000;
-}
 
-.product-configuration-header {
-    border-bottom: 1px solid #000;
-}
-
-.product-configuration-option {
-    border: 1px solid #bbb;
-    margin-bottom: 10px;
-}
-
-.product-configuration-option-header {
-    background: #ddd;
-    padding: 3px;
-}
-
-.product-configuration-option-selection {
-    padding: 3px;
-}
-
-.product-row {
-    margin-bottom: 10px;
-}
-
-ul.category-product-list li {
-    width: 230px;
-    display: inline-block;
-    border: 1px solid #000;
-}
-
-ul.category-product-list li a {
-    text-decoration: none;
-}
-
-div.category-product-image {
-    padding-top: 5px;
-    text-align: center;
-    min-height: 220px;
-    width: 100%;
-}
-
-.category-product-title {
-    text-align: center;
-}
-
-.category-product-price {
-    text-align: center;
-}
 
 
 /* Categories
    ----------------------- */
-
-ul.child-category-list li {
-    width: 230px;
-    display: inline-block;
-}
-
-ul.child-category-list li a {
-    text-decoration: none;
-}
 
 .category-navigation {
     font-size: 11px;
     margin: 0 0 5px 0;
 }
 
-h1.category-title {
-    font-family: 'FuturaExtraBlack', "Arial Black";
-    font-size: 60px;
-    line-height: 60px;
-    padding: 20px 0 15px;
-    text-align: left;
-}
 
-.category-row {
-    margin-bottom: 10px;
-}
-
-div.child-category-image {
-    padding: 5px;
-    text-align: center;
-    min-height: 230px;
-    width: 100%;
-}
-
-.child-category-title {
-    text-align: center;
-}
-.child-category-title a {
-    text-decoration: none;
-}
 
 /* Cart
    ----------------------- */

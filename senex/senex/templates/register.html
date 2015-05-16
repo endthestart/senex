@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static from staticfiles %}
-{% load currency_filters %}
+{% load bootstrap3 %}
 {% load thumbnail %}
 
 {% block title %}{% trans "Register" %}{% endblock %}
 
 {% block content %}
-    <div class="six columns offset-by-five">
-        <div class="register-form top-spacer">
-            <h3 class="bright-text">{% trans "Register" %}</h3>
-            {% if error %}
-                <p>{{ error }}</p>
-            {% endif %}
-            <form action="" method="post">{% csrf_token %}
-                {{ form.as_p }}
-                <input type="hidden" name="next"
-                       value="{% if next %}{{ next }}{% else %}{% url 'store_home' %}{% endif %}"/>
-                <input type="submit" name="submit" value="Register"/>
-            </form>
+    <div class="container">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 margin-top margin-bottom">
+            <div class="register-form">
+                <h3 class="bright-text">{% trans "Register" %}</h3>
+                {% if error %}
+                    <p>{{ error }}</p>
+                {% endif %}
+                <form action="" method="post">{% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url 'store_home' %}{% endif %}"/>
+                    <input class="btn btn-primary btn-block btn-lg" type="submit" name="submit" value="Register"/>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

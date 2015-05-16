@@ -163,6 +163,7 @@ THIRD_PARTY_APPS = (
     'senex_shop.discounts',
     'senex_shop.news',
     'senex_shop.shipping',
+    'bootstrap3',
 )
 
 LOCAL_APPS = (
@@ -240,3 +241,5 @@ TEST_DISCOVER_TOP_LEVEL = SITE_ROOT
 TEST_DISCOVER_ROOT = SITE_ROOT
 TEST_DISCOVER_PATTERN = "test_*"
 ########## END TEST CONFIGURATION
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

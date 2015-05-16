@@ -4,60 +4,68 @@
 {% load thumbnail %}
 
 {% block content %}
-    <form id="product-options-form" class="remove-bottom" action="{% url 'cart_add' %}" method="post">{% csrf_token %}
-        <div class="category-navigation twelve columns">
-            {% block breadcrumbs %}
-                <a href="{% url 'store_home' %}">Home</a> {% for ancestor in product.category.get_ancestors %} >
-                <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
-            {% endblock breadcrumbs %}
-        </div>
-        <div class="twelve columns">
-            <div class="product-configuration">
-                <div>
-                    <img src="{% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
-                </div>
-                <div class="product-photo-gallery">
-                  {% for product_image in product.productimage_set.all %}
-                      <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
-                        <img src="{% thumbnail product_image.image 75x75 crop %}"/>
-                      </a>
-                  {% endfor %}
-                </div>
-                <div>
-                    <h2>{{ product.name }}</h2>
-
-                    <p>{{ product.description|safe }}</p>
-                </div>
-                {% if error_message %}
-                    <div><p><strong>{{ error_message }}</strong></p></div>
-                {% endif %}
-                <div>
-                    <input type="hidden" name="product_name" id="product_name" value="{{ product.slug }}"/>
-                    <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>
+    <form id="product-options-form" action="{% url 'cart_add' %}" method="post">{% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="category-navigation">
+                    {% block breadcrumbs %}
+                        <a href="{% url 'store_home' %}">Home</a> {% for ancestor in product.category.get_ancestors %} >
+                        <a href="{{ ancestor.get_absolute_url }}">{{ ancestor.name }}</a>{% endfor %}
+                    {% endblock breadcrumbs %}
                 </div>
             </div>
-        </div>
-        <div class="four columns">
-            <div class="product-configuration-sidebar">
-                <h4>Subtotal:</h4>
-                <h5 class="add-bottom">$<span id="price">{{ product.price }}</span></h5>
-                <input type="submit" class="button" name="addcart" value="Add to Cart"/>
+            <div class="row">
+                <div class="col-lg-8 product-configuration">
+                    <div>
+                        <img src="
+                                {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"
+                             width="100%"/>
+                    </div>
+                    <div class="product-photo-gallery">
+                        {% for product_image in product.productimage_set.all %}
+                            <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
+                                <img src="{% thumbnail product_image.image 75x75 crop %}"/>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <h2>{{ product.name }}</h2>
+
+                        <p>{{ product.description|safe }}</p>
+                    </div>
+                    {% if error_message %}
+                        <div><p><strong>{{ error_message }}</strong></p></div>
+                    {% endif %}
+                    <div>
+                        <input type="hidden" name="product_name" id="product_name" value="{{ product.slug }}"/>
+                        <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="product-configuration-sidebar">
+                        <h4>Subtotal:</h4>
+                        <h5>$<span id="price">{{ product.price }}</span></h5>
+                        <input type="submit" class="btn btn-primary" name="addcart" value="Add to Cart"/>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
 {% endblock content %}
-{% block extrajs %}
-<script type="text/javascript">
-$(window).on('scroll', function () {
-    var scrollPos = $(document).scrollTop();
-    console.log(scrollPos);
-    if (scrollPos >= 0)
-    {
-      $('.scroll').css({
-        top: scrollPos
-      });
-    }
-
-}).scroll();
-</script>
-{% endblock %}
+{#{% block extrajs %}#}
+{#    <script type="text/javascript">#}
+{#        var scrollTop = $(window).scrollTop();#}
+{#        var elementOffset = $('.scroll').offset().top;#}
+{#        var distance = (elementOffset - scrollTop);#}
+{#        $(window).on('scroll', function () {#}
+{#            var scrollPos = $(document).scrollTop();#}
+{#            var newposition = scrollPos - distance + 10#}
+{#            if (newposition < 0) {#}
+{#                newposition = 0;#}
+{#            }#}
+{#            $('.scroll').css({#}
+{#                top: newposition#}
+{#            });#}
+{#        }).scroll();#}
+{#    </script>#}
+{#{% endblock %}#}

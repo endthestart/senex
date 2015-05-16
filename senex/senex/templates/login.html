@@ -1,28 +1,24 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static from staticfiles %}
-{% load currency_filters %}
+{% load bootstrap3 %}
 {% load thumbnail %}
 
 {% block title %}{% trans "Login" %}{% endblock %}
 
 {% block content %}
-    <div class="six columns offset-by-five">
-        <div class="top-spacer">
+    <div class="container">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 margin-top margin-bottom">
             <div class="login-form">
                 <form action="" method="post">{% csrf_token %}
                     <h4 class="bright-text">{% trans "Login" %}</h4>
                     {% if form.non_field_errors %}
                         {{ form.non_field_errors }}
                     {% endif %}
-                    {% for field in form %}
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {{ field.errors }}
-                    {% endfor %}
-                    <div><a href="{% url 'password_reset' %}">{% trans "Get a password reminder" %}</a></div>
+                    {% bootstrap_form form %}
                     <input type="hidden" name="next" value="{% url 'store_home' %}"/>
-                    <input type="submit" name="Login" value="Login"/>
+                    <input class="btn btn-primary btn-block btn-lg" type="submit" name="Login" value="Login"/>
+                    <div class="text-center"><a href="{% url 'password_reset' %}">{% trans "Get a password reminder" %}</a></div>
                 </form>
             </div>
         </div>
