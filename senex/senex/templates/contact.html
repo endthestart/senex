@@ -1,34 +1,36 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
 {% load static from staticfiles %}
 
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-    <div class="six columns">
-        <h2>Contact Information</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <h2>Contact Information</h2>
 
-        <h3>Address:</h3>
+                <h3>Address:</h3>
 
-        <p>{{ shop.name }}
-        <br/>{{ shop.address_1 }}
-        <br/>{{ shop.address_2 }}
-        <br/>{{ shop.city }}, {{ shop.state }} {{ shop.zip_code }}</p>
+                <address>
+                    <strong>{{ shop.name }}</strong>
+                    {% if shop.address_1 %}<br/>{{ shop.address_1 }}{% endif %}
+                    {% if shop.address_2 %}<br/>{{ shop.address_2 }}{% endif %}
+                    <br/>{{ shop.city }}, {{ shop.state }} {{ shop.zip_code }}
+                    <br/><abbr title="Phone">P:</abbr> {{ shop.phone }}
+                </address>
+                <h3>Map:</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3075.7779552821953!2d-104.803938!3d39.56461399999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c8f01501a4595%3A0x9830c29f4b7c759e!2s8374+Bed+Straw+St%2C+Parker%2C+CO+80134!5e0!3m2!1sen!2sus!4v1431657019659" width="375" height="350" frameborder="0" style="border:0"></iframe>
+            </div>
+            <div class="col-lg-7">
+                <h2>Or send us an email!</h2>
 
-        <h3>Phone:</h3>
-
-        <p>{{ shop.phone }}</p>
-
-        <h3>Map:</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.8514634228623!2d-104.864648!3d38.9045119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x871351cba3b6db49%3A0xb45bad48c561aa21!2s5040+Corporate+Plaza+Dr!5e0!3m2!1sen!2sus!4v1403479656521" width="400" height="300" frameborder="0" style="border:0"></iframe>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <input type="submit" value="Send Message"/>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="nine columns offset-by-one">
-        <h2>Or send us an email!</h2>
-
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Send Message"/>
-        </form>
-    </div>
-
 {% endblock %}

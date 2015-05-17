@@ -6,6 +6,35 @@ body {
     color: #5a5a5a;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}
+
+/* #Links
+================================================== */
+/*a, a:visited {*/
+    /*color: #333;*/
+    /*text-decoration: underline;*/
+    /*outline: 0;*/
+/*}*/
+
+/*a:hover, a:focus {*/
+    /*color: #000;*/
+/*}*/
+
+/*p a, p a:visited {*/
+    /*line-height: inherit;*/
+/*}*/
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 .navbar-static-top {
@@ -26,9 +55,6 @@ body {
     padding-left: 15px;
 }
 
-.navbar .container {
-    width: auto;
-}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -139,6 +165,7 @@ body {
     background: rgb(50, 50, 50);
     min-height: 250px;
     padding: 10px 0 0 0;
+    margin: 20px 0 0 0;
 }
 
 .footer h4 {
@@ -156,4 +183,292 @@ body {
     border-left: 1px dotted rgb(150, 150, 150);
     padding: 0 0 0 10px;
     color: rgb(255, 255, 255);
+}
+
+/* Category
+   ----------------------- */
+
+h1.category-title {
+    font-family: 'FuturaExtraBlack', "Arial Black";
+    font-size: 50px;
+    line-height: 50px;
+    padding: 0 0 15px;
+    text-align: left;
+}
+
+ul.child-category-list li {
+    width: 230px;
+    display: inline-block;
+}
+
+ul.child-category-list li a {
+    text-decoration: none;
+}
+
+.category-row {
+    margin-bottom: 10px;
+}
+
+div.child-category-image {
+    padding: 5px;
+    text-align: center;
+    min-height: 230px;
+    width: 100%;
+}
+
+.child-category-title {
+    text-align: center;
+}
+.child-category-title a {
+    text-decoration: none;
+}
+
+.product-row {
+    margin-bottom: 10px;
+}
+
+ul.category-product-list li {
+    width: 230px;
+    display: inline-block;
+    border: 1px solid #000;
+    margin-bottom: 6px;
+}
+
+ul.category-product-list li a {
+    text-decoration: none;
+}
+
+div.category-product-image {
+    padding-top: 5px;
+    text-align: center;
+    min-height: 220px;
+    width: 100%;
+}
+
+.category-product-title {
+    text-align: center;
+}
+
+.category-product-price {
+    text-align: center;
+}
+
+/* Products
+   ----------------------- */
+.scroll {
+    position:relative;
+    top:0;
+    left:0;
+}
+.product-configuration {
+    border: 1px solid #ccc;
+    padding: 3px;
+}
+.product-configuration-sidebar {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.product-configuration-sidebar h4 {
+    border-bottom: 1px solid #000;
+}
+.product-configuration-header {
+    border-bottom: 1px solid #000;
+}
+.product-configuration-option {
+    border: 1px solid #bbb;
+    margin-bottom: 10px;
+}
+.product-configuration-option-header {
+    background: #ddd;
+    padding: 3px;
+}
+.product-configuration-option-selection {
+    padding: 3px;
+}
+
+/* Cart
+   ----------------------- */
+
+.cart-image {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    vertical-align: text-bottom;
+    min-height: 150px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 15px;
+}
+.cart-item-box {
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 5px 5px 20px 5px;
+    margin-bottom: 10px;
+}
+.cart-item-description {
+    display: inline-block;
+}
+.cart-item-description a {
+    text-decoration: none;
+}
+.cart-item-price {
+    display: inline-block;
+}
+.cart-item-line-price {
+    display: inline-block;
+}
+.cart-product-description ul {
+    padding: 0;
+}
+.cart-summary .rule {
+    border-bottom: 1px solid #485155;
+}
+.cart-summary-inner {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.cart-summary h1,
+.cart-summary h2,
+.cart-summary h3,
+.cart-summary h4,
+.cart-summary h5 {
+    margin-top: 0;
+}
+.summary-list li {
+    line-height: 1em;
+    padding: 10px 0 0 0;
+}
+.discount-form {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.discount-box {
+    position: relative;
+}
+
+.discount-box .button-discount {
+    width: 50px;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: -2px;
+    font-size: 1.2em;
+}
+
+/* Checkout Progress
+   ----------------------- */
+.progress-inner {
+    display: block;
+    padding: 5px 0 0 0;
+    margin: 0;
+    border-bottom: 3px solid rgb(210, 210, 210);
+    font-family: "Georgia", "Times New Roman", serif;
+}
+
+.progress-inner {
+    text-align: center;
+}
+
+ul.progress-inner {
+    margin: 0;
+}
+
+ul.progress-inner li {
+    text-align: center;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    height: 100%;
+    line-height: 30px;
+    width: 200px;
+}
+
+ul.progress-inner li.active {
+    font-weight: bold;
+}
+
+ul.progress-inner li a {
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    width: 100%;
+}
+
+ul.progress li a:hover {
+    text-decoration: none;
+    background: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+}
+
+/* News
+================================================== */
+.post {
+    padding: 10px 0 10px 0;
+    background: #fff;
+}
+.post-title {
+    padding: 0 0 10px 10px;
+    font-size: 2em;
+}
+.post-metadata {
+    font-size: .9em;
+    padding: 0 0 5px 15px;
+}
+.post-body {
+    min-height: 100px;
+    padding: 15px 0 0 15px;
+}
+.news-categories h4 {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 0;
+    color: rgb(100, 100, 100);
+}
+.news-category {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 0 0 10px 0;
+}
+.news-category-post ul {
+    padding-left: 3px;
+}
+
+
+/* Login Form
+================================================== */
+
+.login-form {
+    background: #222c30;
+    padding: 20px;
+}
+
+.login-form label {
+    color: #fff;
+}
+
+.login-form a {
+    color: rgb(255, 255, 255);
+}
+
+.register-form {
+    background: #222c30;
+    padding: 20px;
+}
+
+.register-form label {
+    color: #fff;
+}
+
+.register-form a {
+    color: rgb(255, 255, 255);
+}
+
+.bright-text {
+    color: #fff;
+    line-height: 38px;
+    font-size: 35px;
 }

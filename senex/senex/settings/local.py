@@ -3,7 +3,7 @@ from .base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-#THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_DEBUG = DEBUG
 
 # Email
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -46,3 +46,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'SHOW_TEMPLATE_CONTEXT': True,
 }
+
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_BnKaAmgD81hWGi1F1suzPmX6")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlpg50CnmD8A")

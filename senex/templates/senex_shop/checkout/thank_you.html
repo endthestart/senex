@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <div class="checkout-page clearfix">
+    <div class="container checkout-page clearfix">
         {% block checkout_progress %}
             {% include 'senex_shop/checkout/progress.html' with step=4 %}
         {% endblock %}
@@ -15,23 +15,25 @@
                 {{ error }}
             </div>
         {% endif %}
-        <div class="fourteen columns offset-by-one">
+        <div class="col-lg-10 col-lg-offset-1">
             <h2 class="page-title">{% block page_title %}{% trans "Order confirmation" %}{% endblock %}</h2>
-
             {% block order_confirmation %}
-                <p>{% trans "Thank you for your order" %}</p>
-                <p class="remove-bottom remove-top"><span
-                        class="label label-success">Order Number: {{ order.number }}</span></p>
-                <p class="remove-bottom remove-top"><span class="label label-success">You will receive an email confirmation shortly.</span>
+                <p>
+                    {% trans "Thank you for your order" %}
                 </p>
-                <p class="remove-top"><a onclick="window.print()" href="#"
-                                         class="btn btn-primary btn-block btn-large">{% trans "Print this page" %}</a>
+                <p class="remove-bottom remove-top">
+                    <span class="label label-success">Order Number: {{ order.number }}</span></p>
+                <p class="remove-bottom remove-top">
+                    <span class="label label-success">You will receive an email confirmation shortly.</span>
+                </p>
+                <p class="remove-top">
+                    <a onclick="window.print()" href="#" class="btn btn-primary btn-large">{% trans "Print this page" %}</a>
                 </p>
             {% endblock order_confirmation %}
         </div>
-        <div class="fourteen columns offset-by-one">
+        <div class="col-lg-10 col-lg-offset-1">
             {% block shipping_address %}
-                <div class="seven columns alpha">
+                <div class="col-lg-5">
                     <div class="sub-header">
                         {% trans "Shipping address" %}
                     </div>
@@ -54,7 +56,7 @@
             {% endblock shipping_address %}
 
             {% block billing_address %}
-                <div class="seven columns alpha">
+                <div class="col-lg-5">
                     <div class="sub-header">
                         {% trans "Billing address" %}
                     </div>
@@ -76,9 +78,9 @@
                 </div>
             {% endblock %}
         </div>
-        <div class="fourteen columns offset-by-one">
+        <div class="col-lg-10 col-lg-offset-1">
             {% block shipping_notes %}
-                <div class="seven columns alpha">
+                <div class="col-lg-5">
                     <div class="sub-header">{% trans "Shipping notes" %}</div>
                     <div class="shipping-instructions">
                         {% if order.shipping_address.notes %}
@@ -91,7 +93,7 @@
             {% endblock shipping_notes %}
 
             {% block payment_info %}
-                <div class="seven columns omega">
+                <div class="col-lg-5">
                     <div class="sub-header">
                         {% trans "Payment Method" %}
                     </div>
@@ -102,12 +104,12 @@
             {% endblock %}
         </div>
 
-        <div class="fourteen columns offset-by-one">
+        <div class="col-lg-10 col-lg-offset-1">
             {% block order_tracking %}
             {% endblock order_tracking %}
         </div>
 
-        <div class="fourteen columns offset-by-one">
+        <div class="col-lg-10 col-lg-offset-1">
             {% block order_contents %}
                 <div class="sub-header">
                     {% trans "Order Details" %}

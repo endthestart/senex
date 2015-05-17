@@ -5,10 +5,7 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-    <!-- Carousel
-    ================================================== -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -20,7 +17,7 @@
 
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Senex Cycles</h1>
+                        <h1>SENEX Cycles</h1>
 
                         <p>Pure, race inspired titanium bicycles at a reasonable price.</p>
 
@@ -35,7 +32,7 @@
                     <div class="carousel-caption">
                         <h1>Custom</h1>
 
-                        <p>Complete Senex bikes comes in all sorts of varieties. Always wanted a green bike? We can make
+                        <p>Complete SENEX bikes come in all sorts of varieties. Always wanted a green bike? We can make
                             that happen.</p>
 
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Customize</a></p>
@@ -49,7 +46,7 @@
                     <div class="carousel-caption">
                         <h1>Attention to detail.</h1>
 
-                        <p>Senex frames come with CNC machined head badges, etched logo, replaceable derailleur hangers,
+                        <p>SENEX frames come with CNC machined head badges, etched logo, replaceable derailleur hangers,
                             and tapered headtubes.</p>
 
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
@@ -66,27 +63,21 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <!-- /.carousel -->
-
     <div class="container marketing">
+        <div class="row">
+            {% for promo in promo_boxes %}
+                <div class="col-lg-4 col-md-4">
+                    <img class="img-circle"
+                         src="{% if promo.image %}{% thumbnail promo.image 140x140 crop %}{% else %}None{% endif %}"
+                         alt="news" width="140" height="140">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-        {% for promo in promo_boxes %}
-            <div class="col-lg-4">
-                <img class="img-circle"
-                     src="{% if promo.image %}{% thumbnail promo.image 140x140 crop %}{% else %}None{% endif %}"
-                     alt="news" width="140" height="140">
+                    <h2>{{ promo.label|upper }}</h2>
 
-                <h2>{{ promo.label|upper }}</h2>
+                    <p>Nothing</p>
 
-                <p>Nothing</p>
-
-                <p><a class="btn btn-default" href="{{ promo.link }}" role="button">View details &raquo;</a></p>
-            </div>
-        {% endfor %}
-        <!-- /.col-lg-4 -->
+                    <p><a class="btn btn-default" href="{{ promo.link }}" role="button">View details &raquo;</a></p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    </div>
-    <!-- /.row -->
 {% endblock %}

@@ -15,58 +15,69 @@
 {% block order_contents %}{% endblock order_contents %}
 
 {% block payment_details %}
-    <form action="{% url 'checkout_preview' %}" method="POST" id="payment-form">{% csrf_token %}
-        <span class=payment-errors"></span>
+    <form class="form-horizontal" action="{% url 'checkout_preview' %}" method="post" id="payment-form">{% csrf_token %}
+        <span class="payment-errors"></span>
 
-        <div class="control-group">
-            <label class="control-label"><span>Card Number</span></label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><span>Card Number</span></label>
 
-            <div class="controls">
-                <input type="text" size="20" data-stripe="number"/>
+            <div class="col-sm-9">
+                <input class="form-control" type="text" size="20" data-stripe="number"/>
             </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label"><span>Security Code</span></label>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><span>Security Code</span></label>
 
-            <div class="controls">
-                <input class="cc-security-code" type="text" size="4" data-strive="cvc"/>
+            <div class="col-sm-9">
+                <input class="form-control cc-security-code" type="text" size="4" data-strive="cvc"/>
             </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label"><span>Expiration Date</span></label>
-
-            <div class="controls">
-                <select class="cc-form-month" data-stripe="exp-month">
-                    <option value="month">Month</option>
-                    {% for month in months %}
-                        <option value="{{ month.value }}">{{ month.display }}</option>
-                    {% endfor %}
-                </select>
-                <select class="cc-form-year" data-stripe="exp-year">
-                    <option value="year">Year</option>
-                    {% for year in years %}
-                        <option value="{{ year }}">{{ year }}</option>
-                    {% endfor %}
-                </select>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><span>Expiration Date</span></label>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="col-sm-2 form-control cc-form-month" data-stripe="exp-month">
+                            <option value="month">Month</option>
+                            {% for month in months %}
+                                <option value="{{ month.value }}">{{ month.display }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                        <select class="col-sm-2 form-control cc-form-year" data-stripe="exp-year">
+                            <option value="year">Year</option>
+                            {% for year in years %}
+                                <option value="{{ year }}">{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="payment-form-bottom">
-            <button type="submit">Preview Order</button>
+            <button type="submit" class="btn btn-lg btn-primary pull-right">Preview Order</button>
         </div>
     </form>
+{% endblock payment_details %}
+{% block billing_address %}
+{% endblock billing_address %}
+{% block extrajs %}
     <script type="text/javascript" src="//js.stripe.com/v2/"></script>
     <script type="text/javascript">
         // This identifies your website in the createToken call below
+        // another comment
         Stripe.setPublishableKey('{{ STRIPE_PUBLIC_KEY }}');
 
         $(function ($) {
             $('#payment-form').submit(function (event) {
+                console.log('form submitted');
                 var $form = $(this);
 
                 // Disable the submit button to prevent repeated clicks
-                $form.find('button').prop('disabled', true);
+                $form.find('btn-primary').prop('disabled', true);
 
                 Stripe.card.createToken($form, stripeResponseHandler);
 
@@ -92,6 +103,4 @@
             }
         };
     </script>
-{% endblock payment_details %}
-{% block billing_address %}
-{% endblock billing_address %}
+{% endblock extrajs %}

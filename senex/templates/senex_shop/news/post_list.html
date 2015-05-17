@@ -1,35 +1,41 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block content %}
-<div class="ten columns">
-    {% if post_list %}
-        {% for post in post_list %}
-            <div class="post">
-                <div class="post_title">{{ post.title }}</div>
-                <div class="post_metadata">{{ post.publish|date }}</div>
-                {% if post.photo %}<div class="post_photo"><img src="{{ post.photo.url }}"/></div>{% endif %}
-                <div class="post_body">{{ post.body }}</div>
-            </div>
-        {% endfor %}
-    {% endif %}
-</div>
-<div class="six columns">
-    <div class="news-categories">
-        <h4>NEWS</h4>
-        {% for category in categories %}
-            <div class="news-category">{{ category }}</div>
-            <div class="news-category-post">
-            <ul>
-                {% for post in category.posts.all %}
-                    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+        <h2>NEWS</h2>
+            {% if post_list %}
+                {% for post in post_list %}
+                    <div class="post">
+                        <div class="post-title">{{ post.title }}</div>
+                        <div class="post-metadata">{{ post.publish|date }}</div>
+                        {% if post.photo %}<div class="post-photo"><img class="img-responsive" src="{{ post.photo.url }}"/></div>{% endif %}
+                        <div class="post-body">{{ post.body }}</div>
+                    </div>
                 {% endfor %}
-            </ul>
+            {% endif %}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="news-categories">
+                <h2>CATEGORIES</h2>
+                {% for category in categories %}
+                    <div class="news-category">{{ category }}</div>
+                    <div class="news-category-post">
+                    <ul class="list-unstyled">
+                        {% for post in category.posts.all %}
+                            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     </div>
 </div>
 
-<div class="fourteen columns offset-by-one"></div>
+<div class="container">
 {% if is_paginated %}
     <p class="pagination">
         {% if has_next %}
