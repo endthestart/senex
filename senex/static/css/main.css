@@ -35,6 +35,7 @@ h1, h2, h3, h4, h5, h6 {
     /*line-height: inherit;*/
 /*}*/
 
+
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 .navbar-static-top {
@@ -448,6 +449,7 @@ ul.progress li a:hover {
 
 .login-form label {
     color: #fff;
+    padding: 20px;
 }
 
 .login-form a {
@@ -461,6 +463,7 @@ ul.progress li a:hover {
 
 .register-form label {
     color: #fff;
+    padding: 20px;
 }
 
 .register-form a {
