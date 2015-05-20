@@ -64,10 +64,10 @@ def production():
     with cd("%s/senex" % path):
         with prefix('source %s/venv/bin/activate' % path):
             run("pwd")
-            print(green("Pulling master from GitHub..."))
+            print
+            run("pi(green("Pulling master from GitHub..."))
             run("git pull origin master")
-            print(green("Installing requirements..."))
-            run("pip install -r ../requirements/production.txt")
+            print(green("Installing requirements..."))p install -r ../requirements/production.txt")
             print(green("Collecting static files..."))
             run("python manage.py collectstatic --noinput")
             # print(green("Syncing the database..."))

@@ -4,6 +4,12 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = DEBUG
 
+ADMINS = (
+    ('Michael Anderson', 'michael@senexcycles.com'),
+)
+
+MANAGERS = ADMINS
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!e7=(lo95id2%tkk6o8qtz7b4np!5_3ed&v%i(u=dv+l^h_wfg')
 
@@ -27,6 +33,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'info@senexcycles.com'
+SERVER_EMAIL = 'info@senexcycles.com'
 ########## END EMAIL CONFIGURATION
 
 # Database
@@ -58,6 +65,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     '.senexcycles.com',
+    '127.0.0.1',
 ]
 ########## END ALLOWED HOSTS CONFIGURATION
 
