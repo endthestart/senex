@@ -475,3 +475,12 @@ ul.progress li a:hover {
     line-height: 38px;
     font-size: 35px;
 }
+
+/* Alerts
+===================== */
+
+.alert {
+    padding: 5px 5px 5px 15px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

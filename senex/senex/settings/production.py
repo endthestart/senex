@@ -1,7 +1,3 @@
-import os
-
-from os.path import join, normpath
-
 from .base import *
 
 DEBUG = False

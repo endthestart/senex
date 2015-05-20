@@ -16,6 +16,12 @@ logger = logging.getLogger("default")
 def home(request, template_name='home.html'):
     posts = Post.objects.all()[:3]
     promo_boxes = PromoBox.objects.all()[:4]
+    from django.contrib import messages
+    messages.debug(request, '%s SQL statements were executed.' % 1)
+    messages.info(request, 'Three credits remain in your account.')
+    messages.success(request, 'Profile details updated.')
+    messages.warning(request, 'Your account expires in three days.')
+    messages.error(request, 'Document deleted.')
     context = {
         'posts': posts,
         'promo_boxes': promo_boxes,

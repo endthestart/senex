@@ -228,6 +228,10 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_x1CjT9YMoj30rlp
 ########## MESSAGE STORAGE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/messages/
 MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
 ########## END MESSAGE STORAGE CONFIGURATION
 
 ########## NEW RELIC CONFIGURATION
