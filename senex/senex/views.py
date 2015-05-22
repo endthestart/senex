@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 
 from .forms import ContactForm, LoginForm, RegistrationForm
-from .models import PromoBox
+from .models import PromoBox, GalleryPhoto
 from senex_shop.news.models import Post
 
 
@@ -124,3 +124,11 @@ def contact_thanks(request, template_name="contact_thanks.html"):
 
 def custom(request, template_name="custom.html"):
     return render_to_response(template_name, {}, RequestContext(request))
+
+
+def gallery(request, template_name="gallery.html"):
+    photos = GalleryPhoto.objects.all()
+    context = {
+        'photos': photos,
+    }
+    return render_to_response(template_name, context, RequestContext(request))

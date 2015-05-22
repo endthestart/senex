@@ -15,14 +15,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 product-configuration">
-                    <div>
-                        <img class="img-responsive" src="{% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"/>
-                    </div>
+                <div class="col-lg-7 col-md-8 product-configuration">
+                        <img class="img-responsive center-block" src="{% if product.main_image.image %}{% thumbnail product.main_image.image 1000x500 %}{% endif %}"/>
                     <div class="product-photo-gallery">
                         {% for product_image in product.productimage_set.all %}
-                            <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
-                                <img src="{% thumbnail product_image.image 75x75 crop %}"/>
+                            <a href="{% thumbnail product_image.image 800x600 %}">
+                                <img src="{% thumbnail product_image.image 60x60 %}"/>
                             </a>
                         {% endfor %}
                     </div>
@@ -43,7 +41,7 @@
                             </div>
                             <div class="product-configuration-option-selection">
                                 <select name="{{ option_group.id }}" id="{{ option_group.id }}"
-                                        class="priced product-configuration-select">
+                                        class="form-control priced product-configuration-select">
                                     {% for choice in option_group.option_set.all %}
                                         <option data-price="{{ choice.price_change }}" value="{{ choice.value }}"
                                                 {% if choice.selected %}selected="selected"{% endif %}>{{ choice.name }}
@@ -61,7 +59,7 @@
                         <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>
                     </div>
                 </div>
-                <div class="col-lg-4 product-configuration-sidebar">
+                <div class="col-lg-4 col-lg-offset-1 col-md-4 product-configuration-sidebar">
                     <div>
                         <h4>Subtotal:</h4>
                         <h5 class="add-bottom">$<span id="price">{{ product.price }}</span></h5>

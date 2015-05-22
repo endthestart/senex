@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                        url(r'^account/', include('django.contrib.auth.urls')),
                        url(r'^grappelli/', include('grappelli.urls')),
                        url(r'^admin/', include(admin.site.urls)),
-                       url(r'^test/$', 'senex.views.test', name='test'),
+                       url(r'^gallery/$', 'senex.views.gallery', name='gallery'),
 )
 
 urlpatterns += patterns('django.contrib.flatpages.views',

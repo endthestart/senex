@@ -19,9 +19,9 @@
                     <div class="carousel-caption">
                         <h1>SENEX Cycles</h1>
 
-                        <p>Pure, race inspired titanium bicycles at a reasonable price.</p>
+                        <p>Pure, race inspired titanium bicycles.</p>
 
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Shop</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="{% url 'store_home' %}" role="button">Shop</a></p>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         <p>Complete SENEX bikes come in all sorts of varieties. Always wanted a green bike? We can make
                             that happen.</p>
 
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Customize</a></p>
+                        <p><a class="btn btn-lg btn-primary" href="/shop/bikes/mountain/p/650b-custom-titanium-mountain-bike/" role="button">Customize</a></p>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,8 @@
                     <img class="img-circle"
                          src="{% if promo.image %}{% thumbnail promo.image 140x140 crop %}{% else %}None{% endif %}"
                          alt="news" width="140" height="140">
-
                     <h2>{{ promo.label|upper }}</h2>
-
-                    <p>Nothing</p>
-
+{#                    <p>Nothing</p>#}
                     <p><a class="btn btn-default" href="{{ promo.link }}" role="button">View details &raquo;</a></p>
                 </div>
             {% endfor %}

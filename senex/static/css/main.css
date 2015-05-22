@@ -484,3 +484,10 @@ ul.progress li a:hover {
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+/* Gallery
+==================== */
+
+.thumb {
+    margin-bottom: 30px;
+}
