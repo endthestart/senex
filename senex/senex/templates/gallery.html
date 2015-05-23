@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row margin-top margin-bottom">
             {% for photo in photos %}
-                {% if forloop.counter|divisibleby:5 %}
+                {% if forloop.counter0|divisibleby:4 %}
                 </div>
-                <div class="row">
+                <div class="row margin-top margin-bottom">
                 {%  endif %}
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <a class="center-block fancybox" rel="senex-gallery" href="{% thumbnail photo.image 900x900 %}" title="{{ photo.title }}">
