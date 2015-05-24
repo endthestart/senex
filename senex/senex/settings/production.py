@@ -28,12 +28,12 @@ STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.senexcycles.com'
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'info@senexcycles.com'
+EMAIL_HOST_USER = 'contact@senexcycles.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'info@senexcycles.com'
-SERVER_EMAIL = 'info@senexcycles.com'
+DEFAULT_FROM_EMAIL = 'contact@senexcycles.com'
+SERVER_EMAIL = 'contact@senexcycles.com'
 ########## END EMAIL CONFIGURATION
 
 # Database

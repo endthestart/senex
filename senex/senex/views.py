@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, logout as logout_user, login as login_user, authenticate
+from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -93,22 +94,17 @@ def contact(request, template_name='contact.html'):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            sender_email = form.cleaned_data['sender_email']
-            sender_name = form.cleaned_data['sender_name']
+            sender_email = form.cleaned_data['email']
+            sender_name = form.cleaned_data['name']
             cc_myself = form.cleaned_data['cc_myself']
 
-            recipients = ['info@senexcycling.com']
+            recipients = ['contact@senexcycling.com']
             if cc_myself:
                 recipients.append(sender_email)
 
-            from django.core.mail import send_mail
-
             email_message = "A new message from: {0}<br /><br />{1}".format(sender_name, message)
-
-            from django.core.mail import EmailMessage
-            email = EmailMessage(subject, email_message, 'info@senexcycles.com', ['info@senexcycles.com',], headers={'Reply-To': sender_email})
+            email = EmailMessage(subject, email_message, 'contact@senexcycles.com', ['contact@senexcycles.com',], headers={'Reply-To': sender_email})
             email.send()
-            #send_mail(subject, email_message, sender_email, recipients)
             return HttpResponseRedirect('/contact/thanks/')
 
     context = {

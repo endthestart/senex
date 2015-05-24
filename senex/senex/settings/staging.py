@@ -4,8 +4,11 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = DEBUG
 
-# Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ADMINS = (
+    ('Michael Anderson', 'michael@senexcycles.com'),
+)
+
+MANAGERS = ADMINS
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '!e7=(lo95id2%tkk6o8qtz7b4np!5_3ed&v%i(u=dv+l^h_wfg')
@@ -19,6 +22,19 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = normpath(join(SITE_ROOT, '../static'))
 STATIC_URL = '/static/'
 ########## END OF STATIC FILES CONFIGURATION
+
+########## EMAIL CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.senexcycles.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'contact@senexcycles.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'contact@senexcycles.com'
+SERVER_EMAIL = 'contact@senexcycles.com'
+########## END EMAIL CONFIGURATION
 
 # Database
 DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', '')
@@ -53,8 +69,8 @@ ALLOWED_HOSTS = [
 ########## END ALLOWED HOSTS CONFIGURATION
 
 ########## SSL CONFIGURATION
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 ########## END SSL CONFIGURATION
 
 ########## STRIPE CONFIGURATION

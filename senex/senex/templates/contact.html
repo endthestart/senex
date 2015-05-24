@@ -20,7 +20,7 @@
                     <br/><abbr title="Phone">P:</abbr> {{ shop.phone }}
                 </address>
                 <h3>Map:</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3075.7779552821953!2d-104.803938!3d39.56461399999999!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c8f01501a4595%3A0x9830c29f4b7c759e!2s8374+Bed+Straw+St%2C+Parker%2C+CO+80134!5e0!3m2!1sen!2sus!4v1431657019659" width="375" height="350" frameborder="0" style="border:0"></iframe>
+                <iframe src="{{ shop.map_url }}" width="375" height="350" frameborder="0" style="border:0"></iframe>
             </div>
             <div class="col-lg-7">
                 <h2>Or send us an email!</h2>
@@ -28,7 +28,7 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    <input type="submit" value="Send Message"/>
+                    <input class="btn pull-right" type="submit" value="Send Message"/>
                 </form>
             </div>
         </div>

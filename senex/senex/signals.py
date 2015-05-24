@@ -12,6 +12,6 @@ def send_registration_email(sender, **kwargs):
     email_text = render_to_string(text_template, context)
     email_subject = render_to_string(subject_template, context)
     if kwargs['created']:
-        send_mail(email_subject, email_text, 'info@senexcycles.com', [user.email])
+        send_mail(email_subject, email_text, 'contact@senexcycles.com', [user.email])
 
 post_save.connect(send_registration_email, sender=settings.AUTH_USER_MODEL)
