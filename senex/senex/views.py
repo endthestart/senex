@@ -121,6 +121,12 @@ def contact_thanks(request, template_name="contact_thanks.html"):
 def custom(request, template_name="custom.html"):
     return render_to_response(template_name, {}, RequestContext(request))
 
+def test(request, template_name="test.html"):
+    photos = GalleryPhoto.objects.all()
+    context = {
+        'photos': photos,
+    }
+    return render_to_response(template_name, context, RequestContext(request))
 
 def gallery(request, template_name="gallery.html"):
     photos = GalleryPhoto.objects.all()

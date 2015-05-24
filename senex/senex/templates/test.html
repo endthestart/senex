@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load thumbnail %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div id="product-photo">
+        <img class="img-responsive product-photo" src="{% thumbnail photos.0.image 1000x500 }}"
+                 data-header-img="http://www.lorempixel.com/500/200" />
+    </div>
+    <div class="product-photo-gallery">
+        <ul id="thumbs">
+            {% for photo in photos %}
+                <li>
+                    <a href="#">
+                        <img class="product-image-thumb" src="{% thumbnail photo.image 50x50 %}"
+                         data-header-img="{% thumbnail photo.image 1000x500 %}" />
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+{% block extrajs %}
+<script>
+$('.product-image-thumb').click(function() {
+    $('img.product-photo').attr('src', $(this).attr('data-header-img'));
+});
+</script>
+{% endblock extrajs %}

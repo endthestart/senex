@@ -15,43 +15,55 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 product-configuration">
-                    <div>
-                        <img src="
-                                {% if product.main_image.image %}{% thumbnail product.main_image.image 960x200 crop %}{% endif %}"
-                             width="100%"/>
+                <div class="col-lg-7 col-md-8 product-configuration">
+                    <div class="product-photo-container">
+                        <img class="img-responsive center-block product-photo" src="
+                                {% if product.main_image.image %}{% thumbnail product.main_image.image 675x450 crop %}{% endif %}"/>
                     </div>
                     <div class="product-photo-gallery">
-                        {% for product_image in product.productimage_set.all %}
-                            <a href="{% thumbnail product_image.image 800x600 %}" rel="shadowbox[Product]">
-                                <img src="{% thumbnail product_image.image 75x75 crop %}"/>
-                            </a>
-                        {% endfor %}
+                        <ul class="list-inline">
+                            {% for product_image in product.productimage_set.all %}
+                                <li>
+                                    <img class="product-image-thumb"
+                                         src="{% thumbnail product_image.image 75x50 crop %}"
+                                         data-header-img="{% thumbnail product_image.image 675x450 crop %}"/>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                     <div>
                         <h2>{{ product.name }}</h2>
 
                         <p>{{ product.description|safe }}</p>
                     </div>
-                    {% if error_message %}
-                        <div><p><strong>{{ error_message }}</strong></p></div>
-                    {% endif %}
-                    <div>
-                        <input type="hidden" name="product_name" id="product_name" value="{{ product.slug }}"/>
-                        <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="product-configuration-sidebar">
+                    {% block product_configuration %}
+                        {% if error_message %}
+                            <div><p><strong>{{ error_message }}</strong></p></div>
+                        {% endif %}
+                        <div>
+                            <input type="hidden" name="product_name" id="product_name" value="{{ product.slug }}"/>
+                            <input type="hidden" size="5" name="quantity" id="quantity" value="1" class="priced"/>
+                        </div>
+                        </div>
+                    {% endblock product_configuration %}
+                {% block product_configuration_sidebar %}
+                    <div class="col-lg-4 col-lg-offset-1 col-md-4 product-configuration-sidebar">
                         <h4>Subtotal:</h4>
                         <h5>$<span id="price">{{ product.price }}</span></h5>
                         <input type="submit" class="btn btn-primary" name="addcart" value="Add to Cart"/>
                     </div>
-                </div>
+                {% endblock product_configuration_sidebar %}
             </div>
         </div>
     </form>
 {% endblock content %}
+{% block extrajs %}
+    <script>
+        $('.product-image-thumb').click(function () {
+            $('img.product-photo').attr('src', $(this).attr('data-header-img'));
+        });
+    </script>
+{% endblock extrajs %}
 {#{% block extrajs %}#}
 {#    <script type="text/javascript">#}
 {#        var scrollTop = $(window).scrollTop();#}

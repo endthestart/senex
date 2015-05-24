@@ -10,8 +10,11 @@
     <div class="container">
         <div class="row">
             <h1>{% trans "Shopping Cart" %}</h1>
-            <div class="col-lg-8">
-                {% if not cart.num_items %}<h2>{% trans "Your shopping cart is empty." %}</h2>{% else %}
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                {% if not cart.num_items %}
+                    <h2>{% trans "Your shopping cart is empty." %}</h2>
+                    <a href="{% url 'store_home' %}">&lt;  Continue shopping.</a>
+                {% else %}
                     {% for cart_item in cart_items %}
                         <div class="cart-item-box">
                             <div class="cart-image">
@@ -41,7 +44,9 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            {% include 'senex_shop/cart/cart_summary.html' %}
+            {% if cart.num_items %}
+                {% include 'senex_shop/cart/cart_summary.html' %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -20,6 +20,7 @@ urlpatterns = patterns('',
                        url(r'^grappelli/', include('grappelli.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^gallery/$', 'senex.views.gallery', name='gallery'),
+                       # url(r'^test/$', 'senex.views.test', name='test'),
 )
 
 urlpatterns += patterns('django.contrib.flatpages.views',

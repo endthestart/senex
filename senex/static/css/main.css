@@ -171,7 +171,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer h4 {
     color: rgb(170, 170, 170);
-    padding: 0 0 10px 0;
+    padding: 0;
     font-weight: bold;
 }
 
@@ -286,6 +286,14 @@ div.category-product-image {
 }
 .product-configuration-option-selection {
     padding: 3px;
+}
+
+.product-photo-container {
+    margin: 0;
+}
+
+.product-photo-gallery {
+    padding: 5px;
 }
 
 /* Cart
