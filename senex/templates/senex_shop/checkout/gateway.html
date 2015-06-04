@@ -16,15 +16,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 margin-top margin-bottom">
-                <div class="register-form">
+                <div class="gateway-form">
                     <h3 class="bright-text text-center">Sign In</h3>
                     <form action="." method="post" class="form-horizontal">
                         {% csrf_token %}
                         {{ form.non_field_errors }}
-                        <h4 class="bright-text">What is your email address?</h4>
+                        <h4 class="bright-text">1. What is your email address?</h4>
                         {% include "senex_shop/partials/form_field.html" with field=form.username %}
 
-                        <h4 class="bright-text">Do you have an account?</h4>
+                        <h4 class="bright-text">2. Do you have an account?</h4>
                         <div class="control-group {% if form.password.errors %}error{% endif %}">
                             {{ form.options.errors }}
                             <div class="controls">

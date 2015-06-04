@@ -463,7 +463,7 @@ ul.progress li a:hover {
     color: rgb(255, 255, 255);
 }
 
-.register-form {
+.register-form, .gateway-form {
     background: #222c30;
     padding: 20px;
 }
@@ -473,8 +473,17 @@ ul.progress li a:hover {
     padding: 20px;
 }
 
-.register-form a {
+.register-form a, .gateway-form a {
     color: rgb(255, 255, 255);
+}
+
+.gateway-form label {
+    color: #fff;
+    padding: 5px;
+}
+
+.gateway-form .radio label {
+    padding-left: 20px;
 }
 
 .bright-text {
