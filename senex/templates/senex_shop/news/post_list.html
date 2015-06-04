@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="col-sm-8">
         <h2>NEWS</h2>
             {% if post_list %}
                 {% for post in post_list %}
@@ -17,7 +17,7 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-sm-4">
             <div class="news-categories">
                 <h2>CATEGORIES</h2>
                 {% for category in categories %}

@@ -14,7 +14,6 @@
 {% block shipping_address %}
     {% if request.user.is_authenticated %}
         {% if addresses %}
-            <div class="clearfix">
                 <h3>{% trans "An address from your addressbook?" %}</h3>
                 {% for address in addresses %}
                     <div class="shipping-address">
@@ -35,7 +34,6 @@
                         </form>
                     </div>
                 {% endfor %}
-            </div>
         {% endif %}
     {% endif %}
     <form action="{% url 'checkout_shipping_address' %}" method="post"
@@ -44,7 +42,7 @@
         <div>
             {% csrf_token %}
             {% bootstrap_form form layout='horizontal' show_help=False %}
-            <div class="shipping-form-bottom">
+            <div class="shipping-form-bottom clearfix">
                 <button type="submit" class="btn btn-lg btn-primary pull-right">{% trans "Ship to this address" %}</button>
             </div>
         </div>

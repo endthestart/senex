@@ -16,7 +16,7 @@ def production():
 def staging():
     env.host_string = 'senexcycles.com'
     env.user = 'senex'
-    env.path = "/srv/www/staging.senexcycles.com"
+    env.path = "/srv/www/senex"
 
 def deploy():
     print(red("Beginning Deployment:"))

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <h1>{% trans "Shopping Cart" %}</h1>
-            <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="col-sm-8">
                 {% if not cart.num_items %}
                     <h2>{% trans "Your shopping cart is empty." %}</h2>
                     <a href="{% url 'store_home' %}">&lt;  Continue shopping.</a>
